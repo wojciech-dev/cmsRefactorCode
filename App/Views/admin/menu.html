@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+
+{% block body %}
+    <div class="column_right">
+        <h1 class="header">Dashboard</h1>
+        <div class="menu">
+            <table class="table">
+                <thead>
+                    <tr class="thead">
+                      <th><strong>Name</strong></th>
+                      <th><strong>Url</strong></th>
+                      <th><strong>Status</strong></th>
+                      <th><strong>Action</strong></th>
+                    </tr>
+                  </thead>
+                {{ menu | raw }}
+            </table>
+        </div>
+    </div>
+{% endblock %}

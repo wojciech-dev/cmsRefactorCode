@@ -1,0 +1,82 @@
+{% extends "admin/base.html" %}
+
+{% block body %}
+
+<div class="column_right">
+  <h1 class="header">Body</h1>
+  <h1><small>Content: </small>{{ breadcrumbs }}</h1>
+  <div class="container">
+    <table class="table-body">
+      <thead class="thead">
+        <tr>
+          <th>id</th>
+          <th>parent_id</th>
+          <th>name</th>
+          <th>title</th>
+          <th>content</th>
+          <th>slug</th>
+          <th>public</th>
+          <th>More</th>
+          <th>photo1</th>
+          <th>date</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      {% if items %}
+        {% for item in items %}
+          <tbody>
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.parent_id }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.content|length < 50 ? item.content : item.content|slice(0, 50) ~ '...' }}</td>
+              <td class="tdSlug">{{ item.slug }}</td>
+              <td>{{ item.status }}</td>
+              <td>{{ item.more }}</td>
+              <td>{{ item.photo1 }}</td>
+              <td>{{ item.dateAdded }}</td>
+              <td>
+                <div class="buttons">
+                  <a 
+                    href="/admin/body/edit/{{ item.id }}" 
+                    class="btn-link"
+                  >Edit</a>
+                  <a 
+                    href="/admin/body/delete/{{ item.id }}" 
+                    class="btn-link"
+                    onclick="return confirm('Are you sure want to delete?');"
+                    >Delete</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        {% endfor %}
+      {% else %}
+      <tr>
+        <td colspan="13">
+          <div class="fail">
+            No posts
+          </div>
+        </td>
+      </tr>
+      {% endif %}
+      <tr>
+        <td colspan="13">
+          <a 
+            href="/admin/body/create/{{ request_id }}"
+            class="btn btn-success"
+          >Add new item</a>
+          <a 
+            class="btn btn-danger" 
+            href="javascript: history.go(-1)"
+          >Anuluj</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+
+

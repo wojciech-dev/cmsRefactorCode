@@ -1,0 +1,189 @@
+{% extends "admin/base.html" %}
+
+{% block body %}
+
+<div class="column_right">
+    <h1 class="header">{{ header }}</h1>
+
+<div class="form_container body">
+{% if error %}
+    <div class="alert alert-danger">
+        <ul class="text-danger">
+            {% for err in error %}
+                <li>{{ err }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% if breadcrumbs %}
+    <div class="row">
+        <div class="column">
+        </div>
+        <div class="column">
+            <h1><small>Content: </small>{{ breadcrumbs }}</h1>
+        </div>
+    </div>
+{% endif %}
+<form method="post" id="body" enctype="multipart/form-data">
+    <div class="row">
+        <div class="column">
+            <label for="name">Name:</label>
+        </div>
+        <div class="column">
+            <input 
+                id="name"
+                class="inputText" 
+                type="text" 
+                name="name" 
+                value="{{ item.name }}"
+            >
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <label for="title">Title:</label>
+        </div>
+        <div class="column">
+            <input 
+                id="title"
+                class="inputText" 
+                type="text" 
+                name="title" 
+                value="{{ item.title }}"
+            >
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <label for="content">Content:</label>
+        </div>
+        <div class="column">
+            <textarea 
+                class="inputArea" 
+                name="content" 
+                id="content" 
+                cols="30" 
+                rows="10"
+            >{{ item.content }}</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <label for="status">Public:</label>
+        </div>
+        <div class="column">
+            <input 
+                class="inputCheck" 
+                name="status" 
+                id="status" 
+                type="checkbox"
+                {% if item.status == 1 %}checked{% endif %}
+            >
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <label for="more">Read more:</label>
+        </div>
+        <div class="column">
+            <input 
+                class="inputCheck" 
+                name="more" 
+                id="more" 
+                type="checkbox"
+                {% if item.more == 1 %}checked{% endif %}
+            >
+        </div>
+    </div>
+    {% if item.photo1 %}
+    <div class="row">
+        <div class="column"></div>
+        <div class="column photo">
+            <img width="100px" src="/uploads/{{ item.photo1 }}" alt="">
+            <a 
+                href="/admin/delete/photo1&{{ item.photo1 }}&{{ item.id }}&{{ request }}body"
+                class="btn btn-danger"
+                onclick="return confirm('Are you sure want to delete?');"
+            >delete photo</a>
+        </div>
+    </div>
+    {% else %}
+        <div class="row">
+            <div class="column">
+                <label for="photo1">photo1:</label>
+            </div>
+            <div class="column">
+                <input 
+                    class="inputFile" 
+                    id="photo1" 
+                    type="file"
+                    name="file"
+                >
+            </div>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="column"></div>
+        <div class="column">
+            <div class="flex">
+            <button 
+                class="btn btn-success" 
+                type="submit" 
+                name="submit"
+                value="submit"
+            >{{ header }}</button> 
+            <a 
+                class="btn btn-danger" 
+                href="javascript: history.go(-1)"
+            >Anuluj</a>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+<script>
+CKEDITOR.replace( 'content', {
+    allowedContent: true,
+    autoGrow_onStartup: true,
+    enterMode: CKEDITOR.ENTER_BR,
+    width: '100%',
+    height: '400px',
+} );
+CKEDITOR.editorConfig = function( config ) {
+	config.entities_latin = false; 
+  	config.entities_greek = false; 
+  	config.entities = false; 
+  	config.basicEntities = false;
+    config.allowedContent = true; 
+};
+
+
+$.validator.addMethod("words", function(value, element) {
+	return this.optional(element) || /^[a-zżźćńółęąśŻŹĆĄŚĘŁÓŃA-Z\s]+$/.test(value);
+}, "Letters, words, and spaces only please");
+
+$('#body').validate({
+    rules: {
+        title: {
+            words: true
+        },
+        name: {
+            required: true,
+            words: true
+        }
+    }
+});
+
+
+</script>
+
+{% endblock %}
+
+
+
+
+

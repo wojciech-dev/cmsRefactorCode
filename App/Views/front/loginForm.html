@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    <section class="login section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+                    <div class="form-head">
+                        <h4 class="title">Login to Your Admin panel</h4>
+                        <form method="post">
+                        <div class="form-group">
+                        <input 
+                            type="text" 
+                            class="inputText" 
+                            id="InputEmail" 
+                            name="username" 
+                            value="{{ data.username }}"
+                            placeholder="admin"
+                        >
+                        </div>
+                        <div class="form-group">
+                        <input 
+                            type="password" 
+                            class="inputText" 
+                            id="InputPassword" 
+                            name="password" 
+                            value="{{ data.password }}"
+                            placeholder="admin"
+                        >
+                        </div>
+                        <div class="button">
+                            <button 
+                                type="submit" 
+                                class="btn" 
+                                name="submit"
+                            >Login Now</button>
+                        </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
