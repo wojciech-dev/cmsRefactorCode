@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use \Core\{View, Router};
-use App\Models\{Select, MenuTree, Registration};
-use App\Helpers\{Validation, Mailer};
+use App\Models\{Registration, Select, MenuTree};
+use App\Helpers\{Mailer};
 
 class Register extends \Core\Controller {
 
@@ -12,10 +12,21 @@ class Register extends \Core\Controller {
      * @return void
      */
 
-    public function index(): void {
+    public function index($request): void {
 
-        
-        View::renderTemplate('front/registerForm.html');     
+        $getMenu = new Select('menu');
+
+        $menu = MenuTree::buildMenuInFront($getMenu->getRows(['where'=>['status' => 1]]));
+
+        if (isset($_POST['submit'])) {
+            $register = new Registration($request->paramsPost());
+            $register->save();
+        }
+
+        View::renderTemplate('front/registerForm.html', [
+            'menu' => $menu,
+        ]);
+
     }
 }
 

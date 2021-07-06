@@ -9,13 +9,11 @@ class Alerts {
    */
   public static function successAlert($bold, $message) {
     echo "
-    <div class='alert'>
-      <div class='alert alert-success'>
-        <span class='closebtn' 
-        onclick=\"return this.parentElement.style.display='none';\"
-          >&times;</span> 
-        <strong>{$bold}</strong> {$message}
-      </div>
+    <div class='alert alert-success alert-dismissible fade show' role='alert'>
+      <strong>$bold</strong> $message
+      <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+        <span aria-hidden='true'>&times;</span>
+      </button>
     </div>
     ";
   }
@@ -26,12 +24,11 @@ class Alerts {
    */
   public static function dangerAlert($bold, $message) {
     echo "
-    <div class='alert alert-danger'>
-       <span 
-        class='closebtn' 
-        onclick=\"return this.parentElement.style.display='none';\"
-        >&times;</span> 
-        <strong>{$bold}</strong> {$message}
+    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+      <strong>$bold</strong> $message
+      <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+        <span aria-hidden='true'>&times;</span>
+      </button>
     </div>
     ";
   }

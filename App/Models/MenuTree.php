@@ -16,7 +16,7 @@ class MenuTree extends \Core\Model {
     return false;
   }
   //admin/menu nested tree
-  public static function build_menu($rows, $parent=0) {  
+  public static function build_menu_main($rows, $parent=0) {  
     $result = "<tbody>";
     if ($rows) {
       foreach ($rows as $row) {
@@ -29,9 +29,7 @@ class MenuTree extends \Core\Model {
               <td class='status'>{$status}</td>
               <td>
               <div class='buttons'>
-                <a href='/admin/services/{$row['id']}' class='btn-link'>Services <strong>( ".self::counter($row['id'], 'services')." )</strong></a>
                 <a href='/admin/body/{$row['id']}' class='btn-link'>Body <strong>( ".self::counter($row['id'], 'body')." )</strong></a>
-                <a href='/admin/banner/{$row['id']}' class='btn-link'>Banners <strong>( ".self::counter($row['id'], 'banner')." )</strong></a>
                 <a href='/admin/menu/edit/{$row['id']}' class='btn-link'>Edit</a>
                 <a 
                   href='/admin/menu/delete/{$row['id']}' 
@@ -47,7 +45,7 @@ class MenuTree extends \Core\Model {
             $result.= "
             <tr class='nested'>
               <td colspan='4'>
-                <table class='table table-nested'>".self::build_menu($rows,$row['id'])."</table>
+                <table class='table table-nested'>".self::build_menu_main($rows,$row['id'])."</table>
               </td>
             </tr>
             ";

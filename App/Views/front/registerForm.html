@@ -9,46 +9,46 @@
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
                     <div class="form-head">
                         <h4 class="title">Register</h4>
-                        <form method="post">
-                        <div class="form-group">
-                        <input 
-                            type="text" 
-                            class="inputText" 
-                            id="InputName"
-                            name="username" 
-                            value="{{ data.username }}"
-                            placeholder="Username"
-                        >
-                        </div>
-                        <div class="form-group">
-                        <input 
-                            type="email" 
-                            class="inputText" 
-                            id="InputEmail" 
-                            name="email"
-                            value="{{ data.email }}"
-                            placeholder="Email"
-                        >
-                        </div>
-                        <div class="form-group">
-                            <input 
-                                type="password" 
-                                class="inputText" 
-                                id="InputPassword"
-                                name="password"
-                                value="{{ data.password }}" 
-                                placeholder="Password"
-                            >
-                            </div>
-                        <div class="button">
-                            <button 
-                                type="submit" 
-                                class="btn" 
-                                name="submit"
-                            >Register now</button>
-                        </div>
-
-                        </form>
+                        {% if send == true %}
+                            <p>dziekujemy za rejestracje</p>
+                        {% else %}
+                            <form method="post">
+                                <div class="form-group">
+                                    <input 
+                                        type="text" 
+                                        class="inputText" 
+                                        id="InputName"
+                                        name="username" 
+                                        placeholder="Username"
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <input 
+                                        type="email" 
+                                        class="inputText" 
+                                        id="InputEmail" 
+                                        name="email"
+                                        placeholder="Email"
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <input 
+                                        type="password" 
+                                        class="inputText" 
+                                        id="InputPassword"
+                                        name="password"
+                                        placeholder="Password"
+                                    >
+                                    </div>
+                                <div class="button">
+                                    <button 
+                                        type="submit" 
+                                        class="btn" 
+                                        name="submit"
+                                    >Register now</button>
+                                </div>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>

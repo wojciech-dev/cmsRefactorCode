@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/static/admin/images/favicon.ico" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/admin/css/style.css" />
     <title>{% block title %}Dashboard{% endblock %}</title>
 </head>
@@ -13,20 +13,25 @@
     {% include 'admin/header.html' %}
 
     <div class="container">
-        <div class="column_left">
-            <h1 class="header">Menu</h1>
-            <div class="tree-menu">
-                {{ menu_left | raw }}
-                <a class="link btn btn-success" href="/admin/menu/create">Add menu item</a>
+        <div class="row">
+            <div class="col-4">
+                <h1 class="header">Menu</h1>
+                <div class="tree-menu">
+                    {{ menu_left | raw }}
+                    <a class="link btn btn-success" href="/admin/menu/create">Add menu item</a>
+                </div>
             </div>
+            <div class="col-8">
+                {% block body %}{% endblock %}
+            </div>
+            <footer>
+                @wkcms | <a href="http://wojciech-kondraciuk.pl">wojciech-kondraciuk.pl</a>
+            </footer>
         </div>
-        {% block body %}{% endblock %}
     </div>
 
-    <footer>
-        @wkcms | <a href="http://wojciech-kondraciuk.pl">wojciech-kondraciuk.pl</a>
-    </footer>
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="/static/admin/js/scripts.js"></script>
 </body>
 </html>

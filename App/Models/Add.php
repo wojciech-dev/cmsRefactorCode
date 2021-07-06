@@ -15,7 +15,7 @@ class Add extends \Core\Model {
         $this->tablename = $tablename;
     }
 	
-    function AddData(array $data): void {
+    function save(array $data): void {
     	try {
             foreach ($data as $key => $value) {
                 $keys[] = $key;

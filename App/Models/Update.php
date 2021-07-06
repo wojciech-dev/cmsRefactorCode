@@ -17,7 +17,7 @@ class Update extends \Core\Model {
         $this->tablename = $tablename;
     }
 
-    public function editData(int $id): int {
+    public function edit(int $id): int {
         
         try {
             $sql = "UPDATE $this->tablename SET ";

@@ -30,5 +30,10 @@ class Functions {
     public static function lastUrl($url) {
       return array_slice(explode('/', $url), -1)[0];
     }
+
+    public static function redirect($url, $permanent = false) {
+      header('Location: ' . $url, true, $permanent ? 301 : 302);
+      exit();
+    }
 }              
 ?>

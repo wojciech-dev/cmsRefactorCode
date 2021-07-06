@@ -52,9 +52,6 @@ class Select extends \Core\Model {
                 case 'fetch':
                     $data = $query->fetch(PDO::FETCH_ASSOC);
                     break;
-                case 'fetchAll':
-                    $data = $query->fetchAll(PDO::FETCH_ASSOC);
-                    break;
                 default:
                     $data = '';
             }
@@ -80,8 +77,8 @@ class Select extends \Core\Model {
     }
 
     public function getSelect($id) {
-        $query = static::getDB()->prepare("SELECT `id`, `title` FROM $this->tablename WHERE `id` <> :id AND `parent_id` = 0");
-        $query->execute(['id' => $id]);
+        $query = static::getDB()->prepare("SELECT * FROM $this->tablename WHERE `parent_id` <> $id AND id <> $id");
+        $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }
