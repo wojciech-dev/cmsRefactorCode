@@ -17,43 +17,41 @@ class MenuTree extends \Core\Model {
   }
   //admin/menu nested tree
   public static function build_menu_main($rows, $parent=0) {  
-    $result = "<tbody>";
+    $result = "";
     if ($rows) {
       foreach ($rows as $row) {
         $status = $row['status'] ? '<span style="color: green">active</span>' : '<span style="color: red">disactive</span>';
         if ($row['parent_id'] == $parent) {
-          $result.= "
-            <tr>
+          $result.= "<tr class='row{$row['parent_id']}'>
+              <th scope='row'>{$row['id']}</th>
               <td>{$row['title']}</td>
               <td>{$row['slug']}</td>
               <td class='status'>{$status}</td>
               <td>
               <div class='buttons'>
-                <a href='/admin/body/{$row['id']}' class='btn-link'>Body <strong>( ".self::counter($row['id'], 'body')." )</strong></a>
-                <a href='/admin/menu/edit/{$row['id']}' class='btn-link'>Edit</a>
+                <a 
+                  href='/admin/body/{$row['id']}' 
+                  class='btn btn-primary btn-sm'>Body</a>
+                <a 
+                  href='/admin/menu/edit/{$row['id']}' 
+                  class='btn btn-secondary btn-sm'
+                >Edit</a>
                 <a 
                   href='/admin/menu/delete/{$row['id']}' 
-                  class='btn-link'
+                  class='btn btn-danger btn-sm'
                   onclick=\"return confirm('Are you sure want to delete?');\"
-                >
-                Delete</a>
+                >Delete</a>
               </div>
-              </td>
-            </tr>
+              </td></tr>
+
           ";
           if (self::has_children($rows,$row['id'])) {
-            $result.= "
-            <tr class='nested'>
-              <td colspan='4'>
-                <table class='table table-nested'>".self::build_menu_main($rows,$row['id'])."</table>
-              </td>
-            </tr>
-            ";
+            $result.= self::build_menu_main($rows,$row['id']);
           }
         }
       }
     }
-    $result.= "</tbody>";
+
     return $result;
   }
 
@@ -76,7 +74,7 @@ class MenuTree extends \Core\Model {
       foreach ($rows as $row) {
         if ($row['parent_id'] == $parent) {
           $result.= "
-          <li>{$row['title']}";
+          <li><a href=/admin/body/{$row['id']}>{$row['title']} <span class='badge badge-primary'>".self::counter($row['id'], 'body')."</span></a>";
           if (self::has_children($rows,$row['id'])) {
             $result.= self::build_menu_left($rows,$row['id']);
           }

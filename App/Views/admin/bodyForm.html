@@ -2,124 +2,100 @@
 
 {% block body %}
 
-<div class="column_right">
-    <h1 class="header">{{ header }}</h1>
 
-<div class="form_container body">
-{% if error %}
-    <div class="alert alert-danger">
-        <ul class="text-danger">
-            {% for err in error %}
-                <li>{{ err }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-{% endif %}
-{% if breadcrumbs %}
-    <div class="row">
-        <div class="column">
-        </div>
-        <div class="column">
-            <h1><small>Content: </small>{{ breadcrumbs }}</h1>
-        </div>
-    </div>
-{% endif %}
+
+<h3 class="display-5">{{ header }}</h3>
+
+<hr class="my-4">
+
+
 <form method="post" id="body" enctype="multipart/form-data">
-    <div class="row">
-        <div class="column">
-            <label for="name">Name:</label>
-        </div>
-        <div class="column">
-            <input 
-                id="name"
-                class="inputText" 
-                type="text" 
-                name="name" 
-                value="{{ item.name }}"
-            >
-        </div>
+
+    <input
+        type="hidden" 
+        name="parent"
+        value="{{ item.parent_id }}"
+    >
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input 
+            id="name"
+            class="form-control" 
+            type="text" 
+            name="name" 
+            value="{{ item.name }}"
+        >
     </div>
-    <div class="row">
-        <div class="column">
-            <label for="title">Title:</label>
-        </div>
-        <div class="column">
-            <input 
-                id="title"
-                class="inputText" 
-                type="text" 
-                name="title" 
-                value="{{ item.title }}"
-            >
-        </div>
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input 
+            id="title"
+            class="form-control" 
+            type="text" 
+            name="title" 
+            value="{{ item.title }}"
+        >
     </div>
-    <div class="row">
-        <div class="column">
-            <label for="content">Content:</label>
-        </div>
-        <div class="column">
-            <textarea 
-                class="inputArea" 
-                name="content" 
-                id="content" 
-                cols="30" 
-                rows="10"
-            >{{ item.content }}</textarea>
-        </div>
+    <div class="form-group">
+        <label for="content">Content:</label>
+        <textarea 
+            class="form-control" 
+            name="content" 
+            id="content" 
+            cols="30" 
+            rows="10"
+        >{{ item.content }}</textarea>
     </div>
-    <div class="row">
-        <div class="column">
-            <label for="status">Public:</label>
-        </div>
-        <div class="column">
+    <div class="form-group">
+        <div class="form-check form-check-inline">
             <input 
-                class="inputCheck" 
+                class="form-check-input" 
                 name="status" 
-                id="status" 
+                id="inlineCheckbox1" 
                 type="checkbox"
                 {% if item.status == 1 %}checked{% endif %}
             >
+            <label class="form-check-label" for="inlineCheckbox1">Public</label>
         </div>
     </div>
-    <div class="row">
-        <div class="column">
-            <label for="more">Read more:</label>
-        </div>
-        <div class="column">
+
+    <div class="form-group">
+        <div class="form-check form-check-inline">
             <input 
-                class="inputCheck" 
+                class="form-check-input" 
                 name="more" 
-                id="more" 
+                id="inlineCheckbox2" 
                 type="checkbox"
-                {% if item.more == 1 %}checked{% endif %}
+                value="1"
+                {% if item.hidden == 1 %}checked{% endif %}
             >
+            <label class="form-check-label" for="inlineCheckbox2">Read more</label>
         </div>
     </div>
     {% if item.photo1 %}
-    <div class="row">
-        <div class="column"></div>
-        <div class="column photo">
+        <div class="form-group">
             <img width="100px" src="/uploads/{{ item.photo1 }}" alt="">
             <a 
-                href="/admin/delete/photo1&{{ item.photo1 }}&{{ item.id }}&{{ request }}body"
+                href="/admin/delete/photo1&{{ item.photo1 }}&{{ item.id }}&body"
                 class="btn btn-danger"
                 onclick="return confirm('Are you sure want to delete?');"
             >delete photo</a>
+            <input 
+                type="hidden" 
+                name="photo1" 
+                value="{{ item.photo1 }}"
+            >
         </div>
-    </div>
     {% else %}
-        <div class="row">
-            <div class="column">
-                <label for="photo1">photo1:</label>
-            </div>
-            <div class="column">
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Select photo</label>
                 <input 
-                    class="inputFile" 
-                    id="photo1" 
+                    class="form-control" 
+                    id="formFile" 
                     type="file"
                     name="file"
                 >
-            </div>
         </div>
     {% endif %}
     <div class="row">
@@ -140,10 +116,10 @@
         </div>
     </div>
 </form>
-</div>
-</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>
 <script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
 <script>
 CKEDITOR.replace( 'content', {
@@ -161,10 +137,13 @@ CKEDITOR.editorConfig = function( config ) {
     config.allowedContent = true; 
 };
 
-
 $.validator.addMethod("words", function(value, element) {
 	return this.optional(element) || /^[a-zżźćńółęąśŻŹĆĄŚĘŁÓŃA-Z\s]+$/.test(value);
 }, "Letters, words, and spaces only please");
+
+$.validator.addMethod('filesize', function (value, element, param) {
+    return this.optional(element) || (element.files[0].size <= param * 1000000)
+}, 'File size must be less than {0} MB');
 
 $('#body').validate({
     rules: {
@@ -174,7 +153,11 @@ $('#body').validate({
         name: {
             required: true,
             words: true
-        }
+        },
+        file: {
+            extension: "jpg,png,pdf",
+            filesize: 2,
+        },
     }
 });
 

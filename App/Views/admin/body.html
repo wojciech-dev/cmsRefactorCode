@@ -2,12 +2,10 @@
 
 {% block body %}
 
-<div class="column_right">
-  <h1 class="header">Body</h1>
-  <h1><small>Content: </small>{{ breadcrumbs }}</h1>
-  <div class="container">
-    <table class="table-body">
-      <thead class="thead">
+
+  <h3 class="header">Body</h3>
+    <table class="table">
+      <thead class="thead-dark">
         <tr>
           <th>id</th>
           <th>parent_id</th>
@@ -16,48 +14,46 @@
           <th>content</th>
           <th>slug</th>
           <th>public</th>
-          <th>More</th>
+          <th>hidden</th>
           <th>photo1</th>
           <th>date</th>
           <th>action</th>
         </tr>
       </thead>
       {% if items %}
+      <tbody>
         {% for item in items %}
-          <tbody>
             <tr>
               <td>{{ item.id }}</td>
               <td>{{ item.parent_id }}</td>
               <td>{{ item.name }}</td>
               <td>{{ item.title }}</td>
               <td>{{ item.content|length < 50 ? item.content : item.content|slice(0, 50) ~ '...' }}</td>
-              <td class="tdSlug">{{ item.slug }}</td>
+              <td>{{ item.slug }}</td>
               <td>{{ item.status }}</td>
-              <td>{{ item.more }}</td>
+              <td>{{ item.hidden }}</td>
               <td>{{ item.photo1 }}</td>
               <td>{{ item.dateAdded }}</td>
               <td>
                 <div class="buttons">
                   <a 
                     href="/admin/body/edit/{{ item.id }}" 
-                    class="btn-link"
+                    class="btn btn-secondary btn-sm"
                   >Edit</a>
                   <a 
                     href="/admin/body/delete/{{ item.id }}" 
-                    class="btn-link"
+                    class="btn btn-danger btn-sm"
                     onclick="return confirm('Are you sure want to delete?');"
                     >Delete</a>
                 </div>
               </td>
             </tr>
-          </tbody>
         {% endfor %}
+      </tbody>
       {% else %}
       <tr>
-        <td colspan="13">
-          <div class="fail">
-            No posts
-          </div>
+        <td colspan="11">
+          <div class="alert alert-danger" role="alert">No posts</div>
         </td>
       </tr>
       {% endif %}
@@ -67,15 +63,10 @@
             href="/admin/body/create/{{ request_id }}"
             class="btn btn-success"
           >Add new item</a>
-          <a 
-            class="btn btn-danger" 
-            href="javascript: history.go(-1)"
-          >Anuluj</a>
         </td>
       </tr>
     </table>
-  </div>
-</div>
+
 
 {% endblock %}
 

@@ -15,18 +15,18 @@ class Delete extends \Core\Model {
         $this->tablename = $tablename;
     }
 	
-	public function deleteById(int $id) {
+	public function del(int $id) {
         try {
-            $delete = static::getDB()->prepare("DELETE FROM $this->tablename WHERE `id` = :del");
-            $delete->execute(['del' => $id]);
+            $delete = static::getDB()->prepare("DELETE FROM $this->tablename WHERE `id` = $id");
+            $delete->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
 	}
 
-    public function deleteByParentId(int $id) {
+    public function delByParentId(int $id) {
         try {
-            $delete = static::getDB()->prepare("DELETE FROM $this->tablename WHERE `parent_id` = $id");
+            $delete = static::getDB()->prepare("DELETE FROM $this->tablename WHERE parent_id = $id");
             $delete->execute();
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

@@ -18,8 +18,6 @@ class Menu extends \Core\Controller {
     $menu_left = MenuTree::build_menu_left($getMenu->getRows());
     $show_title = $getMenu->getRows(['select' => 'id, title']);
     
- 
-
     switch ($request->action) {
       case "create":
         if (isset($_POST['submit'])) {
@@ -36,9 +34,6 @@ class Menu extends \Core\Controller {
       case "edit":
         $update = $getMenu->getRows(['where'=>['id'=> $request->id],'type'=>'fetch']);
         $show_title = $getMenu->getSelect($update['id']);
-
-
-
         if (isset($_POST['submit'])) {
           $row = new Update(Posts::menu_post($request->paramsPost()), 'menu');
           $row->edit($update['id']);
@@ -52,7 +47,12 @@ class Menu extends \Core\Controller {
         ]);
         break;
       case "delete":
-        echo "Your favorite color is delete!";
+        $del = new Delete('menu');
+        $del->del($request->id);
+        $del->delByParentId($request->id);
+        $delBody = new Delete('body');
+        $delBody->delByParentId($request->id);
+        Functions::redirect('/admin/menu');
         break;
       default:
       View::renderTemplate('admin/menu.html', [
@@ -60,9 +60,6 @@ class Menu extends \Core\Controller {
         'menu_left' => $menu_left
       ]);
     }
-
-
-
   }
 
   public function logout($request, $response): void {

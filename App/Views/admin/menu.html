@@ -1,22 +1,21 @@
 {% extends "admin/base.html" %}
 
 {% block body %}
-    <div class="column_right">
-        <h1 class="header">Dashboard</h1>
-        <div class="menu">
-            <table class="table">
-                <thead>
-                    <tr class="thead">
-                      <th><strong>Name</strong></th>
-                      <th><strong>Url</strong></th>
-                      <th><strong>Status</strong></th>
-                      <th><strong>Action</strong></th>
-                    </tr>
-                  </thead>
-  
+    <h3 class="header">Dashboard</h3>
+    <div class="menu">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+            </thead>
+            <tbody>
                 {{ menu | raw }}
-
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
 {% endblock %}
