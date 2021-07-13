@@ -55,7 +55,7 @@ class Registration extends \Core\Model {
             }
         } else {
             foreach ($val->errors as $error) {
-                echo $error;
+                Alerts::dangerAlert("Error", $error);
             }
         }
     }

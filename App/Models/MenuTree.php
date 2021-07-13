@@ -74,7 +74,7 @@ class MenuTree extends \Core\Model {
       foreach ($rows as $row) {
         if ($row['parent_id'] == $parent) {
           $result.= "
-          <li><a href=/admin/body/{$row['id']}>{$row['title']} <span class='badge badge-primary'>".self::counter($row['id'], 'body')."</span></a>";
+          <li><a href=/admin/body/{$row['id']} class=".(self::lastElUri() == $row['id'] ? 'active' : '').">{$row['title']} <span class='badge badge-primary'>".self::counter($row['id'], 'body')."</span></a>";
           if (self::has_children($rows,$row['id'])) {
             $result.= self::build_menu_left($rows,$row['id']);
           }
@@ -93,6 +93,11 @@ class MenuTree extends \Core\Model {
     return $first_part;
   }
 
+  public static function lastElUri() {
+    $link = $_SERVER["REQUEST_URI"];
+    $link_array = explode('/', $link);
+    return end($link_array);
+  }
 
   //front menu tree
   public static function buildMenuInFront($rows, $parent=0) {  
@@ -101,13 +106,13 @@ class MenuTree extends \Core\Model {
       foreach ($rows as $row) {
         if ($row['parent_id'] == $parent) {
           $result.= "
-            <li class='nav__item'>
+            <li>
               <a 
-                class='nav__link".(self::activeMenu() == $row['slug'] ? ' active' : '')."' 
+                class='".(self::activeMenu() == $row['slug'] ? ' active' : '')."' 
                 href='/pl/{$row['slug']}'
               >{$row['title']}</a>";
           if (self::has_children($rows,$row['id']))
-            $result.= "<ul class='nav-dropdown'>".self::buildMenuInFront($rows,$row['id'])."</ul>";
+            $result.= "<ul>".self::buildMenuInFront($rows,$row['id'])."</ul>";
           $result.= "</li>";
         }
       }

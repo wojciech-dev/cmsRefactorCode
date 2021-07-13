@@ -7,12 +7,10 @@ use App\Helpers\{Validation, Alerts, Functions, Uploader, Upload, Posts};
 use App\Models\{Select, Add, Delete, Update, MenuTree};
 
 class Body extends \Core\Controller {
-
   /*
    * Body content
    * @return void
    */
-
   public function index($request, $response, $service, $app): void {
 
     $getMenu = new Select('menu');
@@ -38,10 +36,8 @@ class Body extends \Core\Controller {
         ]);
         break;
       case "edit":
-
         $update = $getBody->getRows(['where'=>['id'=> $request->id], 'type'=>'fetch']);
         $breadcrumbs = $getMenu->getRows(['select' => 'title','where'=>['id'=> $update['parent_id']],'type'=>'fetch']);
-
         if (isset($_POST['submit'])) {
           $edit = new Update(Posts::body_post(
             $request,
@@ -51,21 +47,15 @@ class Body extends \Core\Controller {
           $edit->edit($update['id']);
           Functions::redirect("/admin/body/{$update['parent_id']}");
         }
-
         View::renderTemplate('admin/bodyForm.html',[
             'menu_left' => $menu_left,
             'header' => "Edit item:",
             'breadcrumbs' => $breadcrumbs['title'],
             'item' => $update,
         ]);
-       
         break;
-
       default:
         $items = $getBody->getRows(['where'=>['parent_id'=> $request->id]]);
-
-    
-
         View::renderTemplate('admin/body.html', [
             'items' => $items,
             'menu_left' => $menu_left,

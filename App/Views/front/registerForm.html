@@ -3,55 +3,49 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <section class="login section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
-                    <div class="form-head">
-                        <h4 class="title">Register</h4>
-                        {% if send == true %}
-                            <p>dziekujemy za rejestracje</p>
-                        {% else %}
-                            <form method="post">
-                                <div class="form-group">
-                                    <input 
-                                        type="text" 
-                                        class="inputText" 
-                                        id="InputName"
-                                        name="username" 
-                                        placeholder="Username"
-                                    >
-                                </div>
-                                <div class="form-group">
-                                    <input 
-                                        type="email" 
-                                        class="inputText" 
-                                        id="InputEmail" 
-                                        name="email"
-                                        placeholder="Email"
-                                    >
-                                </div>
-                                <div class="form-group">
-                                    <input 
-                                        type="password" 
-                                        class="inputText" 
-                                        id="InputPassword"
-                                        name="password"
-                                        placeholder="Password"
-                                    >
-                                    </div>
-                                <div class="button">
-                                    <button 
-                                        type="submit" 
-                                        class="btn" 
-                                        name="submit"
-                                    >Register now</button>
-                                </div>
-                            </form>
-                        {% endif %}
-                    </div>
-                </div>
+
+    {% if send == true %}
+        <p>dziekujemy za rejestracje</p>
+    {% else %}
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+            <div class="fadeIn first"></div>
+            <form method="post">
+                <input 
+                    type="text" 
+                    id="login" 
+                    class="fadeIn second" 
+                    name="username" 
+                    placeholder="login"
+                >
+                <input 
+                    type="email" 
+                    class="fadeIn third" 
+                    id="email" 
+                    name="email"
+                    placeholder="email"
+                >
+                <input 
+                    type="text" 
+                    id="password" 
+                    class="fadeIn fourth" 
+                    name="password" 
+                    placeholder="password"
+                >
+                <input 
+                    type="submit"
+                    name="submit"
+                    class="fadeIn five" 
+                    value="Log In"
+                    >
+            </form>
+            <div id="formFooter">
+                <a class="underlineHover" href="/admin/">Log in now</a>
+            </div>
             </div>
         </div>
-    </section>
+    {% endif %}
+
 {% endblock %}
+
+
