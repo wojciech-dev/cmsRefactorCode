@@ -3,3 +3,7 @@
 cache/*
 logs/*.log
 composer.lock
+helpers
+public\uploads
+App\Config.php
+.env
