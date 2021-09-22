@@ -1,7 +1,7 @@
 /vendor/
 !cache/
 cache/*
-logs/*.log
+/logs
 composer.lock
 helpers
 public\uploads

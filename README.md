@@ -25,18 +25,6 @@ CMS system in basic php using MVC.
 
 Project is under development.
 
-Preview dashboard:
-<img src="http://propozycja.vot.pl/git/cms_dashboard.jpg" alt="">
-
-Preview edit post:
-<img src="http://propozycja.vot.pl/git/cms_edit.jpg" alt="">
-
-## Demo online
-
-[Visit online](http://mycms.vot.pl/pl/home)
-
-
-
 # has been corrected: 
 
 - simple controllers that only perform CRUD
@@ -46,3 +34,13 @@ Preview edit post:
 - showing and hiding a post
 - multi-level nested menu
 
+
+Preview dashboard:
+<img src="http://propozycja.vot.pl/git/cms_dashboard.jpg" alt="">
+
+Preview edit post:
+<img src="http://propozycja.vot.pl/git/cms_edit.jpg" alt="">
+
+## Demo online
+
+[Visit online](http://mycms.vot.pl/pl/home)
