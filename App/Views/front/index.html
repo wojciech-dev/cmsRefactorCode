@@ -7,7 +7,13 @@
 {% block body %}
 
 <aside>
-    <h1>index.html content</h1>
+    {% for post in posts %}
+        <h1>{{ post.name }}</h1>
+        <h2>{{ post.title }}</h2>
+        <div class="content">
+           {{ post.content | raw }}
+        </div>
+    {% endfor %}
 
 </aside>
 

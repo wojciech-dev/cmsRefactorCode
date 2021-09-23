@@ -30,11 +30,10 @@ class Front extends \Core\Controller {
 
     $posts = $getBody->getRows(['where'=>['parent_id' => $id['id'] ?? null, 'status' => 1 ]]);
 
-    print_r($posts);
-
 
     View::renderTemplate('front/index.html', [
       'menu' => $menu,
+      'posts' => $posts
     ]);
   
 

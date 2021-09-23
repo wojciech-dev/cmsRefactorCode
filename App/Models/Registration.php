@@ -4,6 +4,7 @@ namespace App\Models;
 
 use PDO;
 use App\Helpers\{Validation, Alerts};
+use App\Helpers\{Mailer};
 /**
  * Register model
  */
@@ -47,6 +48,11 @@ class Registration extends \Core\Model {
                     'password'   => $hash,
                     'token'      => $token
                 ]);
+
+    
+                $sendMail = new Mailer();
+                $sendMail->send($email, $urlVerify);
+
                 
                 Alerts::successAlert("Success","Thank you for your registration");
                 
