@@ -20,12 +20,12 @@ CMS system in basic php using MVC.
 * MYSQL
 * Composer
 * Twig
-* Routing KLEIN.PHPs
+* Routing KLEIN.php
 * HTML/CSS/JS/JQ
 
-Project is under development.
+Project is under development...
 
-# has been corrected: 
+# Has been corrected: 
 
 - simple controllers that only perform CRUD
 - separating validadation into a separate file
