@@ -1,9 +1,8 @@
 {
     "require": {
-        "twig/twig": "~2.0",
-        "nochso/html-compress-twig": "^2.0",
-        "klein/klein": "^2.1",
-        "filp/whoops": "2.*"
+        "twig/twig": "3.3.4",
+        "klein/klein": "^2.1.2",
+        "filp/whoops": "2.14.4"
     },
     "autoload": {
         "psr-4": {

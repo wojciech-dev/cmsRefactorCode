@@ -67,7 +67,7 @@ class MenuTree extends \Core\Model {
     return $sum ?  $sum : 0;
   }
 
-  //admin/menu nested tree
+ 
   public static function build_menu_left($rows, $parent=0) {  
     $result = "<ul>";
     if ($rows) {
@@ -109,7 +109,7 @@ class MenuTree extends \Core\Model {
             <li>
               <a 
                 class='".(self::activeMenu() == $row['slug'] ? ' active' : '')."' 
-                href='/pl/{$row['slug']}'
+                href='/{$row['slug']}'
               >{$row['title']}</a>";
           if (self::has_children($rows,$row['id']))
             $result.= "<ul>".self::buildMenuInFront($rows,$row['id'])."</ul>";

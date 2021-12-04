@@ -45,7 +45,7 @@ class Posts {
                       ->pattern('int')
                       ->required() ? $data['status'] : null,
     ];
-    
+
     if (!$val->isSuccess()) {
         Alerts::dangerAlert("Error", $val->displayErrors());
     }
@@ -99,9 +99,9 @@ class Posts {
 
       'slug' => $slug ? Functions::slugify($slug) : null,
 
-      'status' => isset($data['status']) ?? 1,
+      'status' => isset($data['status']) ? 1 : 0,
 
-      'hidden' => isset($data['more']) ?? 1,
+      'more' => isset($data['more']) ? 1 : 0,
 
       'photo1' => $data['photo1'] ?? $photo['photo1'],
     ]; 

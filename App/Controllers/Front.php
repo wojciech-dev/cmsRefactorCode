@@ -13,6 +13,11 @@ class Front extends \Core\Controller {
    * @return void
    */
 
+public function home($request, $response, $service, $app): void {
+  
+}
+
+
   public function index($request, $response, $service, $app): void {
 
     $getMenu = new Select('menu');
@@ -28,14 +33,27 @@ class Front extends \Core\Controller {
       ]
     );
 
-    $posts = $getBody->getRows(['where'=>['parent_id' => $id['id'] ?? null, 'status' => 1 ]]);
+    if ($request->id) {
+      $posts = $getBody->getRows(
+        [
+          'where'=>['id' => $request->id, 'status' => 1 ]
+        ]
+      );
+    } else {
+      $posts = $getBody->getRows(
+        [
+          'where'=>['parent_id' => $id['id'] ?? null, 'status' => 1 ]
+        ]
+      );
+    }
 
 
     View::renderTemplate('front/index.html', [
       'menu' => $menu,
-      'posts' => $posts
+      'posts' => $posts,
+      'url_more' => $request->title,
+      'hidden_more' => $request->id ? 0 : 1
     ]);
-  
 
   }
 }
