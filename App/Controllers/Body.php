@@ -66,13 +66,16 @@ class Body extends \Core\Controller {
   }
 
   public function delPhoto($request) {
+
+
     $param = explode('&', $request->field);
     $data = [
         'field' => $param[0],
-        'name' => $param[1],
+        'name' => $param[1].'.jpg',
         'id' => $param[2],
         'table' => $param[3]
     ];
+
     try {
         $this->onFilesRemoveCallback($data['name']);
         $up = new Select($data['table']);
@@ -81,6 +84,7 @@ class Body extends \Core\Controller {
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
+ 
   }
 
   public function onFilesRemoveCallback($removed_files) {

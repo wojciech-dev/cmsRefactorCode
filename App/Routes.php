@@ -10,12 +10,8 @@ $router->respondWithController(['GET', 'POST'], '/register', 'Register@index');
 
 $router->respondWithController('GET', '/verify_email', 'Verify@index');
 $router->respondWithController('GET', '/logout', 'Menu@logout');
-//$router->with('/pl', function () use ($router) {
-    $router->respondWithController('GET', '/[*:title][i:id]?', 'Front@index');
-    $router->respond('GET', '/?', function () {
-         return 'Hello World!';
-     });
-//});
+
+$router->respondWithController('GET', '/[*:title][i:id]?', 'Front@index');
 
 //backend
 $router->with('/admin', function () use ($router) {

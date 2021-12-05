@@ -76,7 +76,7 @@
         <div class="form-group">
             <img width="100px" src="/uploads/{{ item.photo1 }}" alt="">
             <a 
-                href="/admin/delete/photo1&{{ item.photo1 }}&{{ item.id }}&body"
+                href="/admin/delete/photo1&{{item.photo1|replace({'.jpg': ''}) }}&{{ item.id }}&body"
                 class="btn btn-danger"
                 onclick="return confirm('Are you sure want to delete?');"
             >delete photo</a>

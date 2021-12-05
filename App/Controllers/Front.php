@@ -13,11 +13,6 @@ class Front extends \Core\Controller {
    * @return void
    */
 
-public function home($request, $response, $service, $app): void {
-  
-}
-
-
   public function index($request, $response, $service, $app): void {
 
     $getMenu = new Select('menu');
@@ -39,21 +34,25 @@ public function home($request, $response, $service, $app): void {
           'where'=>['id' => $request->id, 'status' => 1 ]
         ]
       );
+
     } else {
       $posts = $getBody->getRows(
         [
           'where'=>['parent_id' => $id['id'] ?? null, 'status' => 1 ]
         ]
       );
+
     }
 
+    if (!preg_match("/register|admin/i", $request->title)) {
 
-    View::renderTemplate('front/index.html', [
-      'menu' => $menu,
-      'posts' => $posts,
-      'url_more' => $request->title,
-      'hidden_more' => $request->id ? 0 : 1
-    ]);
-
+      View::renderTemplate("front/" . ($request->id ? 'card' : 'index') . ".html", [
+        'menu' => $menu,
+        'posts' => $posts,
+        'url_more' => $request->title,
+        'hidden_more' => $request->id ? 0 : 1
+      ]);
+      
+    }
   }
 }
