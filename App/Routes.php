@@ -18,7 +18,7 @@ $router->with('/admin', function () use ($router) {
     if (isset($_SESSION['username']) && $_SESSION['type'] =='admin') {
         $router->respondWithController(['GET', 'POST'], '/menu/[create|edit|delete:action]?/[:id]?', 'Menu@index');
         $router->respondWithController(['GET', 'POST'], '/body/[create|edit|delete:action]?/[:id]?', 'Body@index');
-        $router->respondWithController('GET', '/delete/[:field]', 'Body@delPhoto');
+        $router->respondWithController(['GET', 'POST'], '/delete/[:field]', 'DeletePhoto@remove');
     } else if (isset($_SESSION['username']) && $_SESSION['type'] =='user') {
         $router->respondWithController(['GET', 'POST'], '/user', 'User@index');
     } else {

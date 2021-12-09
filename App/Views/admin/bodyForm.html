@@ -5,7 +5,7 @@
 
 
 <h3 class="display-5">{{ header }}</h3>
-
+{{ breadcrumbs }}
 <hr class="my-4">
 
 
@@ -38,14 +38,14 @@
         >
     </div>
     <div class="form-group">
-        <label for="content">Content:</label>
+        <label for="description">Content:</label>
         <textarea 
             class="form-control" 
-            name="content" 
-            id="content" 
+            name="description" 
+            id="description" 
             cols="30" 
             rows="10"
-        >{{ item.content }}</textarea>
+        >{{ item.description }}</textarea>
     </div>
     <div class="form-group">
         <div class="form-check form-check-inline">
@@ -59,7 +59,6 @@
             <label class="form-check-label" for="inlineCheckbox1">Public</label>
         </div>
     </div>
-
     <div class="form-group">
         <div class="form-check form-check-inline">
             <input 
@@ -74,30 +73,109 @@
     </div>
     {% if item.photo1 %}
         <div class="form-group">
-            <img width="100px" src="/uploads/{{ item.photo1 }}" alt="">
-            <a 
-                href="/admin/delete/photo1&{{item.photo1|replace({'.jpg': ''}) }}&{{ item.id }}&body"
-                class="btn btn-danger"
-                onclick="return confirm('Are you sure want to delete?');"
-            >delete photo</a>
-            <input 
-                type="hidden" 
-                name="photo1" 
-                value="{{ item.photo1 }}"
-            >
+            <div class="column">
+                <input type="hidden" name="file1" value="{{ item.photo1 }}">
+            </div>
+            <div class="column photo">
+                <img width="100px" src="/uploads/{{ item.photo1 }}" alt="{{ item.photo1 }}">
+                <a 
+                    href="/admin/delete/photo1&{{item.photo1|replace({'.': '_'})}}&{{ item.id }}&body"
+                    class="btn btn-danger"
+                    onclick="return confirm('Are you sure want to delete?');"
+                >X</a>
+            </div>
         </div>
     {% else %}
-        <div class="mb-3">
-            <label for="formFile" class="form-label">Select photo</label>
+        <div class="form-group">
+            <div class="column">
                 <input 
-                    class="form-control" 
-                    id="formFile" 
+                    class="inputFile" 
+                    id="photo1" 
                     type="file"
-                    name="file"
+                    name="file1"
                 >
+            </div>
         </div>
     {% endif %}
-    <div class="row">
+    {% if item.photo2 %}
+        <div class="form-group">
+            <div class="column">
+                <input type="hidden" name="file2" value="{{ item.photo2 }}">
+            </div>
+            <div class="column photo">
+                <img width="100px" src="/uploads/{{ item.photo2 }}" alt="{{ item.photo2 }}">
+                <a 
+                    href="/admin/delete/photo2&{{item.photo2|replace({'.': '_'})}}&{{ item.id }}&body"
+                    class="btn btn-danger"
+                    onclick="return confirm('Are you sure want to delete?');"
+                >X</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="form-group">
+            <div class="column">
+                <input 
+                    class="inputFile" 
+                    id="photo2" 
+                    type="file"
+                    name="file2"
+                >
+            </div>
+        </div>
+    {% endif %}
+    {% if item.photo3 %}
+        <div class="form-group">
+            <div class="column">
+                <input type="hidden" name="file3" value="{{ item.photo3 }}">
+            </div>
+            <div class="column photo">
+                <img width="100px" src="/uploads/{{ item.photo3 }}" alt="{{ item.photo3 }}">
+                <a 
+                    href="/admin/delete/photo3&{{item.photo3|replace({'.': '_'})}}&{{ item.id }}&body"
+                    class="btn btn-danger"
+                    onclick="return confirm('Are you sure want to delete?');"
+                >X</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="form-group">
+            <div class="column">
+                <input 
+                    class="inputFile" 
+                    id="photo3" 
+                    type="file"
+                    name="file3"
+                >
+            </div>
+        </div>
+    {% endif %}
+    {% if item.photo4 %}
+        <div class="form-group">
+            <div class="column">
+                <input type="hidden" name="file4" value="{{ item.photo4 }}">
+            </div>
+            <div class="column photo">
+                <img width="100px" src="/uploads/{{ item.photo4 }}" alt="{{ item.photo4 }}">
+                <a 
+                    href="/admin/delete/photo4&{{item.photo4|replace({'.': '_'})}}&{{ item.id }}&body"
+                    class="btn btn-danger"
+                    onclick="return confirm('Are you sure want to delete?');"
+                >X</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="form-group">
+            <div class="column">
+                <input 
+                    class="inputFile" 
+                    id="photo4" 
+                    type="file"
+                    name="file4"
+                >
+            </div>
+        </div>
+    {% endif %}
+    <div class="form-group">
         <div class="column"></div>
         <div class="column">
             <div class="flex">
@@ -121,7 +199,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>
 <script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
 <script>
-CKEDITOR.replace( 'content', {
+CKEDITOR.replace( 'description', {
     allowedContent: true,
     autoGrow_onStartup: true,
     enterMode: CKEDITOR.ENTER_BR,
@@ -153,7 +231,11 @@ $('#body').validate({
             required: true,
             words: true
         },
-        file: {
+        file1: {
+            extension: "jpg,png,pdf",
+            filesize: 2,
+        },
+        file2: {
             extension: "jpg,png,pdf",
             filesize: 2,
         },
@@ -164,8 +246,6 @@ $('#body').validate({
 </script>
 
 {% endblock %}
-
-
 
 
 

@@ -54,7 +54,12 @@ class Body extends \Core\Controller {
             'item' => $update,
         ]);
         break;
-      default:
+      case "delete":
+            $delBody = new Delete('body');
+            $delBody->del($request->id);
+            $service->back();
+          break;
+        default:
         $items = $getBody->getRows(['where'=>['parent_id'=> $request->id]]);
         View::renderTemplate('admin/body.html', [
             'items' => $items,
@@ -63,36 +68,6 @@ class Body extends \Core\Controller {
             'request_id' => $request->id,
         ]);
     }
-  }
-
-  public function delPhoto($request) {
-
-
-    $param = explode('&', $request->field);
-    $data = [
-        'field' => $param[0],
-        'name' => $param[1].'.jpg',
-        'id' => $param[2],
-        'table' => $param[3]
-    ];
-
-    try {
-        $this->onFilesRemoveCallback($data['name']);
-        $up = new Select($data['table']);
-        $up->delPhoto($data['field'], $data['id']);
-        Functions::redirect($_SERVER["HTTP_REFERER"]);
-    } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
-    }
- 
-  }
-
-  public function onFilesRemoveCallback($removed_files) {
-    $file = $_SERVER['DOCUMENT_ROOT'].'/uploads/' . $removed_files;
-    if (file_exists($file))  {
-        unlink($file);
-    }
-    return $removed_files;
   }
 }
 ?>

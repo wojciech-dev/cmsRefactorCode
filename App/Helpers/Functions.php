@@ -35,5 +35,12 @@ class Functions {
       header('Location: ' . $url, true, $permanent ? 301 : 302);
       exit();
     }
+
+    public static function debugFunc($data) {
+      echo "<pre>";
+      print_r($data);
+      echo "</pre>";
+      exit;
+    }
 }              
 ?>

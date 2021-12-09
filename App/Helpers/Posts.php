@@ -57,16 +57,16 @@ class Posts {
     $uploader = new Uploader();
     $errors = '';
 
-    $file = $uploader->upload($files['file'], ['uploadDir' => $path]);
+    $file1 = $uploader->upload($files['file1'], ['uploadDir' => $path]);
+    $file2 = $uploader->upload($files['file2'], ['uploadDir' => $path]);
+    $file3 = $uploader->upload($files['file3'], ['uploadDir' => $path]);
+    $file4 = $uploader->upload($files['file4'], ['uploadDir' => $path]);
 
-    if ($file) {
-      $data['photo1'] = $file['data']['metas'][0]['name'] ?? null;
-      if ($file['hasErrors']) {
-        $errors = $file['errors'];
-        foreach ($errors as $item) {
-          Alerts::dangerAlert("Error!","{$item[0]}");
-        }
-      }
+    if ($file1 || $file2 || $file3 || $file4) {
+      $data['photo1'] = $file1['data']['metas'][0]['name'] ?? null;
+      $data['photo2'] = $file2['data']['metas'][0]['name'] ?? null;
+      $data['photo3'] = $file3['data']['metas'][0]['name'] ?? null;
+      $data['photo4'] = $file4['data']['metas'][0]['name'] ?? null;
       return $data;
     }
   }
@@ -95,7 +95,7 @@ class Posts {
                   ->value($data['title'])
                   ->pattern('words') ? $data['title'] : null,
 
-      'content' => $data['content'],
+      'description' => $data['description'],
 
       'slug' => $slug ? Functions::slugify($slug) : null,
 
@@ -103,7 +103,13 @@ class Posts {
 
       'more' => isset($data['more']) ? 1 : 0,
 
-      'photo1' => $data['photo1'] ?? $photo['photo1'],
+      'photo1' => $data['file1'] ?? $photo['photo1'],
+
+      'photo2' => $data['file2'] ?? $photo['photo2'],
+
+      'photo3' => $data['file3'] ?? $photo['photo3'],
+
+      'photo4' => $data['file4'] ?? $photo['photo4'],
     ]; 
 
     if (!$val->isSuccess()) {
