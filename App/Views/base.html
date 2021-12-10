@@ -2,12 +2,11 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="/static/front/css/main.css" />
 </head>
 <body>
-    <div id="content">
+    <header>
         <nav class="mb-4">
             <ul>
                 {{ menu | raw }}
@@ -15,22 +14,18 @@
                 <li><a href="/register">Register</a></li>
             </ul>
         </nav>
+    </header>
      
-        <div class="container">
-            <div class="row">
-                {% block body %}{% endblock %}
-            </div>
-        </div>
+    <main>
+        {% block body %}{% endblock %}
+    </main>
 
-        <footer class="mt-4">
-            <div class="text-center p-4">
-                © 2021 Copyright:
-                <a class="text-reset fw-bold" href="http://wojciech-kondraciuk.pl/">Wojciech Kondraciuk</a>
-            </div>
-        </footer>
-    </div>
+    <footer>
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="http://wojciech-kondraciuk.pl/">Wojciech Kondraciuk</a>
+    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="/static/front/js/main.js"></script>
 </body>
 </html>

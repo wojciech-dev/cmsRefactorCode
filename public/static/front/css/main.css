@@ -23,9 +23,8 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
     font-family: 'Barlow', sans-serif;
-    font-size: 14px;
+    font-size: 1rem;
 }
 ol, ul {
 	list-style: none;
@@ -345,5 +344,130 @@ input[type=text]:placeholder {
 }
 
 footer {
-    background-color: rgb(238, 238, 238);
+    text-align: center;
+    background-color: #1289dd;
+    font-size: 12px;
+    padding: 10px;
+    color: #ffffff;
 }
+
+footer a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/*treść*/
+
+main {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0px;
+}
+
+.post {
+    margin-bottom: 40px;
+}
+
+.post h1 {
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.post h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #1289dd;
+}
+
+.text {
+    line-height: 160%;
+}
+
+.more {
+    background-color: #1289dd;
+    color: #ffffff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 0px;
+    cursor: pointer;
+  }
+
+.more:hover {
+    background: lightseagreen;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.d-flex,
+.gallery {
+    display: flex;
+    gap: 5px;
+}
+
+.schema1 .gallery {
+    margin:  20px 0px;
+}
+
+.schema1.d-flex,
+.schema2.d-flex {
+    flex-direction: column !important;
+}
+
+/*schema 1*/
+.schema1 .main_foto,
+.schema4 .main_foto,
+.schema5 .main_foto {
+    float: left;
+    margin: 0 20px 20px 0px;
+}
+
+/*schema 2*/
+.schema2 .main_foto {
+    float: right;
+    margin: 0 0px 20px 20px;
+}
+
+/*schema 3*/
+.schema3 {
+    flex-direction: row-reverse;
+    gap: 20px;
+}
+
+.schema3 .main_foto {
+    float: right;
+    margin: 0 0px 20px 20px;
+}
+
+/*schema 4*/
+.schema4 {
+    flex-direction: column-reverse;
+    gap: 20px;
+}
+
+/*schema 5*/
+.schema5 {
+    flex-direction: row;
+    gap: 20px;
+}
+
+.schema5 .gallery, 
+.schema3 .gallery {
+    flex-direction: column;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.grid > .post {
+    flex: 32%; 
+    margin-bottom: 20px;
+  }

@@ -76,6 +76,7 @@ class Posts {
     $val = new Validation();
     $photo = Posts::photo($files);
 
+
     $slug = $val
               ->name('name')
               ->value($data['name'])
@@ -102,6 +103,8 @@ class Posts {
       'status' => isset($data['status']) ? 1 : 0,
 
       'more' => isset($data['more']) ? 1 : 0,
+
+      'layout'    => intval($data['layout']),
 
       'photo1' => $data['file1'] ?? $photo['photo1'],
 

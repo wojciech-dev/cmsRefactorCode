@@ -29,9 +29,12 @@ class Add extends \Core\Model {
             
             foreach ($keys as $key) {
                 $query->bindParam(":$key", $data[$key]);
+                
             }
 
             $query->execute();
+
+            
 
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

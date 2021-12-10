@@ -15,6 +15,7 @@
           <th>slug</th>
           <th>public</th>
           <th>more</th>
+          <th>layout</th>
           <th>photo1</th>
           <th>photo2</th>
           <th>photo3</th>
@@ -35,10 +36,11 @@
               <td>{{ item.slug }}</td>
               <td>{{ item.status }}</td>
               <td>{{ item.more }}</td>
-              <td>{{ item.photo1 }}</td>
-              <td>{{ item.photo2 }}</td>
-              <td>{{ item.photo3 }}</td>
-              <td>{{ item.photo4 }}</td>
+              <td>{{ item.layout }}</td>
+              <td><img width="100px" src="/uploads/{{ item.photo1 }}" alt="{{ item.name }}"></td>
+              <td><img width="100px" src="/uploads/{{ item.photo2 }}" alt="{{ item.name }}"></td>
+              <td><img width="100px" src="/uploads/{{ item.photo3 }}" alt="{{ item.name }}"></td>
+              <td><img width="100px" src="/uploads/{{ item.photo4 }}" alt="{{ item.name }}"></td>
               <td>{{ item.created_at }}</td>
               <td>
                 <div class="buttons">

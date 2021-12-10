@@ -22,7 +22,6 @@ class Menu extends \Core\Controller {
       case "create":
         if (isset($_POST['submit'])) {
           $add = new Add('menu');
-          //var_dump(Posts::menu_post($request->paramsPost()));exit;
           $add->save(Posts::menu_post($request->paramsPost()));
           Functions::redirect('/admin/menu');
         }

@@ -41,7 +41,6 @@ class Front extends \Core\Controller {
           'where'=>['parent_id' => $id['id'] ?? null, 'status' => 1 ]
         ]
       );
-
     }
 
     if (!preg_match("/register|admin/i", $request->title)) {
@@ -50,7 +49,7 @@ class Front extends \Core\Controller {
         'menu' => $menu,
         'posts' => $posts,
         'url_more' => $request->title,
-        'hidden_more' => $request->id ? 0 : 1
+        'hidden_more' => $request->id ? 0 : 1,
       ]);
       
     }

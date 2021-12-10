@@ -14,14 +14,14 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-3">
+            <div class="col-2">
                 <h3 class="header">Menu</h3>
                 <div class="tree-menu">
                     {{ menu_left | raw }}
                     <a class="link btn btn-success" href="/admin/menu/create">Add menu item</a>
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-10">
                 {% block body %}{% endblock %}
             </div>
 

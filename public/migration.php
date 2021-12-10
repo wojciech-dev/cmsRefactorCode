@@ -14,6 +14,7 @@ try {
      `slug` varchar( 100 ) NOT NULL,
      `status` tinyint( 1 ) NOT NULL DEFAULT 0,
      `more` tinyint( 1 ) NOT NULL DEFAULT 0,
+     `schema` tinyint( 1 ) NOT NULL DEFAULT 1,
      `photo1` varchar( 50 )  DEFAULT NULL,
      `photo2` varchar( 50 ) DEFAULT NULL,
      `photo3` varchar( 50 ) DEFAULT NULL,

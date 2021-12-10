@@ -6,23 +6,51 @@
 
 {% block body %}
 
-<aside>
+
+<div id="content">
     {% for post in posts %}
-        <h1 style="color: green;">{{ post.name }}</h1>
-        <h2>{{ post.title }}</h2>
-        <div class="content">
-           {{ post.description | raw }}
+        <div class="post schema{{ post.layout }}">
+            <h1>{{ post.name }}</h1>
+            <h2>{{ post.title }}</h2>
+            <div class="text">
+                <div class="column">
+                    {% if post.photo1 %}
+                        <div class="main_foto">
+                            <img width="400px" src="/uploads/{{ post.photo1 }}" alt="">
+                        </div>
+                    {% endif %}
+                    <div class="desc">
+                        {% if post.more == 1 %}
+                            {{ post.description|striptags|slice(0, 350) ~ '...' }}
+                            <br><a href="/{{ url_more }}/{{ post.slug }}/{{ post.id }}" class="more">Read more</a>
+                        {% else %}
+                            {{ post.description|raw}}
+                        {% endif %}
+                    </div>
+                </div>
+                {% if post.more == 0 %}
+                    <div class="column">
+                        <div class="gallery">
+                            {% if post.photo2 %}
+                                <img width="400px" src="/uploads/{{ post.photo2 }}" alt="">
+                            {% endif %}
+                            {% if post.photo3 %}
+                                <img width="400px" src="/uploads/{{ post.photo3 }}" alt="">
+                            {% endif %}
+                            {% if post.photo4 %}
+                                <img width="400px" src="/uploads/{{ post.photo4 }}" alt="">
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
         </div>
-        
-
-        {% if post.more == 1 and hidden_more == 1 %}
-            <strong><a href="/{{ url_more }}/{{ post.slug }}/{{ post.id }}">Read more</a></strong><br><br>
-        {% endif %}
     {% endfor %}
+</div>
 
 
 
-</aside>
+
 
 
 {% endblock %}
