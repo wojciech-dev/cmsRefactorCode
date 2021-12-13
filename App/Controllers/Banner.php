@@ -6,35 +6,32 @@ use \Core\{View, Router};
 use App\Helpers\{Validation, Alerts, Functions, Uploader, Upload, Posts};
 use App\Models\{Select, Add, Delete, Update, MenuTree};
 
-class Body extends \Core\Controller {
+class Banner extends \Core\Controller {
   /*
-   * Body content
+   * Banner content
    * @return void
    */
   public function index($request, $response, $service, $app): void {
 
-    $section = $request->section;
-    $section_post = $section.'_post';
-
     $getMenu = new Select('menu');
-    $getBody = new Select($section);
+    $getBody = new Select('banner');
     $menu_left = MenuTree::build_menu_left($getMenu->getRows());
     $breadcrumbs = $getMenu->getRows(['select' => 'title','where'=>['id'=> $request->id],'type'=>'fetch']);
 
     switch ($request->action) {
       case "create":
         if (isset($_POST['submit'])) {
-          $add = new Add($section);
-          $add->save(Posts::$section_post(
+          $add = new Add('banner');
+          $add->save(Posts::banner_post(
             $request,
             $request->paramsPost(),
             $request->files()
           ));
-          Functions::redirect("/admin/$section/{$request->id}");
+          Functions::redirect("/admin/banner/{$request->id}");
         }
-        View::renderTemplate('admin/'.$section.'Form.html',[
+        View::renderTemplate('admin/bannerForm.html',[
           'menu_left' => $menu_left,
-          'header' => 'Add '.$section,
+          'header' => 'Add banner',
           'breadcrumbs' => $breadcrumbs['title'],
         ]);
         break;
@@ -42,29 +39,29 @@ class Body extends \Core\Controller {
         $update = $getBody->getRows(['where'=>['id'=> $request->id], 'type'=>'fetch']);
         $breadcrumbs = $getMenu->getRows(['select' => 'title','where'=>['id'=> $update['parent_id']],'type'=>'fetch']);
         if (isset($_POST['submit'])) {
-          $edit = new Update(Posts::$section_post(
+          $edit = new Update(Posts::banner_post(
             $request,
             $request->paramsPost(),
             $request->files()
-          ), $section);
+          ), 'banner');
           $edit->edit($update['id']);
-          Functions::redirect("/admin/$section/{$update['parent_id']}");
+          Functions::redirect("/admin/banner/{$update['parent_id']}");
         }
-        View::renderTemplate('admin/'.$section.'Form.html',[
+        View::renderTemplate('admin/bannerForm.html',[
             'menu_left' => $menu_left,
-            'header' => "Edit item:",
+            'header' => "Edit banner:",
             'breadcrumbs' => $breadcrumbs['title'],
             'item' => $update,
         ]);
         break;
       case "delete":
-            $delBody = new Delete($section);
+            $delBody = new Delete('banner');
             $delBody->del($request->id);
             $service->back();
           break;
         default:
         $items = $getBody->getRows(['where'=>['parent_id'=> $request->id]]);
-        View::renderTemplate('admin/'.$section.'.html', [
+        View::renderTemplate('admin/banner.html', [
             'items' => $items,
             'menu_left' => $menu_left,
             'breadcrumbs' => $breadcrumbs['title'],

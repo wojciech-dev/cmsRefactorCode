@@ -2,178 +2,130 @@
 
 {% block body %}
 
-<h3 class="header">{{ header }}</h3>
 
 
-{% if breadcrumbs %}
-    <div class="row">
-        <div class="column">
-        </div>
-        <div class="column">
-            <h1><small>Content: </small>{{ breadcrumbs }}</h1>
-        </div>
-    </div>
-{% endif %}
-<form method="post" id="banner" enctype="multipart/form-data">
+<h3 class="display-5">{{ header }}</h3>
+{{ breadcrumbs }}
+<hr class="my-4">
+
+<form method="post" id="body" enctype="multipart/form-data">
+
+    <input
+        type="hidden" 
+        name="parent"
+        value="{{ item.parent_id }}"
+    >
+
     <div class="form-group">
         <label for="name">Name:</label>
+        <input 
+            id="name"
+            class="form-control" 
+            type="text" 
+            name="name" 
+            value="{{ item.name }}"
+        >
+    </div>
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input 
+            id="title"
+            class="form-control" 
+            type="text" 
+            name="title" 
+            value="{{ item.title }}"
+        >
+    </div>
+    <div class="form-group">
+        <label for="description">Content:</label>
+        <textarea 
+            class="form-control" 
+            name="description" 
+            id="description" 
+            cols="30" 
+            rows="10"
+        >{{ item.description }}</textarea>
+    </div>
+    <div class="form-group">
+        <div class="form-check form-check-inline">
             <input 
-                id="name"
-                class="form-control" 
-                type="text" 
-                name="name" 
-                value="{{ item.name }}"
+                class="form-check-input" 
+                name="status" 
+                id="inlineCheckbox1" 
+                type="checkbox"
+                {% if item.status == 1 %}checked{% endif %}
             >
-    </div>
-
-
-    <div class="row">
-        <div class="column">
-            <label for="title">Title:</label>
-        </div>
-        <div class="column">
-            <input 
-                id="title"
-                class="inputText" 
-                type="text" 
-                name="title" 
-                value="{{ item.title }}"
-            >
+            <label class="form-check-label" for="inlineCheckbox1">Public</label>
         </div>
     </div>
-    <div class="row">
-        <div class="column">
-            <label for="content">Content:</label>
+    <div class="mb-3 row align-items-baseline">
+        <label class="col-sm-1 col-form-label">Schema:</label>
+        <div class="col-sm-11">
+            <select name="layout" id="layout" class="form-select">
+                <option value="1" {% if item.layout == 1 %} selected {% endif %}>schema 1</option>
+                <option value="2" {% if item.layout == 2 %} selected {% endif %}>schema 2</option>
+                <option value="3" {% if item.layout == 3 %} selected {% endif %}>schema 3</option>
+            </select>
         </div>
-        <div class="column">
-            <textarea 
-                class="inputArea" 
-                name="content" 
-                id="content" 
-                cols="30" 
-                rows="10"
-            >{{ item.content }}</textarea>
-        </div>
-    </div>
+      </div>
     {% if item.photo1 %}
-    <div class="row">
-        <div class="column"></div>
-        <div class="column photo">
-            <img width="100px" src="/uploads/{{ item.photo1 }}" alt="{{ item.photo1 }}">
-            <a 
-                href="/admin/delete/photo1&{{ item.photo1 }}&{{ item.id }}&{{ request }}banner"
-                class="btn btn-danger"
-                onclick="return confirm('Are you sure want to delete?');"
-            >delete photo</a>
-        </div>
-    </div>
-    {% else %}
-        <div class="row">
+        <div class="row form-group align-items-center">
             <div class="column">
-                <label for="photo1">photo1:</label>
+                Main
+                <input type="hidden" name="file1" value="{{ item.photo1 }}">
             </div>
-            <div class="column">
+            <div class="column photo pl-2">
+                <img 
+                    width="100px" 
+                    class="img-thumbnail" 
+                    src="/uploads/{{ item.photo1 }}" 
+                    alt=""
+                >
+                <a 
+                    href="/admin/remove/photo1&{{item.photo1|replace({'.': '_'})}}&{{ item.id }}&body"
+                    class="btn btn-sm btn-danger btn-close"
+                    onclick="return confirm('Are you sure want to delete?');"
+                >X</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label">Main photo:</label>
+            <div class="col-sm-11">
                 <input 
                     class="inputFile" 
                     id="photo1" 
                     type="file"
-                    name="file"
+                    name="file1"
                 >
             </div>
-        </div>
+          </div>
     {% endif %}
-    <div class="row">
-        <div class="column">
-            <label for="label_url1">Label UTL 1:</label>
-        </div>
-        <div class="column">
-            <fieldset>
-                <legend>Button 1</legend>
-                <input 
-                    id="label_url1"
-                    class="inputText" 
-                    type="text" 
-                    name="label_url1"
-                    placeholder="Name button"
-                    value="{{ item.label_url1 }}"
-                >
-                <input 
-                    class="inputText" 
-                    name="url1" 
-                    id="url1" 
-                    type="text"
-                    placeholder="Link"
-                    value="{{ item.url2 }}"
-                >
-            </fieldset>
-        </div>
-    </div>
-    <div class="row">
-        <div class="column">
-            <label for="label_url2">Label UTL 2:</label>
-        </div>
-        <div class="column">
-            <fieldset>
-                <legend>Button 2</legend>
-                <input 
-                    id="label_url2"
-                    class="inputText" 
-                    type="text" 
-                    name="label_url2"
-                    placeholder="Name button"
-                    value="{{ item.label_url2 }}"
-                >
-                <input 
-                    class="inputText" 
-                    name="url2" 
-                    id="url2" 
-                    type="text"
-                    placeholder="Link"
-                    value="{{ item.url2 }}"
-                >
-            </fieldset>
-        </div>
-    </div>
-    <div class="row">
-        <div class="column">
-            <label for="status">Public:</label>
-        </div>
-        <div class="column">
+    <div class="mb-3 row align-items-baseline">
+        <label class="col-sm-1 col-form-label">More link:</label>
+        <div class="col-sm-11">
             <input 
-                class="inputCheck" 
-                name="status" 
-                id="status" 
-                type="checkbox"
-                {% if item.status == 1 %}checked{% endif %}
+                id="more_link"
+                class="form-control" 
+                type="text" 
+                name="more_link" 
+                value="{{ item.more_link }}"
             >
         </div>
-    </div>
-    <div class="row">
-        <div class="column">
-            <label for="inherit">Inherit:</label>
-        </div>
-        <div class="column">
-            <input 
-                class="inputCheck" 
-                name="inherit" 
-                id="inherit" 
-                type="checkbox"
-                {% if item.inherit == 1 %}checked{% endif %}
-            >
-        </div>
-    </div>
-    <div class="row">
+      </div>
+    <hr>
+    <div class="form-group">
         <div class="column"></div>
         <div class="column">
             <div class="flex">
             <button 
-                class="btn btn-success" 
+                class="btn btn-success btn-lg" 
                 type="submit" 
                 name="submit"
                 value="submit"
             >{{ header }}</button> 
             <a 
-                class="btn btn-danger" 
+                class="btn btn-danger btn-lg" 
                 href="javascript: history.go(-1)"
             >Anuluj</a>
             </div>
@@ -181,31 +133,38 @@
     </div>
 </form>
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>
 <script>
-CKEDITOR.replace( 'content', {
-    width: '100%',
-    height: '400px',
-} );
-
 
 $.validator.addMethod("words", function(value, element) {
-	return this.optional(element) || /^[a-zżźćńółęąśŻŹĆĄŚĘŁÓŃA-Z\s]+$/.test(value);
+	return this.optional(element) || /^[a-zżźćńółęąśŻŹĆĄŚĘŁÓŃA-Z0-9\s]+$/.test(value);
 }, "Letters, words, and spaces only please");
 
-$('#banner').validate({
+$.validator.addMethod('filesize', function (value, element, param) {
+    return this.optional(element) || (element.files[0].size <= param * 1000000)
+}, 'File size must be less than {0} MB');
+
+$('#body').validate({
     rules: {
         title: {
-            required: true,
-            words: true
+            words: true,
+            maxlength: 100
         },
         name: {
             required: true,
-            words: true
-        }
+            words: true,
+            maxlength: 100
+        },
+        file1: {
+            extension: "jpg,png,pdf",
+            filesize: 2,
+        },
+        more_link: {
+            url: true,
+            maxlength: 50
+        },
     }
 });
 
@@ -213,8 +172,6 @@ $('#banner').validate({
 </script>
 
 {% endblock %}
-
-
 
 
 

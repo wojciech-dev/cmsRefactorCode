@@ -30,11 +30,16 @@ class MenuTree extends \Core\Model {
               <td>
               <div class='buttons'>
                 <a 
+                  href='/admin/banner/{$row['id']}' 
+                  class='btn btn-primary btn-sm'>
+                  Banner <span class='badge badge-light'>".self::counter($row['id'], 'banner')."</span></a> 
+                <a 
                   href='/admin/body/{$row['id']}' 
-                  class='btn btn-primary btn-sm'>Body</a>
+                  class='btn btn-primary btn-sm'>
+                  Body <span class='badge badge-light'>".self::counter($row['id'], 'body')."</span></a>
                 <a 
                   href='/admin/menu/edit/{$row['id']}' 
-                  class='btn btn-secondary btn-sm'
+                  class='btn btn-primary btn-sm'
                 >Edit</a>
                 <a 
                   href='/admin/menu/delete/{$row['id']}' 
@@ -74,7 +79,7 @@ class MenuTree extends \Core\Model {
       foreach ($rows as $row) {
         if ($row['parent_id'] == $parent) {
           $result.= "
-          <li><a href=/admin/body/{$row['id']} class=".(self::lastElUri() == $row['id'] ? 'active' : '').">{$row['title']} <span class='badge badge-primary'>".self::counter($row['id'], 'body')."</span></a>";
+          <li><a href=/admin/body/{$row['id']} class=".(self::lastElUri() == $row['id'] ? 'active' : '').">{$row['title']}</a>";
           if (self::has_children($rows,$row['id'])) {
             $result.= self::build_menu_left($rows,$row['id']);
           }
