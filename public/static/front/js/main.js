@@ -1,3 +1,3 @@
-if ($(".post").hasClass("schema6")) {
+if ($(".text").hasClass("schema6")) {
     $("#content").addClass("grid");
 }

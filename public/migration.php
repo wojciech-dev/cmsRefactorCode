@@ -64,6 +64,27 @@ try {
 }
 
 
+$table = "banner";
+try {
+     $sql ="CREATE TABLE IF NOT EXISTS $table(
+     `id` INT( 11 ) AUTO_INCREMENT PRIMARY KEY,
+     `parent_id` int( 11 ) NOT NULL DEFAULT 0, 
+     `name` varchar( 100 ) NOT NULL,
+     `title` varchar( 100 ) NOT NULL,
+     `description` text DEFAULT NULL,
+     `status` tinyint( 1 ) NOT NULL DEFAULT 0,
+     `layout` tinyint( 1 ) NOT NULL DEFAULT 1,
+     `photo1` varchar( 50 )  DEFAULT NULL,
+     `more_link` varchar( 50 )  DEFAULT NULL,
+     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP);" ;
+     $db->exec($sql);
+     print("Created table $table.<br>");
+
+} catch(PDOException $e) {
+    echo $e->getMessage();
+}
+
+
 //insert menu
 
 try {

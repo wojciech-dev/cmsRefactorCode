@@ -7,18 +7,17 @@ $router = new Core\Router();
 
 //front
 $router->respondWithController(['GET', 'POST'], '/register', 'Register@index');
-
 $router->respondWithController('GET', '/verify_email', 'Verify@index');
 $router->respondWithController('GET', '/logout', 'Menu@logout');
-
 $router->respondWithController('GET', '/[*:title][i:id]?', 'Front@index');
 
 //backend
 $router->with('/admin', function () use ($router) {
     if (isset($_SESSION['username']) && $_SESSION['type'] =='admin') {
         $router->respondWithController(['GET', 'POST'], '/menu/[create|edit|delete:action]?/[:id]?', 'Menu@index');
-        $router->respondWithController(['GET', 'POST'], '/body/[create|edit|delete:action]?/[:id]?', 'Body@index');
-        $router->respondWithController(['GET', 'POST'], '/delete/[:field]', 'DeletePhoto@remove');
+        $router->respondWithController(['GET', 'POST'], '/[body|banner:section]/[create|edit|delete:action]?/[:id]?', 'Body@index');
+        //$router->respondWithController(['GET', 'POST'], '/[:section]/[create|edit|delete:action]?/[:id]?', 'Banner@index');
+        $router->respondWithController(['GET', 'POST'], '/remove/[:field]', 'DeletePhoto@remove');
     } else if (isset($_SESSION['username']) && $_SESSION['type'] =='user') {
         $router->respondWithController(['GET', 'POST'], '/user', 'User@index');
     } else {

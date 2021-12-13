@@ -9,10 +9,10 @@
 
 <div id="content">
     {% for post in posts %}
-        <div class="post schema{{ post.layout }}">
+        <div class="post">
             <h1>{{ post.name }}</h1>
             <h2>{{ post.title }}</h2>
-            <div class="text">
+            <div class="text schema{{ post.layout }} d-flex">
                 <div class="column">
                     {% if post.photo1 %}
                         <div class="main_foto">

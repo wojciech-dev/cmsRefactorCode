@@ -6,6 +6,13 @@ use App\Models\{Select};
 
 class Posts {
 
+  public static function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
   public static function menu_post($data) {
 
     $val = new Validation();
@@ -120,5 +127,39 @@ class Posts {
     }
     return $data;
   }
+
+  public static function banner_post($request, $data, $files) {
+
+    $val = new Validation();
+    $photo = Posts::photo($files);
+    $tab = [];
+
+    $val->name('name')->value($data['name'])->pattern('text')->required();
+
+    $val->name('title')->value($data['title'])->pattern('text');
+
+    $val->name('more_link')->value($data['more_link'])->pattern('url');
+
+    if ($val->isSuccess()) {
+    	echo "Validation ok!";
+
+      $tab = [
+        'parent_id' => $request->action == 'edit' ? $data['parent'] : $request->id,
+        'name' =>      $data['name'],
+        'title' =>     $data['title'],
+        'description' => $data['description'],
+        'more_link' => $data['more_link'],
+        'status' => isset($data['status']) ? 1 : 0,
+        'layout'    => intval($data['layout']),
+        'photo1' => $data['file1'] ?? $photo['photo1']
+      ];
+      
+    } else {
+      echo $val->displayErrors();
+    }
+
+    return $tab;
+  }
+
 }              
 ?>
