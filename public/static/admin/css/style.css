@@ -26,3 +26,7 @@
 .photo {
     position: relative;
 }
+
+.input-error {
+    box-shadow: 0 0 5px #ff0000;
+}

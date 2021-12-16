@@ -146,6 +146,12 @@ $.validator.addMethod('filesize', function (value, element, param) {
     return this.optional(element) || (element.files[0].size <= param * 1000000)
 }, 'File size must be less than {0} MB');
 
+$.validator.addMethod("url_adress", function(value, element) {
+	return this.optional(element) || /^[a-z0-9\/]+$/.test(value);
+}, "Url address please");
+
+
+
 $('#body').validate({
     rules: {
         title: {
@@ -162,7 +168,7 @@ $('#body').validate({
             filesize: 2,
         },
         more_link: {
-            url: true,
+            url_adress: true,
             maxlength: 50
         },
     }
@@ -172,6 +178,5 @@ $('#body').validate({
 </script>
 
 {% endblock %}
-
 
 
