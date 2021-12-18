@@ -1,81 +1,83 @@
 {% extends "admin/base.html" %}
 
 {% block body %}
-
-
-  <h3 class="header">{{ breadcrumbs }}</h3>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th>id</th>
-          <th>parent_id</th>
-          <th>name</th>
-          <th>title</th>
-          <th>description</th>
-          <th>slug</th>
-          <th>public</th>
-          <th>more</th>
-          <th>layout</th>
-          <th>photo1</th>
-          <th>photo2</th>
-          <th>photo3</th>
-          <th>photo4</th>
-          <th>date</th>
-          <th>action</th>
-        </tr>
-      </thead>
-      {% if items %}
-      <tbody>
-        {% for item in items %}
-            <tr>
-              <td>{{ item.id }}</td>
-              <td>{{ item.parent_id }}</td>
-              <td>{{ item.name }}</td>
-              <td>{{ item.title }}</td>
-              <td>{{ item.description|length < 50 ? item.description : item.description|slice(0, 50) ~ '...' }}</td>
-              <td>{{ item.slug }}</td>
-              <td>{{ item.status }}</td>
-              <td>{{ item.more }}</td>
-              <td>{{ item.layout }}</td>
-              <td><img width="100px" src="/uploads/{{ item.photo1 }}" alt="{{ item.name }}"></td>
-              <td><img width="100px" src="/uploads/{{ item.photo2 }}" alt="{{ item.name }}"></td>
-              <td><img width="100px" src="/uploads/{{ item.photo3 }}" alt="{{ item.name }}"></td>
-              <td><img width="100px" src="/uploads/{{ item.photo4 }}" alt="{{ item.name }}"></td>
-              <td>{{ item.created_at }}</td>
-              <td>
-                <div class="buttons">
-                  <a 
-                    href="/admin/body/edit/{{ item.id }}" 
-                    class="btn btn-secondary btn-sm"
-                  >Edit</a>
-                  <a 
-                    href="/admin/body/delete/{{ item.id }}" 
-                    class="btn btn-danger btn-sm"
-                    onclick="return confirm('Are you sure want to delete?');"
-                    >Delete</a>
-                </div>
-              </td>
-            </tr>
-        {% endfor %}
-      </tbody>
-      {% else %}
+  <div class="table-header">
+    <h3>{{ breadcrumbs }}</h3>
+    <a 
+      href="/admin/menu/create"
+      class="btn"
+    >New menu</a>
+  </div>
+  <table class="table">
+    <thead>
       <tr>
-        <td colspan="11">
-          <div class="alert alert-danger" role="alert">No posts</div>
-        </td>
+        <th>id</th>
+        <th>parent_id</th>
+        <th>name</th>
+        <th>title</th>
+        <th>description</th>
+        <th>slug</th>
+        <th>public</th>
+        <th>more</th>
+        <th>layout</th>
+        <th>photo1</th>
+        <th>photo2</th>
+        <th>photo3</th>
+        <th>photo4</th>
+        <th>date</th>
+        <th>action</th>
       </tr>
-      {% endif %}
-      <tr>
-        <td colspan="13">
-          <a 
-            href="/admin/body/create/{{ request_id }}"
-            class="btn btn-success"
-          >Add new item</a>
-        </td>
-      </tr>
-    </table>
-
-
+    </thead>
+    {% if items %}
+    <tbody>
+      {% for item in items %}
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.parent_id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.description|length < 50 ? item.description : item.description|slice(0, 50) ~ '...' }}</td>
+            <td>{{ item.slug }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.more }}</td>
+            <td>{{ item.layout }}</td>
+            <td><img width="60px" src="/uploads/{{ item.photo1 }}" alt="{{ item.name }}"></td>
+            <td><img width="60px" src="/uploads/{{ item.photo2 }}" alt="{{ item.name }}"></td>
+            <td><img width="60px" src="/uploads/{{ item.photo3 }}" alt="{{ item.name }}"></td>
+            <td><img width="60px" src="/uploads/{{ item.photo4 }}" alt="{{ item.name }}"></td>
+            <td>{{ item.created_at }}</td>
+            <td>
+              <div class="buttons">
+                <a 
+                  href="/admin/body/edit/{{ item.id }}" 
+                  class="btn"
+                >Edit</a>
+                <a 
+                  href="/admin/body/delete/{{ item.id }}" 
+                  class="btn btn-danger"
+                  onclick="return confirm('Are you sure want to delete?');"
+                  >X</a>
+              </div>
+            </td>
+          </tr>
+      {% endfor %}
+    </tbody>
+    {% else %}
+    <tr>
+      <td colspan="11">
+        <div class="alert alert-danger" role="alert">No posts</div>
+      </td>
+    </tr>
+    {% endif %}
+    <tr>
+      <td colspan="15">
+        <a 
+          href="/admin/body/create/{{ request_id }}"
+          class="btn"
+        >Add body item</a>
+      </td>
+    </tr>
+  </table>
 {% endblock %}
 
 

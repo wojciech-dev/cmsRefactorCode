@@ -1,21 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="/admin/menu">wkCMS</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/admin/menu">Menu</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2 inputSearch" type="search" placeholder="Search" aria-label="Search" id="search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+<header class="topbar">
+  <div class="topbar-left">
+      <a href="/admin/menu">wkcms</a>
+  </div>
+  <div class="topbar-right">
+    <div class="item nav">
+      <a href="/admin/menu">Menu</a>
     </div>
-  </nav>
+    <div class="item search">
+      <input class="input-search" type="search" placeholder="Search" id="search">
+    </div>
+    <div class="item user">
+      <img src="/static/admin/images/admin.jpg" alt="">
+      <a href="#">Wojciech Kondraciuk</a>
+    </div>
+    <div class="item logout">
+      <a class="nav-link" href="/logout">Logout</a>
+    </div>
+  </div>
+</header>

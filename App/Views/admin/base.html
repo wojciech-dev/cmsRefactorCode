@@ -4,29 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/static/admin/images/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/admin/css/style.css" />
     <title>{% block title %}Dashboard{% endblock %}</title>
 </head>
 <body>
     {% include 'admin/header.html' %}
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-2">
-                <h3 class="header">Menu</h3>
-                <div class="tree-menu">
-                    {{ menu_left | raw }}
-                    <a class="link btn btn-success" href="/admin/menu/create">Add menu item</a>
+    <main class="content">
+        <div class="left-menu">
+            <div class="profile-info">
+                <div class="profile-photo">
+                    <img src="/static/admin/images/admin.jpg" alt="#">
                 </div>
+                <div class="profile-text">Wojciech Kondraciuk</div>
+                <span class="profile-status">Online</span>
             </div>
-            <div class="col-10">
+            <div class="side-menu">
+                {{ menu_left | raw }}
+            </div>
+        </div>
+    
+        <div class="content-page">
+            <div class="content-table">
                 {% block body %}{% endblock %}
             </div>
-
         </div>
-    </div>
+    </main>
+
     <footer class="mt-4">
         <div class="text-center p-4">
             © 2021 Copyright:

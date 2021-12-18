@@ -1,21 +1,25 @@
 {% extends "admin/base.html" %}
 
 {% block body %}
-    <h3 class="header">Dashboard</h3>
-    <div class="menu">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Slug</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
-                  </tr>
-            </thead>
-            <tbody>
-                {{ menu | raw }}
-            </tbody>
-        </table>
-    </div>
+<div class="table-header">
+    <h3>Menu</h3>
+    <a 
+      href="/admin/menu/create"
+      class="btn"
+    >New menu</a>
+</div>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Slug</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+            </tr>
+    </thead>
+    <tbody>
+        {{ menu | raw }}
+    </tbody>
+</table>
 {% endblock %}

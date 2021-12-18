@@ -2,9 +2,17 @@
 
 {% block body %}
 
-    <h3 class="header">{{ header }}</h3>
+<div class="table-header">
+    <h3>{{ header }}</h3>
+    <a 
+      href="/admin/menu/create"
+      class="btn"
+    >New menu</a>
+</div>
+
+<div class="wrapper">
     <form method="post" id="menu">
-        <div class="form-group">
+        <div class="form-row">
             <label for="name">Page name:</label>
             <input 
                 id="name"
@@ -14,7 +22,7 @@
                 value="{{ item.title }}"
             >
         </div>
-        <div class="form-group">
+        <div class="form-row">
             <label for="status">Status:</label>
             <select name="status" id="status" class="form-select">
                 {% if item.status == 1 %}
@@ -26,9 +34,9 @@
                 {% endif %}
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-row">
             <label for="category">Add to:</label>
-
+    
             <select name="category" id="category" class="form-select">
                 <option value="0">- Home -</option>
                 {% for itm in items %}
@@ -36,8 +44,9 @@
                 {% endfor %}
             </select>
         </div>
-        <button 
-            class="btn btn-success" 
+        <div class="form-row">
+            <button 
+            class="btn" 
             type="submit" 
             name="submit"
             value="1"
@@ -46,18 +55,13 @@
             class="btn btn-danger" 
             href="/admin/menu"
         >Anuluj</a>
+        </div>
     </form>
+</div>
    
-<script 
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
-    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" 
-    crossorigin="anonymous">
-</script>
-<script 
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
-    integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
-    crossorigin="anonymous">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>
 <script>
 
 $.validator.addMethod("words", function(value, element) {

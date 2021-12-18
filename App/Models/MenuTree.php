@@ -31,21 +31,21 @@ class MenuTree extends \Core\Model {
               <div class='buttons'>
                 <a 
                   href='/admin/banner/{$row['id']}' 
-                  class='btn btn-primary btn-sm'>
-                  Banner <span class='badge badge-light'>".self::counter($row['id'], 'banner')."</span></a> 
+                  class='btn-outline'>
+                  Banner <span class='badge'>".self::counter($row['id'], 'banner')."</span></a> 
                 <a 
                   href='/admin/body/{$row['id']}' 
-                  class='btn btn-primary btn-sm'>
-                  Body <span class='badge badge-light'>".self::counter($row['id'], 'body')."</span></a>
+                  class='btn-outline'>
+                  Body <span class='badge'>".self::counter($row['id'], 'body')."</span></a>
                 <a 
                   href='/admin/menu/edit/{$row['id']}' 
-                  class='btn btn-primary btn-sm'
+                  class='btn-outline'
                 >Edit</a>
                 <a 
                   href='/admin/menu/delete/{$row['id']}' 
-                  class='btn btn-danger btn-sm'
+                  class='btn btn-danger'
                   onclick=\"return confirm('Are you sure want to delete?');\"
-                >Delete</a>
+                >X</a>
               </div>
               </td></tr>
 
