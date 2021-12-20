@@ -1,123 +1,101 @@
 {% extends "admin/base.html" %}
 
 {% block body %}
-
-
-
-<h3 class="display-5">{{ header }}</h3>
-{{ breadcrumbs }}
-<hr class="my-4">
+<div class="table-header">
+    <h3>{{ header }}<small>- {{ breadcrumbs }}</small></h3>
+    <a 
+      href="/admin/menu/create"
+      class="btn"
+    >New menu</a>
+</div>
 
 <form method="post" id="body" enctype="multipart/form-data">
-
     <input
         type="hidden" 
         name="parent"
         value="{{ item.parent_id }}"
     >
-
-    <div class="form-group">
-        <label for="name">Name:</label>
+    <div class="form-row">
+        <label>Name:</label>
         <input 
-            id="name"
-            class="form-control" 
+            class="inputText" 
             type="text" 
             name="name" 
             value="{{ item.name }}"
         >
     </div>
-    <div class="form-group">
-        <label for="title">Title:</label>
+    <div class="form-row">
+        <label>Title:</label>
         <input 
-            id="title"
-            class="form-control" 
+            class="inputText" 
             type="text" 
             name="title" 
             value="{{ item.title }}"
         >
     </div>
-    <div class="form-group">
-        <label for="description">Content:</label>
+    <div class="form-row">
+        <label>Content:</label>
         <textarea 
-            class="form-control" 
+            class="inputTextArea" 
             name="description" 
-            id="description" 
             cols="30" 
             rows="10"
         >{{ item.description }}</textarea>
     </div>
-    <div class="form-group">
-        <div class="form-check form-check-inline">
-            <input 
-                class="form-check-input" 
-                name="status" 
-                id="inlineCheckbox1" 
-                type="checkbox"
-                {% if item.status == 1 %}checked{% endif %}
-            >
-            <label class="form-check-label" for="inlineCheckbox1">Public</label>
-        </div>
+    <div class="form-row">
+        <label>Public</label>
+        <input 
+            class="inputCheckbox" 
+            name="status" 
+            type="checkbox"
+            {% if item.status == 1 %}checked{% endif %}
+        >
     </div>
-    <div class="mb-3 row align-items-baseline">
-        <label class="col-sm-1 col-form-label">Schema:</label>
-        <div class="col-sm-11">
-            <select name="layout" id="layout" class="form-select">
-                <option value="1" {% if item.layout == 1 %} selected {% endif %}>schema 1</option>
-                <option value="2" {% if item.layout == 2 %} selected {% endif %}>schema 2</option>
-                <option value="3" {% if item.layout == 3 %} selected {% endif %}>schema 3</option>
-            </select>
-        </div>
-      </div>
-    {% if item.photo1 %}
-        <div class="row form-group align-items-center">
-            <div class="column">
-                Main
+    <div class="form-row">
+        <label>Schema:</label>
+        <select name="layout" id="layout" class="inputSelect">
+            <option value="1" {% if item.layout == 1 %} selected {% endif %}>schema 1</option>
+            <option value="2" {% if item.layout == 2 %} selected {% endif %}>schema 2</option>
+            <option value="3" {% if item.layout == 3 %} selected {% endif %}>schema 3</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label>Photo:</label>
+        {% if item.photo1 %}
+            <div class="photo">
                 <input type="hidden" name="file1" value="{{ item.photo1 }}">
-            </div>
-            <div class="column photo pl-2">
                 <img 
                     width="100px" 
-                    class="img-thumbnail" 
                     src="/uploads/{{ item.photo1 }}" 
-                    alt=""
+                    alt="#"
                 >
                 <a 
                     href="/admin/remove/photo1&{{item.photo1|replace({'.': '_'})}}&{{ item.id }}&body"
-                    class="btn btn-sm btn-danger btn-close"
+                    class="btn btn-danger btn-close"
                     onclick="return confirm('Are you sure want to delete?');"
                 >X</a>
             </div>
-        </div>
-    {% else %}
-        <div class="mb-3 row">
-            <label class="col-sm-1 col-form-label">Main photo:</label>
-            <div class="col-sm-11">
+        {% else %}
+            <div class="photo no_thumb">
                 <input 
                     class="inputFile" 
-                    id="photo1" 
                     type="file"
                     name="file1"
                 >
             </div>
-          </div>
-    {% endif %}
-    <div class="mb-3 row align-items-baseline">
-        <label class="col-sm-1 col-form-label">More link:</label>
-        <div class="col-sm-11">
-            <input 
-                id="more_link"
-                class="form-control" 
-                type="text" 
-                name="more_link" 
-                value="{{ item.more_link }}"
-            >
-        </div>
-      </div>
-    <hr>
-    <div class="form-group">
-        <div class="column"></div>
-        <div class="column">
-            <div class="flex">
+        {% endif %}
+    </div>
+    <div class="form-row">
+        <label>More link:</label>
+        <input 
+            class="inputText" 
+            type="text" 
+            name="more_link" 
+            value="{{ item.more_link }}"
+        >
+    </div>
+    <div class="form-row">
+        <div class="buttons">
             <button 
                 class="btn btn-success btn-lg" 
                 type="submit" 
@@ -128,7 +106,6 @@
                 class="btn btn-danger btn-lg" 
                 href="javascript: history.go(-1)"
             >Anuluj</a>
-            </div>
         </div>
     </div>
 </form>
@@ -149,8 +126,6 @@ $.validator.addMethod('filesize', function (value, element, param) {
 $.validator.addMethod("url_adress", function(value, element) {
 	return this.optional(element) || /^[a-z0-9\/]+$/.test(value);
 }, "Url address please");
-
-
 
 $('#body').validate({
     rules: {
@@ -173,10 +148,5 @@ $('#body').validate({
         },
     }
 });
-
-
 </script>
-
 {% endblock %}
-
-

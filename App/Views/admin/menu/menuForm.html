@@ -16,7 +16,7 @@
             <label for="name">Page name:</label>
             <input 
                 id="name"
-                class="form-control" 
+                class="inputText" 
                 type="text" 
                 name="title" 
                 value="{{ item.title }}"
@@ -24,7 +24,7 @@
         </div>
         <div class="form-row">
             <label for="status">Status:</label>
-            <select name="status" id="status" class="form-select">
+            <select name="status" id="status" class="inputSelect">
                 {% if item.status == 1 %}
                     <option value='1'>Active</option>
                     <option value='0'>Disactive</option>
@@ -36,15 +36,14 @@
         </div>
         <div class="form-row">
             <label for="category">Add to:</label>
-    
-            <select name="category" id="category" class="form-select">
+            <select name="category" id="category" class="inputSelect">
                 <option value="0">- Home -</option>
                 {% for itm in items %}
                     <option value="{{ itm.id }}" {% if itm.id == item.parent_id %} selected="selected" {% endif %}>{{ itm.title }}</option>
                 {% endfor %}
             </select>
         </div>
-        <div class="form-row">
+        <div class="form-row last">
             <button 
             class="btn" 
             type="submit" 

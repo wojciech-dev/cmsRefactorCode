@@ -25,7 +25,7 @@ class Menu extends \Core\Controller {
           $add->save(Posts::menu_post($request->paramsPost()));
           Functions::redirect('/admin/menu');
         }
-        View::renderTemplate('admin/menuForm.html', [
+        View::renderTemplate('admin/menu/menuForm.html', [
           'menu_left' => $menu_left,
           'header' => 'Add item',
           'items' => $show_title,
@@ -39,7 +39,7 @@ class Menu extends \Core\Controller {
           $row->edit($update['id']);
           Functions::redirect('/admin/menu');
         }
-        View::renderTemplate('admin/menuForm.html', [
+        View::renderTemplate('admin/menu/menuForm.html', [
           'menu_left' => $menu_left,
           'header' => 'Edit item',
           'item' => $update,
@@ -55,7 +55,7 @@ class Menu extends \Core\Controller {
         Functions::redirect('/admin/menu');
         break;
       default:
-      View::renderTemplate('admin/menu.html', [
+      View::renderTemplate('admin/menu/menu.html', [
         'menu' => $menu_main,
         'menu_left' => $menu_left
       ]);

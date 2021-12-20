@@ -12,10 +12,8 @@ class Body extends \Core\Controller {
    * @return void
    */
   public function index($request, $response, $service, $app): void {
-
     $section = $request->section;
     $section_post = $section.'_post';
-
     $getMenu = new Select('menu');
     $getBody = new Select($section);
     $menu_left = MenuTree::build_menu_left($getMenu->getRows());
@@ -32,7 +30,7 @@ class Body extends \Core\Controller {
           ));
           Functions::redirect("/admin/$section/{$request->id}");
         }
-        View::renderTemplate('admin/'.$section.'Form.html',[
+        View::renderTemplate('admin/content/'.$section.'Form.html',[
           'menu_left' => $menu_left,
           'header' => 'Add '.$section,
           'breadcrumbs' => $breadcrumbs['title'],
@@ -50,9 +48,9 @@ class Body extends \Core\Controller {
           $edit->edit($update['id']);
           Functions::redirect("/admin/$section/{$update['parent_id']}");
         }
-        View::renderTemplate('admin/'.$section.'Form.html',[
+        View::renderTemplate('admin/content/'.$section.'Form.html',[
             'menu_left' => $menu_left,
-            'header' => "Edit item:",
+            'header' => "Edit item",
             'breadcrumbs' => $breadcrumbs['title'],
             'item' => $update,
         ]);
@@ -64,7 +62,7 @@ class Body extends \Core\Controller {
           break;
         default:
         $items = $getBody->getRows(['where'=>['parent_id'=> $request->id]]);
-        View::renderTemplate('admin/'.$section.'.html', [
+        View::renderTemplate('admin/content/'.$section.'.html', [
             'items' => $items,
             'menu_left' => $menu_left,
             'breadcrumbs' => $breadcrumbs['title'],

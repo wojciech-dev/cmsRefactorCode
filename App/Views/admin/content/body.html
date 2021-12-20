@@ -41,10 +41,10 @@
             <td>{{ item.status }}</td>
             <td>{{ item.more }}</td>
             <td>{{ item.layout }}</td>
-            <td><img width="60px" src="/uploads/{{ item.photo1 }}" alt="{{ item.name }}"></td>
-            <td><img width="60px" src="/uploads/{{ item.photo2 }}" alt="{{ item.name }}"></td>
-            <td><img width="60px" src="/uploads/{{ item.photo3 }}" alt="{{ item.name }}"></td>
-            <td><img width="60px" src="/uploads/{{ item.photo4 }}" alt="{{ item.name }}"></td>
+            <td><img width="60px" src="/uploads/{% if item.photo1 %}{{ item.photo1 }}{% else %}no_photo.jpg{% endif %}" alt="#"></td>
+            <td><img width="60px" src="/uploads/{% if item.photo2 %}{{ item.photo2 }}{% else %}no_photo.jpg{% endif %}" alt="#"></td>
+            <td><img width="60px" src="/uploads/{% if item.photo3 %}{{ item.photo3 }}{% else %}no_photo.jpg{% endif %}" alt="#"></td>
+            <td><img width="60px" src="/uploads/{% if item.photo4 %}{{ item.photo4 }}{% else %}no_photo.jpg{% endif %}" alt="#"></td>
             <td>{{ item.created_at }}</td>
             <td>
               <div class="buttons">
@@ -64,9 +64,7 @@
     </tbody>
     {% else %}
     <tr>
-      <td colspan="11">
-        <div class="alert alert-danger" role="alert">No posts</div>
-      </td>
+      <td>No posts</td>
     </tr>
     {% endif %}
     <tr>
@@ -74,10 +72,8 @@
         <a 
           href="/admin/body/create/{{ request_id }}"
           class="btn"
-        >Add body item</a>
+        >Add body</a>
       </td>
     </tr>
   </table>
 {% endblock %}
-
-
