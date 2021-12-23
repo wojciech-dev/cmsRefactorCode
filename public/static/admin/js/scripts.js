@@ -21,13 +21,3 @@ function searchTask() {
 if (inputSearch) {
     inputSearch.addEventListener('input', searchTask);
 }
-
-
-function imageUpdate() {
-    var image = $("select#layout").val();
-    var path = "";
-    $("img.imageNews").attr({
-        src: '/static/admin/images/' + path + image + '.gif',
-        alt: "#"
-    });
-}

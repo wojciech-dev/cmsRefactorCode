@@ -79,7 +79,7 @@ class MenuTree extends \Core\Model {
       foreach ($rows as $row) {
         if ($row['parent_id'] == $parent) {
           $result.= "
-          <li><a href=/admin/body/{$row['id']} class=".(self::lastElUri() == $row['id'] ? 'active' : '').">{$row['title']}</a>";
+          <li><a href=/admin/body/{$row['id']} class=".(self::activeMenu($_SERVER['REQUEST_URI']) == $row['id'] ? 'active' : '').">{$row['title']}</a>";
           if (self::has_children($rows,$row['id'])) {
             $result.= self::build_menu_left($rows,$row['id']);
           }
@@ -90,21 +90,18 @@ class MenuTree extends \Core\Model {
     return $result;
   }
 
-  public static function activeMenu() {
-    $directoryURI = $_SERVER['REQUEST_URI'];
-    $path = parse_url($directoryURI, PHP_URL_PATH);
-    $components = explode('/', $path);
-    $first_part = $components[2] ?? null;
-    return $first_part;
-  }
-
-  public static function lastElUri() {
-    $link = $_SERVER["REQUEST_URI"];
-    $link_array = explode('/', $link);
+  public static function activeMenu($request_uri) {
+    $link_array = explode('/', $request_uri);
     return end($link_array);
   }
 
-  //front menu tree
+  public static function isActiveMenu($row) {
+    if (self::activeMenu($_SERVER['REQUEST_URI']) == self::activeMenu($row)) {
+      return 'active';
+    }
+  }
+
+  //front-end menu tree
   public static function buildMenuInFront($rows, $parent=0) {  
     $result = "";
     if ($rows) {
@@ -113,11 +110,11 @@ class MenuTree extends \Core\Model {
           $result.= "
             <li>
               <a 
-                class='".(self::activeMenu() == $row['slug'] ? ' active' : '')."' 
+                class='item ".(self::isActiveMenu($row['slug']))."' 
                 href='/{$row['slug']}'
               >{$row['title']}</a>";
           if (self::has_children($rows,$row['id']))
-            $result.= "<ul>".self::buildMenuInFront($rows,$row['id'])."</ul>";
+            $result.= "<ul class='sub-menu'>".self::buildMenuInFront($rows,$row['id'])."</ul>";
           $result.= "</li>";
         }
       }

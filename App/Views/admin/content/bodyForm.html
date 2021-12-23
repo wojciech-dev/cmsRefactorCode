@@ -79,7 +79,6 @@
         <label>Design:</label>
         <img class="imageNews" src="/static/admin/images/{{ item.layout }}.gif" />
     </div>
-    
     <div class="form-row">
         <label>Photo:</label>
         {% if item.photo1 %}
@@ -246,6 +245,16 @@ $('#body').validate({
         },
     }
 });
+
+function imageUpdate() {
+    var image = $("select#layout").val();
+    var path = "";
+    $("img.imageNews").attr({
+        src: '/static/admin/images/' + path + image + '.gif',
+        alt: "#"
+    });
+}
+
 
 </script>
 

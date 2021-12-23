@@ -7,13 +7,27 @@
 </head>
 <body>
     <header>
-        <nav class="mb-4">
-            <ul>
+        <div class="top_info">
+            <div class="center display-flex-end">
+                <a href="tel:3714653">Call: (203) 453-2701</a>
+                <a href="mailto:info@service.com">Email: info@service.com</a>
+                <a href="#">f</a>
+                <div class="search">
+                    <form action="#">
+                        <input type="search" class="inputSearch" name="search" placeholder="search">
+                        <input type="submit" value="search">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="center display-flex">
+            <a href="/start" id="logo"><img src="/static/front/images/logo.png" alt="agency"></a>
+            <ul class="nav">
                 {{ menu | raw }}
                 <li><a href="/admin/">Login</a></li>
                 <li><a href="/register">Register</a></li>
             </ul>
-        </nav>
+        </div>
     </header>
      
     <main>

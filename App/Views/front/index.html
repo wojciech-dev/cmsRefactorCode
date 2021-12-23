@@ -1,13 +1,28 @@
-
 {% extends "base.html" %}
-
 {% block title %}Home{% endblock %}
-
-
 {% block body %}
 
+{% if banners %}
 
-<div id="content">
+{% for item in banners %}
+    <div class="slidshow">
+        <img src="/uploads/{{ item.photo1 }}" alt="">
+        <div class="content schema{{ item.layout }}">
+          <h1>{{ item.name }}</h1>
+          <span>{{ item.title }}</span>
+          <p>{{ item.description }}</p>
+          <a class="btn" href="{{ item.more_link }}">CONTACT AN INSURANCE PROFESSIONAL</a>
+        </div>
+    </div>
+{% endfor %}
+
+{% else %}
+    <img src="/static/front/images/slajd.jpg" alt="">
+{% endif %}
+
+
+
+<div class="content">
     {% for post in posts %}
         <div class="post">
             <h1>{{ post.name }}</h1>

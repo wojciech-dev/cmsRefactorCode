@@ -53,11 +53,15 @@
     </div>
     <div class="form-row">
         <label>Schema:</label>
-        <select name="layout" id="layout" class="inputSelect">
+        <select name="layout" id="layout" class="inputSelect" onChange="imageUpdate();"">
             <option value="1" {% if item.layout == 1 %} selected {% endif %}>schema 1</option>
             <option value="2" {% if item.layout == 2 %} selected {% endif %}>schema 2</option>
             <option value="3" {% if item.layout == 3 %} selected {% endif %}>schema 3</option>
         </select>
+    </div>
+    <div class="form-row">
+        <label>Design:</label>
+        <img class="imageNews" src="/static/admin/images/banner/{{ item.layout }}.gif" />
     </div>
     <div class="form-row">
         <label>Photo:</label>
@@ -70,7 +74,7 @@
                     alt="#"
                 >
                 <a 
-                    href="/admin/remove/photo1&{{item.photo1|replace({'.': '_'})}}&{{ item.id }}&body"
+                    href="/admin/remove/photo1&{{item.photo1|replace({'.': '_'})}}&{{ item.id }}&banner"
                     class="btn btn-danger btn-close"
                     onclick="return confirm('Are you sure want to delete?');"
                 >X</a>
@@ -148,5 +152,16 @@ $('#body').validate({
         },
     }
 });
+
+function imageUpdate() {
+    var image = $("select#layout").val();
+    var path = "";
+    $("img.imageNews").attr({
+        src: '/static/admin/images/banner/' + path + image + '.gif',
+        alt: "#"
+    });
+}
+
+
 </script>
 {% endblock %}

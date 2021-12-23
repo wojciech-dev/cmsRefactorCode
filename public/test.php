@@ -5,31 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+  background: gray;
+}
+
+
+.triangle-bottom{
+  width: 0;
+  height: 0;
+  margin: 30px auto;
+}
+
+.triangle-bottom{
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid black;
+}
+
+
+
+    </style>
 </head>
 <body>
+    
 
-<img class="imageNews" src="http://placekitten.com/200/300" />
-<br />
-<br />
-
-<select id="layout" onChange="imageUpdate();">
-    <option value="http://placekitten.com/200/300">http://placekitten.com/200/300</option>
-    <option value="http://placekitten.com/100/300">http://placekitten.com/100/300</option>
-    <option value="http://placekitten.com/100/100">http://placekitten.com/100/100</option>
-    <option value="http://placekitten.com/20/100">http://placekitten.com/20/100</option>
-</select>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-    function imageUpdate() {
-    var image = $("select#layout").val();
-    var path = "";
-    var src = $("img.imageNews").attr({
-        src: path + image,
-        title: "Image",
-        alt: "Image"
-    });
-}
-</script>
+<div class="triangle-bottom"></div>
 
 </body>
 </html>
