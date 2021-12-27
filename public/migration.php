@@ -85,6 +85,27 @@ try {
 }
 
 
+$table = "box";
+try {
+     $sql ="CREATE TABLE IF NOT EXISTS $table(
+     `id` INT( 11 ) AUTO_INCREMENT PRIMARY KEY,
+     `parent_id` int( 11 ) NOT NULL DEFAULT 0, 
+     `name` varchar( 100 ) NOT NULL,
+     `description` text DEFAULT NULL,
+     `status` tinyint( 1 ) NOT NULL DEFAULT 0,
+     `photo1` varchar( 50 )  DEFAULT NULL,
+     `more_link` varchar( 50 )  DEFAULT NULL,
+     `label_link` varchar( 50 )  DEFAULT 'learn more',
+     `color_bg` varchar( 10 )  DEFAULT '#000000',
+     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP);" ;
+     $db->exec($sql);
+     print("Created table $table.<br>");
+
+} catch(PDOException $e) {
+    echo $e->getMessage();
+}
+
+
 //insert menu
 
 try {
@@ -173,3 +194,30 @@ try {
     echo $e->getMessage();
 }
 
+
+//insert box
+
+try {
+    $st = $db->prepare(" 
+        INSERT INTO box(
+            id, 
+            parent_id, 
+            name, 
+            description, 
+            status, 
+            photo1, 
+            more_link, 
+            label_link,
+            color, 
+            created_at
+        )VALUES(?,?,?,?,?,?,?,?,?,?)");
+
+    $st->execute([
+        1, 5, 'O nas', 'Nasza misja', 'txt', 'o-nas', 1, 0, 'YG4gyAKmC5.jpg', NULL, NULL, '2021-07-11 20:33:14'
+    ]);
+
+    print("Insert box success.<br>");
+
+} catch(PDOException $e) {
+    echo $e->getMessage();
+}

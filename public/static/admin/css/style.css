@@ -46,6 +46,10 @@ table {
 
 /*global*/
 
+.icon-bg {
+    background: #e0e0e0;
+}
+
 .btn {
     display: inline-block;
     color: #fff;
@@ -101,7 +105,7 @@ table {
     font-weight: bold;
     color: #ff0000;
     margin-top: 20px;
-    padding-left: 120px;
+    padding-left: 100px;
 }
 
 /*nav bar*/
