@@ -67,7 +67,6 @@ button:focus {
 .center {
     width: 1200px;
     margin: 0 auto;
-    text-align: right;
 }
 
 .display-flex,
@@ -198,7 +197,7 @@ ul li:hover > .sub-menu {
 
 footer {
     text-align: center;
-    background-color: #1289dd;
+    background-color: #121825;
     font-size: 12px;
     padding: 10px;
     color: #ffffff;
@@ -226,12 +225,26 @@ footer a {
     font-weight: bold;
     margin-bottom: 20px;
     font-size: 32px;
+    text-align: center;
 }
 
 .post h2 {
     margin-bottom: 20px;
     font-size: 22px;
     color: #1289dd;
+}
+
+.post.align_center {
+    text-align: center;
+}
+
+.post h1::after{
+    content: "";
+    width: 50px;
+    height: 2px;
+    background: #000;
+    display: block;
+    margin: 40px auto;
 }
 
 .text {
@@ -241,12 +254,12 @@ footer a {
 .more {
     background-color: #1289dd;
     color: #ffffff;
-    padding: 15px 32px;
+    padding: 10px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 20px 0px;
+    margin: 30px 0px;
     cursor: pointer;
   }
 
@@ -321,8 +334,37 @@ footer a {
 }
 
 .grid > .post {
-    flex: 32%; 
     margin-bottom: 20px;
+    width: 385px;
+}
+
+.grid .main_foto img {
+    max-width: 400px;
+    float: left;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.grid .desc {
+    font-size: 15px;
+    color: #000;
+}
+
+.grid h2 {
+    font-size: 15px;
+    color: #b1b1b1;
+    font-weight: bold;
+}
+
+.grid h1 {
+    font-size: 21px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.grid .post {
+    margin-bottom: 50px;
 }
 
 /*header*/
@@ -446,11 +488,18 @@ header.darkHeader .sub-menu .triangle::after {
     margin-bottom: 40px;
 }
 
+.banner {
+    float: left;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
 /*boxy*/
 
 .boxy {
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     display: flex;
     gap: 20px;
 }
@@ -563,3 +612,44 @@ header.darkHeader .sub-menu .triangle::after {
 .form_footer a {
     font-weight: bold;
 }
+
+.bg {
+    padding: 50px 0px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.bg.pattern1 {
+    background: url('../images/patterns/p1.jpg');
+}
+
+.bg.pattern2 {
+    background: url('../images/patterns/footer.jpg');
+    background-size: cover;
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+.bg.pattern2 h1::after{
+    background: #ffffff;
+}
+
+.bg.pattern2::after {
+    content: "";
+    width: 60px;
+    height: 30px;
+    border-top: solid 30px #ffffff;
+    border-left: solid 30px transparent;
+    border-right: solid 30px transparent;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -30px;
+}
+
+.bg .more,
+.bg .post {
+    margin-bottom: 0;
+}
+

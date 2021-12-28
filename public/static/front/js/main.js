@@ -1,6 +1,6 @@
 //grid generate
 if ($(".text").hasClass("schema6")) {
-    $("#content").addClass("grid");
+    $(".content").addClass("grid");
 }
 
 //arrow in menu
