@@ -489,10 +489,22 @@ header.darkHeader .sub-menu .triangle::after {
 }
 
 .banner {
+    position: relative;
     float: left;
     width: 100%;
     height: auto;
     margin-bottom: 20px;
+}
+
+.banner h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #ffffff;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 /*boxy*/
@@ -502,11 +514,13 @@ header.darkHeader .sub-menu .triangle::after {
     margin-bottom: 50px;
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .boxy .box {
+    position: relative;
     border: 1px solid #000;
-    width: 50%;
+    width: 49%;
     padding: 20px;
     background-color: #121825;
     text-align: center;
@@ -539,8 +553,38 @@ header.darkHeader .sub-menu .triangle::after {
     background: #1f698d;
 }
 
+.boxy .box.overlay,
+.boxy .box.overlay img {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.boxy .box.overlay img {
+    width: 100%;
+    opacity: .6;
+}
+
+.boxy .box.overlay img:hover {
+    opacity: .4;
+}
+
+.boxy .box.overlay .txt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
+
+.boxy .box.overlay h4 {
+    font-weight: bold;
+    font-size: 28px;
+}
+
 /*form register*/
 .form_wrapper {
+    clear: both;
     background: #fff;
     width: 600px;
     max-width: 100%;
@@ -624,6 +668,7 @@ header.darkHeader .sub-menu .triangle::after {
 }
 
 .bg.pattern2 {
+    clear: both;
     background: url('../images/patterns/footer.jpg');
     background-size: cover;
     color: #ffffff;
