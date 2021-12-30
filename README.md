@@ -36,10 +36,10 @@ Project is under development...
 
 
 Preview dashboard:
-<img src="http://propozycja.vot.pl/git/cms_dashboard.jpg" alt="">
+<img src="http://propozycja.vot.pl/git/cms_dashboard2.jpg" alt="">
 
 Preview edit post:
-<img src="http://propozycja.vot.pl/git/cms_edit.jpg" alt="">
+<img src="http://propozycja.vot.pl/git/cms_edit2.jpg" alt="">
 
 ## Demo online
 
