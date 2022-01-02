@@ -14,13 +14,12 @@
       <th>id</th>
       <th>parent_id</th>
       <th>name</th>
-      <th>title</th>
       <th>description</th>
       <th>public</th>
-      <th>more</th>
-      <th>layout</th>
       <th>photo1</th>
+      <th>bg_photo</th>
       <th>more_link</th>
+      <th>label_link</th>
       <th>date</th>
       <th>action</th>
     </tr>
@@ -32,24 +31,23 @@
           <td>{{ item.id }}</td>
           <td>{{ item.parent_id }}</td>
           <td>{{ item.name }}</td>
-          <td>{{ item.title }}</td>
           <td>{{ item.description|length < 50 ? item.description : item.description|slice(0, 50) ~ '...' }}</td>
           <td>{{ item.status }}</td>
-          <td>{{ item.more }}</td>
-          <td>{{ item.layout }}</td>
-          <td>
-            <img width="100px" src="/uploads/{% if item.photo1 %}{{ item.photo1 }}{% else %}no_photo.jpg{% endif %}" alt="{{ item.name }}">
+          <td class="icon-bg">
+            <img width="60px" src="/uploads/{% if item.photo1 %}{{ item.photo1 }}{% else %}no_photo.jpg{% endif %}" alt="{{ item.name }}">
           </td>
+          <td>{{ item.bg_photo }}</td>
           <td>{{ item.more_link }}</td>
+          <td>{{ item.label_link }}</td>
           <td>{{ item.created_at }}</td>
           <td>
             <div class="buttons">
               <a 
-                href="/admin/banner/edit/{{ item.id }}" 
+                href="/admin/box/edit/{{ item.id }}" 
                 class="btn btn-secondary btn-sm"
               >Edit</a>
               <a 
-                href="/admin/banner/delete/{{ item.id }}" 
+                href="/admin/box/delete/{{ item.id }}" 
                 class="btn btn-danger btn-sm"
                 onclick="return confirm('Are you sure want to delete?');"
                 >X</a>
@@ -66,7 +64,7 @@
   <tr>
     <td colspan="13">
       <a 
-        href="/admin/banner/create/{{ request_id }}"
+        href="/admin/box/create/{{ request_id }}"
         class="btn btn-success"
       >Add new item</a>
     </td>

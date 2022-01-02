@@ -216,6 +216,11 @@ footer a {
     padding: 20px 0px;
 }
 
+.content .post:nth-child(even) {
+    background: #f5f4f4;
+    padding: 20px;
+}
+
 .post {
     margin-bottom: 40px;
 }
@@ -225,7 +230,7 @@ footer a {
     font-weight: bold;
     margin-bottom: 20px;
     font-size: 32px;
-    text-align: center;
+    text-align: left
 }
 
 .post h2 {
@@ -234,8 +239,18 @@ footer a {
     color: #1289dd;
 }
 
-.post.align_center {
+.post.align_center,
+.post.align_center h1 {
     text-align: center;
+}
+
+.bg.pattern1 h1 {
+    text-align: center;
+}
+
+.post.align_center h1::after,
+.bg.pattern1 h1::after {
+    margin: 40px auto;
 }
 
 .post h1::after{
@@ -244,7 +259,7 @@ footer a {
     height: 2px;
     background: #000;
     display: block;
-    margin: 40px auto;
+    margin-top: 10px;
 }
 
 .text {
@@ -361,6 +376,11 @@ footer a {
     font-size: 21px;
     text-transform: uppercase;
     margin-bottom: 5px;
+    text-align: left;
+}
+
+.grid h1::after {
+    display: none;
 }
 
 .grid .post {
@@ -370,31 +390,11 @@ footer a {
 /*header*/
 
 header {
-    position: fixed;
-    top: 0px;
-    left: 0%;
+    position: relative;
     width: 100%;
     z-index: 1;
-}
-
-header.darkHeader {
-    background: #ffffff;
-}
-
-header.darkHeader .top_info {
-    background-color: #1f698d;
-}
-
-header.darkHeader .nav li a {
-    color: #000000;
-}
-
-header.darkHeader .triangle::after {
-    border-top-color: #000000;
-}
-
-header.darkHeader .sub-menu .triangle::after {
-    border-top-color: #ffffff;
+    background: #000000;
+    min-height: 145px;
 }
 
 .top_info {
@@ -451,9 +451,9 @@ header.darkHeader .sub-menu .triangle::after {
 .slidshow .content {
     position: absolute;
     left: 0;
-    top: 35%;
+    top: 50%;
     width: 40%;
-    transform: translate(0, -35%);
+    transform: translate(0, -50%);
     padding-left: 20px;
     color: #ffffff;
 }
@@ -627,11 +627,14 @@ header.darkHeader .sub-menu .triangle::after {
 }
 
 .alert-danger {
+    clear: both;
     background-color: #fc5844;
     border-color: #d73925;
     padding: 10px;
     position: relative;
     min-height: 40px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .alert-success {

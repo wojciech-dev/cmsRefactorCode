@@ -3,68 +3,98 @@
 {% block body %}
 
 {% if banners %}
-
-{% for item in banners %}
-    <div class="slidshow">
-        <img src="/uploads/{{ item.photo1 }}" alt="">
-        <div class="content schema{{ item.layout }}">
-          <h1>{{ item.name }}</h1>
-          <span>{{ item.title }}</span>
-          <p>{{ item.description }}</p>
-          <a class="btn" href="{{ item.more_link }}">CONTACT AN INSURANCE PROFESSIONAL</a>
-        </div>
-    </div>
-{% endfor %}
-
-{% else %}
-    <img src="/static/front/images/slajd.jpg" alt="">
-{% endif %}
-
-
-
-<div class="content">
-    {% for post in posts %}
-        <div class="post">
-            <h1>{{ post.name }}</h1>
-            <h2>{{ post.title }}</h2>
-            <div class="text schema{{ post.layout }} d-flex">
-                <div class="column">
-                    {% if post.photo1 %}
-                        <div class="main_foto">
-                            <img width="400px" src="/uploads/{{ post.photo1 }}" alt="">
-                        </div>
-                    {% endif %}
-                    <div class="desc">
-                        {% if post.more == 1 %}
-                            {{ post.description|striptags|slice(0, 350) ~ '...' }}
-                            <br><a href="/{{ url_more }}/{{ post.slug }}/{{ post.id }}" class="more">Read more</a>
-                        {% else %}
-                            {{ post.description|raw}}
-                        {% endif %}
-                    </div>
-                </div>
-                {% if post.more == 0 %}
-                    <div class="column">
-                        <div class="gallery">
-                            {% if post.photo2 %}
-                                <img width="400px" src="/uploads/{{ post.photo2 }}" alt="">
-                            {% endif %}
-                            {% if post.photo3 %}
-                                <img width="400px" src="/uploads/{{ post.photo3 }}" alt="">
-                            {% endif %}
-                            {% if post.photo4 %}
-                                <img width="400px" src="/uploads/{{ post.photo4 }}" alt="">
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endif %}
+    {% for item in banners %}
+        <div class="slidshow">
+            <img src="/uploads/{{ item.photo1 }}" alt="">
+            <div class="content schema{{ item.layout }}">
+            <h1>{{ item.name }}</h1>
+            <span>{{ item.title }}</span>
+            <p class="body">{{ item.description }}</p>
+            <a class="btn" href="{{ item.more_link }}">CONTACT AN INSURANCE PROFESSIONAL</a>
             </div>
         </div>
     {% endfor %}
+    {% else %}
+    <div class="banner">
+        <img class="banner" src="/static/front/images/slajd.jpg" alt="">
+        <h1>{{ breadcrumbs }}</h1>
+    </div>
+{% endif %}
+
+<div class="content">
+
+    {% if errors %}
+        <div class="alert">
+            {% for item in errors %}
+                <div class="alert-danger">{{ item | raw }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+ 
+    {% include 'front/registerForm.html' %}
+
+    {% include 'front/loginForm.html' %}
+
+    {% if box %}
+        <div class="boxy">
+            {% for item in box %}
+                <div class="box{% if item.bg_photo == 1 %} overlay{% endif %}" style="background-color: {{ item.color_bg }}">
+                    <a href="{{ item.more_link }}"><img src="/uploads/{{ item.photo1 }}" alt="{{ item.name }}"></a>
+                    <div class="txt">
+                        <h4>{{ item.name }}</h4>
+                        <p class="txt">{{ item.description }}</p>
+                        <a href="{{ item.more_link }}" class="btn">{{ item.label_link }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if posts %}
+        {% for post in posts %}
+        {% if post.bg_pattern %}</div><div class="bg pattern{{ post.bg_pattern }}">{% endif %}
+            <div class="post{% if post.align_center == 1 %} align_center{% endif %}">
+                <h1>{{ post.name }}</h1>
+                <div class="text schema{{ post.layout }} d-flex">
+                    <div class="column">
+                        {% if post.photo1 %}
+                            <div class="main_foto">
+                                <img width="400px" src="/uploads/{{ post.photo1 }}" alt="">
+                            </div>
+                        {% endif %}
+                        <div class="desc">
+                            <h2>{{ post.title }}</h2>
+                            {% if post.more == 1 %}
+                                {{ post.description|striptags|slice(0, 350) ~ '...' }}
+                                <br><a href="{% if post.more_link %}{{ post.more_link }}{% else %}/{{ path }}/{{ post.slug }}/{{ post.id }}{% endif %}" class="more">{{ post.more_label }}</a>
+                                
+                            {% else %}
+                                {{ post.description|raw}}
+                            {% endif %}
+                        </div>
+                    </div>
+                
+                    {% if post.more == 0 %}
+                        <div class="column">
+                            <div class="gallery">
+                                {% if post.photo2 %}
+                                    <img width="400px" src="/uploads/{{ post.photo2 }}" alt="">
+                                {% endif %}
+                                {% if post.photo3 %}
+                                    <img width="400px" src="/uploads/{{ post.photo3 }}" alt="">
+                                {% endif %}
+                                {% if post.photo4 %}
+                                    <img width="400px" src="/uploads/{{ post.photo4 }}" alt="">
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if post.bg_pattern %}</div><div class="center">{% endif %}
+        {% endfor %}
+    {% endif %}
 </div>
-
-
-
 
 
 

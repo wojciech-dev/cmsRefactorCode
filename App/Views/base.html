@@ -24,15 +24,60 @@
             <a href="/start" id="logo"><img src="/static/front/images/logo.png" alt="agency"></a>
             <ul class="nav">
                 {{ menu | raw }}
-                <li><a href="/admin/">Login</a></li>
-                <li><a href="/register">Register</a></li>
             </ul>
         </div>
     </header>
-     
+
     <main>
         {% block body %}{% endblock %}
+        
+        {% if inheritance %}
+        {% for item in inheritance %}
+        {% if item.bg_pattern %}</div><div class="bg pattern{{ item.bg_pattern }}">{% endif %}
+            <div class="post{% if item.align_center == 1 %} align_center{% endif %}">
+                <h1>{{ item.name }}</h1>
+                <h2>{{ item.title }}</h2>
+                <div class="text schema{{ item.layout }} d-flex">
+                    <div class="column">
+                        {% if item.photo1 %}
+                            <div class="main_foto">
+                                <img width="400px" src="/uploads/{{ item.photo1 }}" alt="">
+                            </div>
+                        {% endif %}
+                        <div class="desc">
+                            {% if item.more == 1 %}
+                                {{ item.description|striptags|slice(0, 350) ~ '...' }}
+                                <br><a href="{% if item.more_link %}{{ item.more_link }}{% else %}/{{ path }}/{{ item.slug }}/{{ item.id }}{% endif %}" class="more">{{ item.more_label }}</a>
+                                
+                            {% else %}
+                                {{ item.description|raw}}
+                            {% endif %}
+                        </div>
+                    </div>
+                
+                    {% if item.more == 0 %}
+                        <div class="column">
+                            <div class="gallery">
+                                {% if item.photo2 %}
+                                    <img width="400px" src="/uploads/{{ item.photo2 }}" alt="">
+                                {% endif %}
+                                {% if item.photo3 %}
+                                    <img width="400px" src="/uploads/{{ item.photo3 }}" alt="">
+                                {% endif %}
+                                {% if item.photo4 %}
+                                    <img width="400px" src="/uploads/{{ item.photo4 }}" alt="">
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if item.bg_pattern %}</div><div class="center">{% endif %}
+        {% endfor %}
+    {% endif %}
+   
     </main>
+
 
     <footer>
         © 2021 Copyright:

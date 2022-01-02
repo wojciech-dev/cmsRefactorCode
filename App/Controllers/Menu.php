@@ -62,10 +62,10 @@ class Menu extends \Core\Controller {
     }
   }
 
-  public function logout($request, $response): void {
+  public function logout(): void {
     unset($_SESSION['username']);  
     unset($_SESSION['type']);
     session_destroy();
-    $response->redirect('/admin/');
+    Functions::redirect('/login');
   }
 }

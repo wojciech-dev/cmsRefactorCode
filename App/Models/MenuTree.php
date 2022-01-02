@@ -38,6 +38,10 @@ class MenuTree extends \Core\Model {
                   class='btn-outline'>
                   Body <span class='badge'>".self::counter($row['id'], 'body')."</span></a>
                 <a 
+                  href='/admin/box/{$row['id']}' 
+                  class='btn-outline'>
+                  Box <span class='badge'>".self::counter($row['id'], 'box')."</span></a>
+                <a 
                   href='/admin/menu/edit/{$row['id']}' 
                   class='btn-outline'
                 >Edit</a>

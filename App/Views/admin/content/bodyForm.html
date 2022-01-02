@@ -47,7 +47,7 @@
         >{{ item.description }}</textarea>
     </div>
     <div class="form-row">
-        <label>Public</label>
+        <label>Public:</label>
         <input 
             class="inputCheckbox" 
             name="status" 
@@ -56,12 +56,86 @@
         >
     </div>
     <div class="form-row">
-        <label>Read more</label>
+        <label>Read more:</label>
         <input 
             class="inputCheckbox" 
             name="more" 
             type="checkbox"
             {% if item.more == 1 %}checked{% endif %}
+        >
+    </div>
+    <div class="form-row">
+        <label>More link:</label>
+        <input 
+            class="inputText" 
+            type="text"
+            name="more_link" 
+            value="{{ item.more_link }}"
+        >
+    </div>
+
+    <div class="form-row">
+        <label>More label:</label>
+        <input 
+            class="inputText" 
+            type="text"
+            name="more_label" 
+            value="{{ item.more_label }}"
+        >
+    </div>
+    <div class="form-row">
+        <label>Center text:</label>
+        <input 
+            class="inputCheckbox" 
+            name="align_center" 
+            type="checkbox"
+            {% if item.align_center == 1 %}checked{% endif %}
+        >
+        &nbsp;<img src="/static/admin/images/center.jpg" alt="">
+    </div>
+    <div class="form-row">
+        <label>Multi check:</label>
+        <div class="radio">
+            <label for="p3"><img src="/static/admin/images/patterns/p3.gif" alt=""></label>
+            <input 
+                class="inputCheckbox" 
+                name="bg_pattern"
+                id="p3"
+                type="radio"
+                value="0"
+                {% if item.bg_pattern == 0 %}checked{% endif %}
+            >
+        </div>
+        <div class="radio">
+            <label for="p1"><img src="/static/admin/images/patterns/p1.jpg" alt=""></label>
+            <input 
+                class="inputCheckbox" 
+                name="bg_pattern"
+                id="p1"
+                type="radio"
+                value="1"
+                {% if item.bg_pattern == 1 %}checked{% endif %}
+            >
+        </div>
+        <div class="radio">
+            <label for="p2"><img src="/static/admin/images/patterns/p2.gif" alt=""></label>
+            <input 
+                class="inputCheckbox" 
+                name="bg_pattern"
+                id="p2"
+                type="radio"
+                value="2"
+                {% if item.bg_pattern == 2 %}checked{% endif %}
+            >
+        </div>
+    </div>
+    <div class="form-row">
+        <label>Inheritance:</label>
+        <input
+            class="inputCheckbox" 
+            name="inheritance" 
+            type="checkbox"
+            {% if item.inheritance == 1 %}checked{% endif %}
         >
     </div>
     <div class="form-row">
@@ -75,9 +149,10 @@
             <option value="6" {% if item.layout == 6 %} selected {% endif %}>grid</option>
         </select>
     </div>
+
     <div class="form-row">
         <label>Design:</label>
-        <img class="imageNews" src="/static/admin/images/{{ item.layout }}.gif" />
+        <img class="imageNews" src="/static/admin/images/{% if item.layout %}{{ item.layout }}{% else %}1{% endif %}.gif" />
     </div>
     <div class="form-row">
         <label>Photo:</label>

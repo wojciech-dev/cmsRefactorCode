@@ -15,10 +15,14 @@
         <th>parent_id</th>
         <th>name</th>
         <th>title</th>
-        <th>description</th>
         <th>slug</th>
         <th>public</th>
         <th>more</th>
+        <th>more_link</th>
+        <th>more_label</th>
+        <th>align_center</th>
+        <th>bg_pattern</th>
+        <th>inheritance</th>
         <th>layout</th>
         <th>photo1</th>
         <th>photo2</th>
@@ -36,15 +40,19 @@
             <td>{{ item.parent_id }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.title }}</td>
-            <td>{{ item.description|length < 50 ? item.description : item.description|slice(0, 50) ~ '...' }}</td>
             <td>{{ item.slug }}</td>
             <td>{{ item.status }}</td>
             <td>{{ item.more }}</td>
+            <td>{{ item.more_link }}</td>
+            <td>{{ item.more_label }}</td>
+            <td>{{ item.align_center }}</td>
+            <td>{{ item.bg_pattern }}</td>
+            <td>{{ item.inheritance }}</td>
             <td>{{ item.layout }}</td>
-            <td><img width="60px" src="/uploads/{% if item.photo1 %}{{ item.photo1 }}{% else %}no_photo.jpg{% endif %}" alt="#"></td>
-            <td><img width="60px" src="/uploads/{% if item.photo2 %}{{ item.photo2 }}{% else %}no_photo.jpg{% endif %}" alt="#"></td>
-            <td><img width="60px" src="/uploads/{% if item.photo3 %}{{ item.photo3 }}{% else %}no_photo.jpg{% endif %}" alt="#"></td>
-            <td><img width="60px" src="/uploads/{% if item.photo4 %}{{ item.photo4 }}{% else %}no_photo.jpg{% endif %}" alt="#"></td>
+            <td class="txt-center">{% if item.photo1 %}<img width="60px" src="/uploads/{{ item.photo1 }}" alt="">{% else %}<img src="/static/admin/images/no_photo.gif" alt="">{% endif %}</td>
+            <td class="txt-center">{% if item.photo2 %}<img width="60px" src="/uploads/{{ item.photo2 }}" alt="">{% else %}<img src="/static/admin/images/no_photo.gif" alt="">{% endif %}</td>
+            <td class="txt-center">{% if item.photo3 %}<img width="60px" src="/uploads/{{ item.photo3 }}" alt="">{% else %}<img src="/static/admin/images/no_photo.gif" alt="">{% endif %}</td>
+            <td class="txt-center">{% if item.photo4 %}<img width="60px" src="/uploads/{{ item.photo4 }}" alt="">{% else %}<img src="/static/admin/images/no_photo.gif" alt="">{% endif %}</td>
             <td>{{ item.created_at }}</td>
             <td>
               <div class="buttons">

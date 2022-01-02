@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use PDO;
-use App\Helpers\{Validation, Alerts};
+use App\Helpers\{Validation};
 use App\Helpers\{Mailer};
 /**
  * Register model
@@ -13,6 +13,7 @@ class Registration extends \Core\Model {
     private string $email;
     private string $username;
     private string $password;
+    public array $state;
     
     public function __construct($data) {
         $this->username = $data['username'];
@@ -49,20 +50,15 @@ class Registration extends \Core\Model {
                     'token'      => $token
                 ]);
 
-    
                 $sendMail = new Mailer();
                 $sendMail->send($email, $urlVerify);
-
-                
-                Alerts::successAlert("Success","Thank you for your registration");
+                $this->state = ["<div class='alert-success'>Success</div>"];
                 
             } catch (Exception $e) {
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
         } else {
-            foreach ($val->errors as $error) {
-                Alerts::dangerAlert("Error", $error);
-            }
+            $this->state = $val->errors;
         }
     }
 }

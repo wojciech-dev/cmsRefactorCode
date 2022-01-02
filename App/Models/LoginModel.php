@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use PDO;
-use App\Helpers\{Validation, Alerts, Functions};
+use App\Helpers\{Validation, Functions};
 
 class LoginModel extends \Core\Model {
 
     private string $username;
     private string $password;
+    public array $state;
 
     public function __construct($data) {
         $this->username = $data['username'];
@@ -47,20 +48,18 @@ class LoginModel extends \Core\Model {
                     if (password_verify($pass , $result['password'])) {
                         $_SESSION['username'] = $result['username'];
                         $_SESSION['type'] = $result['type'];
-                        ($result['type'] == 'user') ? Functions::redirect('user') : Functions::redirect('menu');
+                        ($result['type'] == 'user') ? Functions::redirect('user') : Functions::redirect('/admin/menu');
                     } else {
-                        Alerts::dangerAlert("Error","Login or password incorrect");
+                        $this->state = ["Login or password incorrect"];
                     }
                 } else {
-                    Alerts::dangerAlert("Error","Enter login and password");
+                    $this->state = ["Error","Enter login and password"];
                 }
             } catch (Exception $e) {
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
         } else {
-            foreach ($val->errors as $error) {
-                Alerts::dangerAlert("Error", $error);
-            }
+            $this->state = $val->errors;
         }
     }
 }

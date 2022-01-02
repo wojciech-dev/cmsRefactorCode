@@ -53,6 +53,11 @@ class Posts {
         'slug' => Functions::slugify($data['name']),
         'status' => isset($data['status']) ? 1 : 0,
         'more' => isset($data['more']) ? 1 : 0,
+        'more_link' =>   $data['more_link'],
+        'more_label' =>  $data['more_label'],
+        'align_center' => isset($data['align_center']) ? 1 : 0,
+        'bg_pattern' => intval($data['bg_pattern']),
+        'inheritance' => isset($data['inheritance']) ? 1 : 0,
         'layout'    => intval($data['layout']),
         'photo1' => $data['file1'] ?? $photo['photo1'],
         'photo2' => $data['file2'] ?? $photo['photo2'],
@@ -72,6 +77,21 @@ class Posts {
       'status' =>      isset($data['status']) ? 1 : 0,
       'layout' =>      intval($data['layout']),
       'photo1' =>      $data['file1'] ?? $photo['photo1']
+    ];
+  }
+
+  public static function box_post($request, $data, $files) {
+    $photo = Posts::photo($files);
+    return $tab = [
+      'parent_id' =>   $request->action == 'edit' ? $data['parent'] : $request->id,
+      'name' =>        $data['name'],
+      'description' => $data['description'],
+      'status' =>      isset($data['status']) ? 1 : 0,
+      'photo1' =>      $data['file1'] ?? $photo['photo1'],
+      'bg_photo' =>    isset($data['bg_photo']) ? 1 : 0,
+      'more_link' =>   $data['more_link'],
+      'label_link' =>  $data['label_link'],
+      'color_bg' =>    $data['color']
     ];
   }
 }  

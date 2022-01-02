@@ -22,6 +22,7 @@ class Body extends \Core\Controller {
     switch ($request->action) {
       case "create":
         if (isset($_POST['submit'])) {
+          //Functions::debugFunc($request->paramsPost());
           $add = new Add($section);
           $add->save(Posts::$section_post(
             $request,

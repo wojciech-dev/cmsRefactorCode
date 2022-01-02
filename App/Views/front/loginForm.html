@@ -1,39 +1,33 @@
-{% extends "base.html" %}
-
-{% block title %}Login{% endblock %}
-
-{% block body %}
-<div class="wrapper fadeInDown">
-    <div id="formContent">
-      <div class="fadeIn first">
-        <img src="/static/images/logo.gif" id="icon" alt="User Icon" />
-      </div>
+{% if path == 'login' %}
+  {% if session is empty %}
+  <div class="form_wrapper">
+    <h2>Login user</h2>
       <form method="post">
         <input 
             type="text" 
-            id="login" 
-            class="fadeIn second" 
+            class="inputText" 
             name="username" 
             placeholder="login"
         >
         <input 
             type="password" 
-            id="password" 
-            class="fadeIn third" 
+            class="inputText" 
             name="password" 
             placeholder="password"
         >
         <input 
             type="submit"
             name="submit"
-            class="fadeIn fourth" 
+            class="btn" 
             value="Log In"
             >
       </form>
-      <div id="formFooter">
-        <a class="underlineHover" href="/register">Register now</a>
+      <div class="form_footer">
+        <small>if you do not have an account yet, register </small>
+        <a href="/register">Register</a>
       </div>
     </div>
-  </div>
-{% endblock %}
-
+    {% else %}
+      <div class="alert-danger">You're logged in </div>
+    {% endif %}
+{% endif %}

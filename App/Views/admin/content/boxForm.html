@@ -24,15 +24,6 @@
             value="{{ item.name }}"
         >
     </div>
-    <div class="form-row wrap">
-        <label>Title:</label>
-        <input 
-            class="inputText" 
-            type="text" 
-            name="title" 
-            value="{{ item.title }}"
-        >
-    </div>
     <div class="form-row">
         <label>Content:</label>
         <textarea 
@@ -52,18 +43,6 @@
         >
     </div>
     <div class="form-row">
-        <label>Schema:</label>
-        <select name="layout" id="layout" class="inputSelect" onChange="imageUpdate();"">
-            <option value="1" {% if item.layout == 1 %} selected {% endif %}>schema 1</option>
-            <option value="2" {% if item.layout == 2 %} selected {% endif %}>schema 2</option>
-            <option value="3" {% if item.layout == 3 %} selected {% endif %}>schema 3</option>
-        </select>
-    </div>
-    <div class="form-row">
-        <label>Design:</label>
-        <img class="imageNews" src="/static/admin/images/banner/{{ item.layout }}.gif" />
-    </div>
-    <div class="form-row">
         <label>Photo:</label>
         {% if item.photo1 %}
             <div class="photo">
@@ -74,7 +53,7 @@
                     alt="#"
                 >
                 <a 
-                    href="/admin/remove/photo1&{{item.photo1|replace({'.': '_'})}}&{{ item.id }}&banner"
+                    href="/admin/remove/photo1&{{item.photo1|replace({'.': '_'})}}&{{ item.id }}&box"
                     class="btn btn-danger btn-close"
                     onclick="return confirm('Are you sure want to delete?');"
                 >X</a>
@@ -89,6 +68,15 @@
             </div>
         {% endif %}
     </div>
+    <div class="form-row">
+        <label>Bg photo:</label>
+        <input 
+            class="inputCheckbox" 
+            name="bg_photo" 
+            type="checkbox"
+            {% if item.bg_photo == 1 %}checked{% endif %}
+        >
+    </div>
     <div class="form-row wrap">
         <label>More link:</label>
         <input 
@@ -96,6 +84,24 @@
             type="text" 
             name="more_link" 
             value="{{ item.more_link }}"
+        >
+    </div>
+    <div class="form-row wrap">
+        <label>Label link:</label>
+        <input 
+            class="inputText" 
+            type="text" 
+            name="label_link" 
+            value="{{ item.label_link }}"
+        >
+    </div>
+    <div class="form-row">
+        <label>Background:</label>
+        <input 
+            class="inputColor" 
+            type="color" 
+            name="color" 
+            value="{{ item.color_bg }}"
         >
     </div>
     <div class="form-row">
@@ -128,15 +134,11 @@ $.validator.addMethod('filesize', function (value, element, param) {
 }, 'File size must be less than {0} MB');
 
 $.validator.addMethod("url_adress", function(value, element) {
-	return this.optional(element) || /^[a-z0-9\/]+$/.test(value);
+	return this.optional(element) || /^[a-z0-9\/-]+$/.test(value);
 }, "Url address please");
 
 $('#body').validate({
     rules: {
-        title: {
-            words: true,
-            maxlength: 100
-        },
         name: {
             required: true,
             words: true,
@@ -150,18 +152,12 @@ $('#body').validate({
             url_adress: true,
             maxlength: 50
         },
+        label_link: {
+            words: true,
+            maxlength: 50
+        },
     }
 });
-
-function imageUpdate() {
-    var image = $("select#layout").val();
-    var path = "";
-    $("img.imageNews").attr({
-        src: '/static/admin/images/banner/' + path + image + '.gif',
-        alt: "#"
-    });
-}
-
 
 </script>
 {% endblock %}

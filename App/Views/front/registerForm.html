@@ -1,51 +1,35 @@
-{% extends "base.html" %}
-
-{% block title %}Register{% endblock %}
-
-{% block body %}
-
-    {% if send == true %}
-        <p>Thank you for your registration </p>
-    {% else %}
-        <div class="wrapper fadeInDown">
-            <div id="formContent">
-            <div class="fadeIn first"></div>
-            <form method="post">
-                <input 
-                    type="text" 
-                    id="login" 
-                    class="fadeIn second" 
-                    name="username" 
-                    placeholder="login"
-                >
-                <input 
-                    type="email" 
-                    class="fadeIn third" 
-                    id="email" 
-                    name="email"
-                    placeholder="email"
-                >
-                <input 
-                    type="password" 
-                    id="password" 
-                    class="fadeIn fourth" 
-                    name="password" 
-                    placeholder="password"
-                >
-                <input 
-                    type="submit"
-                    name="submit"
-                    class="fadeIn five" 
-                    value="Register"
-                    >
-            </form>
-            <div id="formFooter">
-                <a class="underlineHover" href="/admin/">Login</a>
-            </div>
-            </div>
-        </div>
-    {% endif %}
-
-{% endblock %}
-
-
+{% if path == 'register' %}
+<div class="form_wrapper">
+    <h2>Registration user</h2>
+    <form method="post">
+        <input 
+            type="text" 
+            class="inputText" 
+            name="username" 
+            placeholder="login"
+        >
+        <input 
+            type="email" 
+            class="inputText" 
+            name="email"
+            placeholder="email"
+        >
+        <input 
+            type="password" 
+            class="inputText" 
+            name="password" 
+            placeholder="password"
+        >
+        <input 
+            class="btn"
+            type="submit"
+            name="submit"
+            value="Register"
+        >
+    </form>
+    <div class="form_footer">
+        <small>if you already have an account, log in </small>
+        <a href="/login">Login</a>
+    </div>
+</div>
+{% endif %}
