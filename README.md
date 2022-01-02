@@ -2,7 +2,7 @@
 CMS system in basic php using MVC.
 
 ## Implemented functions in frontend:
-* Dropdown & hamburger menu
+* Multi-level menu 
 * Login
 * Register
 * Email confirmation
@@ -10,10 +10,10 @@ CMS system in basic php using MVC.
 ## Implemented functions in backend:
 * Admin panel
 * Full CRUD posts
-* Adding a photo post
+* Adding multiple photos 
 * Implements CKEditor
 * Building a nested menu
-* Adding slides and other sections
+* Adding own sections
 
 ## Use:
 * PHP
@@ -27,20 +27,15 @@ Project is under development...
 
 # Has been corrected: 
 
-- simple controllers that only perform CRUD
-- separating validadation into a separate file
-- implementation of validation on the front and back'end
-- adding, editing, deleting post and photo
-- showing and hiding a post
-- multi-level nested menu
-
-
 Preview dashboard:
-<img src="http://propozycja.vot.pl/git/cms_dashboard.jpg" alt="">
+<img src="http://propozycja.vot.pl/git/cms_dashboard2.jpg" alt="">
 
-Preview edit post:
-<img src="http://propozycja.vot.pl/git/cms_edit.jpg" alt="">
+Edit provides detailed options for editing the content:
+<img src="http://propozycja.vot.pl/git/cms_edit2.jpg" alt="">
+
+Unlimited adding of content:
+<img src="http://propozycja.vot.pl/git/cms_body.jpg" alt="">
 
 ## Demo online
 
-[Visit online](http://mycms.vot.pl/pl/home)
+[Visit online](http://mycms.vot.pl/pl/start)
