@@ -7,3 +7,4 @@ $whoops->register();
 $whoops->pushHandler(new Whoops\Handler\PrettyPageHandler());
 
 require_once('../App/Routes.php');
+

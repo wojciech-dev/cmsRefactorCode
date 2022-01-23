@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Helpers;
-use App\Helpers\Alerts;
 
 class Mailer {
     /**
@@ -65,10 +64,9 @@ class Mailer {
         </table>";
         
         if (mail($to_email, $subject, $body, $headers)) {
-            Alerts::successAlert("Success","Email successfully sent to $to_email...");
+            echo "success";
         } else {
-            Alerts::dangerAlert("Fail","Email sending failed...");
+            echo "fail";
         }
     }
 }
-

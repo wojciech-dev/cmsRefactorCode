@@ -17,6 +17,7 @@ $router->with('/admin', function () use ($router) {
         $router->respondWithController(['GET', 'POST'], '/menu/[create|edit|delete:action]?/[:id]?', 'Menu@index');
         $router->respondWithController(['GET', 'POST'], '/[body|banner|box:section]/[create|edit|delete:action]?/[:id]?', 'Body@index');
         $router->respondWithController(['GET', 'POST'], '/remove/[:field]', 'DeletePhoto@remove');
+        $router->respondWithController(['GET', 'POST'], '/sortlist', 'Body@sortList');
     } else if (isset($_SESSION['username']) && $_SESSION['type'] =='user') {
         $router->respondWithController(['GET', 'POST'], '/user', 'User@index');
     }
@@ -41,7 +42,6 @@ $router->onHttpError(function ($code, $router) {
             );
     }
 });
-
 
 // Dispatch the router
 $router->dispatch();

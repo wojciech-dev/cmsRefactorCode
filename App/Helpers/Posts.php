@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Helpers;
-use App\Helpers\{Validation, Functions, Alerts, Uploader};
+use App\Helpers\{Validation, Functions, Uploader};
 use App\Models\{Select};
 
 class Posts {
@@ -20,7 +20,8 @@ class Posts {
       'parent_id' => $data['category'],
       'title'     => $data['title'],
       'slug'      => $link ? $link['slug'].'/'.Functions::slugify($data['title']) : Functions::slugify($data['title']),
-      'status'    => $data['status']
+      'status'    => $data['status'],
+      'reverse'   => isset($data['reverse']) ? 1 : 0,
     ];
   }
 
@@ -44,9 +45,11 @@ class Posts {
   }
 
   public static function body_post($request, $data, $files) {
+    $getBody = new Select('body');
     $photo = Posts::photo($files);
     return $tab = [
         'parent_id' => $request->action == 'edit' ? $data['parent'] : $request->id,
+        'listorder' => $getBody->getRows(['type'=> 'count']) + 1,
         'name' => $data['name'],
         'title' => $data['title'],
         'description' => $data['description'],
@@ -54,9 +57,7 @@ class Posts {
         'status' => isset($data['status']) ? 1 : 0,
         'more' => isset($data['more']) ? 1 : 0,
         'more_link' =>   $data['more_link'],
-        'more_label' =>  $data['more_label'],
-        'align_center' => isset($data['align_center']) ? 1 : 0,
-        'bg_pattern' => intval($data['bg_pattern']),
+        'more_label' =>  $data['more_label'] ?: 'Read more',
         'inheritance' => isset($data['inheritance']) ? 1 : 0,
         'layout'    => intval($data['layout']),
         'photo1' => $data['file1'] ?? $photo['photo1'],
@@ -67,9 +68,11 @@ class Posts {
     }
 
   public static function banner_post($request, $data, $files) {
+    $getBanner = new Select('banner');
     $photo = Posts::photo($files);
     return $tab = [
       'parent_id' =>   $request->action == 'edit' ? $data['parent'] : $request->id,
+      'listorder' =>   $getBanner->getRows(['type'=> 'count']) + 1,
       'name' =>        $data['name'],
       'title' =>       $data['title'],
       'description' => $data['description'],
@@ -81,16 +84,17 @@ class Posts {
   }
 
   public static function box_post($request, $data, $files) {
+    $getBox = new Select('box');
     $photo = Posts::photo($files);
     return $tab = [
       'parent_id' =>   $request->action == 'edit' ? $data['parent'] : $request->id,
+      'listorder' =>   $getBox->getRows(['type'=> 'count']) + 1,
       'name' =>        $data['name'],
       'description' => $data['description'],
       'status' =>      isset($data['status']) ? 1 : 0,
       'photo1' =>      $data['file1'] ?? $photo['photo1'],
-      'bg_photo' =>    isset($data['bg_photo']) ? 1 : 0,
       'more_link' =>   $data['more_link'],
-      'label_link' =>  $data['label_link'],
+      'label_link' =>  $data['label_link'] ?: 'Read more',
       'color_bg' =>    $data['color']
     ];
   }

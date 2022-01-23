@@ -14,14 +14,10 @@
             </div>
         </div>
     {% endfor %}
-    {% else %}
-    <div class="banner">
-        <img class="banner" src="/static/front/images/slajd.jpg" alt="">
-        <h1>{{ breadcrumbs }}</h1>
-    </div>
 {% endif %}
 
-<div class="content">
+
+<div class="content{% if reverse == 1 %} reverse{% endif %}">
 
     {% if errors %}
         <div class="alert">
@@ -38,7 +34,7 @@
     {% if box %}
         <div class="boxy">
             {% for item in box %}
-                <div class="box{% if item.bg_photo == 1 %} overlay{% endif %}" style="background-color: {{ item.color_bg }}">
+                <div class="box" style="background-color: {{ item.color_bg }}">
                     <a href="{{ item.more_link }}"><img src="/uploads/{{ item.photo1 }}" alt="{{ item.name }}"></a>
                     <div class="txt">
                         <h4>{{ item.name }}</h4>
@@ -50,52 +46,57 @@
         </div>
     {% endif %}
 
+
     {% if posts %}
         {% for post in posts %}
-        {% if post.bg_pattern %}</div><div class="bg pattern{{ post.bg_pattern }}">{% endif %}
-            <div class="post{% if post.align_center == 1 %} align_center{% endif %}">
-                <h1>{{ post.name }}</h1>
-                <div class="text schema{{ post.layout }} d-flex">
-                    <div class="column">
-                        {% if post.photo1 %}
-                            <div class="main_foto">
-                                <img width="400px" src="/uploads/{{ post.photo1 }}" alt="">
-                            </div>
-                        {% endif %}
-                        <div class="desc">
-                            <h2>{{ post.title }}</h2>
-                            {% if post.more == 1 %}
-                                {{ post.description|striptags|slice(0, 350) ~ '...' }}
-                                <br><a href="{% if post.more_link %}{{ post.more_link }}{% else %}/{{ path }}/{{ post.slug }}/{{ post.id }}{% endif %}" class="more">{{ post.more_label }}</a>
-                                
-                            {% else %}
-                                {{ post.description|raw}}
-                            {% endif %}
-                        </div>
-                    </div>
-                
-                    {% if post.more == 0 %}
-                        <div class="column">
-                            <div class="gallery">
-                                {% if post.photo2 %}
-                                    <img width="400px" src="/uploads/{{ post.photo2 }}" alt="">
-                                {% endif %}
-                                {% if post.photo3 %}
-                                    <img width="400px" src="/uploads/{{ post.photo3 }}" alt="">
-                                {% endif %}
-                                {% if post.photo4 %}
-                                    <img width="400px" src="/uploads/{{ post.photo4 }}" alt="">
-                                {% endif %}
-                            </div>
+            <div class="post schema{{ post.layout }}">
+                <div class="post_text">
+                    {% if post.photo1 %}
+                        <div class="post_photo">
+                            <img width="400px" src="/uploads/{{ post.photo1 }}" alt="">
                         </div>
                     {% endif %}
+                    <div class="post_headers">
+                        {% if post.name %}<h1>{{ post.name }}</h1>{% endif %}
+                        {% if post.title %}<h2>{{ post.title }}</h2>{% endif %}
+                    </div>
+                    {% if post.more == 1 %}
+                        <p>{{ post.description|striptags|slice(0, 350) ~ '...' }}</p>
+                        <a href="{% if post.more_link %}{{ post.more_link }}{% else %}/{{ path }}/{{ post.slug }}/{{ post.id }}{% endif %}" class="more">{{ post.more_label }}</a>
+                    {% else %}
+                        <p>{{ post.description|raw}}</p>
+                    {% endif %}
                 </div>
+                {% if post.more == 0 %}
+                    <div class="post_gallery">
+                        {% if post.photo2 %}
+                            <img src="/uploads/{{ post.photo2 }}" alt="">
+                        {% endif %}
+                        {% if post.photo3 %}
+                            <img src="/uploads/{{ post.photo3 }}" alt="">
+                        {% endif %}
+                        {% if post.photo4 %}
+                            <img src="/uploads/{{ post.photo4 }}" alt="">
+                        {% endif %}
+                    </div>
+                {% endif %}
             </div>
-            {% if post.bg_pattern %}</div><div class="center">{% endif %}
         {% endfor %}
     {% endif %}
 </div>
 
+<script>
+    const postList = document.querySelectorAll(".post");
 
+    postList.forEach(item => {
+        if (item.classList.contains('schema1') || item.classList.contains('schema2')) {
+            const headers = item.querySelector(".post_headers");
+            item.prepend(headers);
+        }
+    });
+
+
+
+</script>
 
 {% endblock %}

@@ -50,8 +50,8 @@ class Registration extends \Core\Model {
                     'token'      => $token
                 ]);
 
-                $sendMail = new Mailer();
-                $sendMail->send($email, $urlVerify);
+                //$sendMail = new Mailer();
+                //$sendMail->send($email, $urlVerify);
                 $this->state = ["<div class='alert-success'>Success</div>"];
                 
             } catch (Exception $e) {

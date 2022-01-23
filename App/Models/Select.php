@@ -57,7 +57,7 @@ class Select extends \Core\Model {
             }
         } else {
             if ($query->rowCount() > 0) {
-                $data = $query->fetchAll();
+                $data = $query->fetchAll(PDO::FETCH_ASSOC);
             }
         }
         return !empty($data) ? $data : false;

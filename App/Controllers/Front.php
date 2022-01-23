@@ -16,7 +16,6 @@ class Front extends \Core\Controller {
       $errors= $this->verifyEmail();
     }
 
-
     if (isset($_POST['submit']) && $request->title == 'register') {
       $errors= $this->register($request->paramsPost());
     }
@@ -25,16 +24,18 @@ class Front extends \Core\Controller {
       $errors= $this->login($request->paramsPost());
     }
 
-
     $getMenu = new Select('menu');
     $getBody = new Select('body');
     $getBanner = new Select('banner');
     $getBox = new Select('box');
 
-    $error_404 = $getMenu->getRows(['select' => 'slug', 'where'=>['slug'=> $request->title], 'type'=>'fetch']);
+    //404
+    if (!preg_match("/verify_email/i", $request->title)) {
+      $slug = $getMenu->getRows(['select' => 'slug, reverse', 'where'=>['slug'=> $request->title], 'type'=>'fetch']);
 
-    if (empty($error_404)) {
-      $errors = ['404'];
+      if (empty($slug)) {
+        $errors = ['404 pabe not found'];
+      }
     }
 
     $menu = MenuTree::buildMenuInFront($getMenu->getRows(['where'=>['status' => 1]]));
@@ -44,12 +45,15 @@ class Front extends \Core\Controller {
       $inheritance = $getBody->getRows(['where'=>['status' => 1, 'inheritance' => 1]]);
     }
 
-    //Functions::debugFunc($inheritance);
+    //Functions::debugFunc($slug);
     
     if ($request->id) {
       $posts = $getBody->getRows(['where'=>['id' => $request->id, 'status' => 1 ]]);
     } else {
-      $posts = $getBody->getRows(['where'=>['parent_id' => $id['id'] ?? null, 'status' => 1]]);
+      $posts = $getBody->getRows([
+        'where'=>['parent_id' => $id['id'] ?? null, 'status' => 1],
+        'order_by'=> 'listorder DESC'
+      ]);
       $banners = $getBanner->getRows(['where'=>['parent_id' => $id['id'] ?? null, 'status' => 1]]);
       $box = $getBox->getRows(['where'=>['parent_id' => $id['id'] ?? null, 'status' => 1]]);
     }
@@ -58,18 +62,20 @@ class Front extends \Core\Controller {
 
       View::renderTemplate("front/" . ($request->id ? 'card' : 'index') . ".html", [
         'menu' => $menu,
-        'posts' => $posts,
-        'banners' => $banners,
-        'box' => $box,
+        'posts' => $posts ?? null,
+        'banners' => $banners ?? null,
+        'box' => $box ?? null,
         'path' => $request->title,
         'hidden_more' => $request->id ? 0 : 1,
         'inheritance' => $inheritance ?? null,
-        'breadcrumbs' => Functions::lastUrl($_SERVER['REQUEST_URI']),
+        'breadcrumbs' => $slug ? Functions::lastUrl($_SERVER['REQUEST_URI']) : '',
         'errors' => $errors,
-        'session' => $_SESSION['username'] ?? null
+        'session' => $_SESSION['username'] ?? null,
+        'reverse' => $slug['reverse'] ?? null
       ]);
       
     }
+
   }
 
   //register

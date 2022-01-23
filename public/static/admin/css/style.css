@@ -452,8 +452,8 @@ table {
     cursor: pointer;
 }
 
-.form-row .inputText {
-    flex: 1;
+.form-row .inputText{
+    width: 50%;
 }
 
 .form-row .inputTextArea {

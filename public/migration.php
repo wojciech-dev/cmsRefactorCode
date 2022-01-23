@@ -12,7 +12,7 @@ try {
      `title` varchar( 100 ) NOT NULL,
      `description` text DEFAULT NULL,
      `slug` varchar( 100 ) NOT NULL,
-     `status` tinyint( 1 ) NOT NULL DEFAULT 0,
+     `status` tinyint( 1 ) NOT NULL DEFAULT 1,
      `more` tinyint( 1 ) NOT NULL DEFAULT 0,
      `more_link` varchar( 50 )  DEFAULT NULL,
      `more_label` varchar( 50 )  DEFAULT 'read more',

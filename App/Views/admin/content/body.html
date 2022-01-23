@@ -13,6 +13,7 @@
       <tr>
         <th>id</th>
         <th>parent_id</th>
+        <th>listorder</th>
         <th>name</th>
         <th>title</th>
         <th>slug</th>
@@ -33,11 +34,12 @@
       </tr>
     </thead>
     {% if items %}
-    <tbody>
+    <tbody id="list" data-section="body">
       {% for item in items %}
-          <tr>
+          <tr id="arrayorder_{{ item.id }}">
             <td>{{ item.id }}</td>
             <td>{{ item.parent_id }}</td>
+            <td>{{ item.listorder }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.title }}</td>
             <td>{{ item.slug }}</td>

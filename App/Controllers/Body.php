@@ -3,8 +3,9 @@
 namespace App\Controllers;
 
 use \Core\{View, Router};
-use App\Helpers\{Validation, Alerts, Functions, Uploader, Upload, Posts};
+use App\Helpers\{Validation, Functions, Uploader, Upload, Posts};
 use App\Models\{Select, Add, Delete, Update, MenuTree};
+use PDO;
 
 class Body extends \Core\Controller {
   /*
@@ -62,13 +63,27 @@ class Body extends \Core\Controller {
             $service->back();
           break;
         default:
-        $items = $getBody->getRows(['where'=>['parent_id'=> $request->id]]);
+        $items = $getBody->getRows([
+          'where'=>['parent_id'=> $request->id],
+          'order_by'=> 'listorder ASC',
+        ]);
         View::renderTemplate('admin/content/'.$section.'.html', [
             'items' => $items,
             'menu_left' => $menu_left,
             'breadcrumbs' => $breadcrumbs['title'],
             'request_id' => $request->id,
         ]);
+    }
+  }
+
+  public function sortList() {
+    $array = $_POST['arrayorder'];
+    if ($_POST['update']) {
+        $count = 1;
+        foreach ($array as $idval) {
+            $sql = Update::sortable($_POST['section'], $count, $idval);
+            $count ++; 
+        }
     }
   }
 }

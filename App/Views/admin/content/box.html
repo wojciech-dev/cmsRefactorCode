@@ -13,11 +13,11 @@
     <tr>
       <th>id</th>
       <th>parent_id</th>
+      <th>listorder</th>
       <th>name</th>
       <th>description</th>
       <th>public</th>
       <th>photo1</th>
-      <th>bg_photo</th>
       <th>more_link</th>
       <th>label_link</th>
       <th>date</th>
@@ -25,18 +25,20 @@
     </tr>
   </thead>
   {% if items %}
-  <tbody>
+  <tbody id="list" data-section="box">
     {% for item in items %}
-        <tr>
+        <tr id="arrayorder_{{ item.id }}">
           <td>{{ item.id }}</td>
           <td>{{ item.parent_id }}</td>
+          <td>{{ item.listorder }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.description|length < 50 ? item.description : item.description|slice(0, 50) ~ '...' }}</td>
           <td>{{ item.status }}</td>
-          <td class="icon-bg">
-            <img width="60px" src="/uploads/{% if item.photo1 %}{{ item.photo1 }}{% else %}no_photo.jpg{% endif %}" alt="{{ item.name }}">
-          </td>
-          <td>{{ item.bg_photo }}</td>
+          {% if item.photo1 %}
+            <td class="icon-bg"><img width="60px" src="/uploads/{{ item.photo1 }}" alt=""></td>
+          {% else %}
+            <td class="txt-center"><img src="/static/admin/images/no_photo.gif" alt=""></td>
+          {% endif %}
           <td>{{ item.more_link }}</td>
           <td>{{ item.label_link }}</td>
           <td>{{ item.created_at }}</td>

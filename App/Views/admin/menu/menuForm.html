@@ -43,6 +43,15 @@
                 {% endfor %}
             </select>
         </div>
+        <div class="form-row">
+            <label>Reverse column:</label>
+            <input
+                class="inputCheckbox" 
+                name="reverse" 
+                type="checkbox"
+                {% if item.reverse == 1 %}checked{% endif %}
+            >
+        </div>
         <div class="form-row last">
             <button 
             class="btn" 

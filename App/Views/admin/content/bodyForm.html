@@ -67,9 +67,9 @@
     <div class="form-row">
         <label>More link:</label>
         <input 
-            class="inputText" 
+            class="inputText w200" 
             type="text"
-            name="more_link" 
+            name="more_link"
             value="{{ item.more_link }}"
         >
     </div>
@@ -77,57 +77,11 @@
     <div class="form-row">
         <label>More label:</label>
         <input 
-            class="inputText" 
+            class="inputText w200" 
             type="text"
             name="more_label" 
             value="{{ item.more_label }}"
         >
-    </div>
-    <div class="form-row">
-        <label>Center text:</label>
-        <input 
-            class="inputCheckbox" 
-            name="align_center" 
-            type="checkbox"
-            {% if item.align_center == 1 %}checked{% endif %}
-        >
-        &nbsp;<img src="/static/admin/images/center.jpg" alt="">
-    </div>
-    <div class="form-row">
-        <label>Multi check:</label>
-        <div class="radio">
-            <label for="p3"><img src="/static/admin/images/patterns/p3.gif" alt=""></label>
-            <input 
-                class="inputCheckbox" 
-                name="bg_pattern"
-                id="p3"
-                type="radio"
-                value="0"
-                {% if item.bg_pattern == 0 %}checked{% endif %}
-            >
-        </div>
-        <div class="radio">
-            <label for="p1"><img src="/static/admin/images/patterns/p1.jpg" alt=""></label>
-            <input 
-                class="inputCheckbox" 
-                name="bg_pattern"
-                id="p1"
-                type="radio"
-                value="1"
-                {% if item.bg_pattern == 1 %}checked{% endif %}
-            >
-        </div>
-        <div class="radio">
-            <label for="p2"><img src="/static/admin/images/patterns/p2.gif" alt=""></label>
-            <input 
-                class="inputCheckbox" 
-                name="bg_pattern"
-                id="p2"
-                type="radio"
-                value="2"
-                {% if item.bg_pattern == 2 %}checked{% endif %}
-            >
-        </div>
     </div>
     <div class="form-row">
         <label>Inheritance:</label>
@@ -146,13 +100,13 @@
             <option value="3" {% if item.layout == 3 %} selected {% endif %}>schema 3</option>
             <option value="4" {% if item.layout == 4 %} selected {% endif %}>schema 4</option>
             <option value="5" {% if item.layout == 5 %} selected {% endif %}>schema 5</option>
-            <option value="6" {% if item.layout == 6 %} selected {% endif %}>grid</option>
+            <option value="6" {% if item.layout == 6 %} selected {% endif %}>schema 6</option>
         </select>
     </div>
 
     <div class="form-row">
         <label>Design:</label>
-        <img class="imageNews" src="/static/admin/images/{% if item.layout %}{{ item.layout }}{% else %}1{% endif %}.gif" />
+        <img class="imageNews" src="/static/admin/images/schema/{% if item.layout %}{{ item.layout }}{% else %}1{% endif %}.gif" />
     </div>
     <div class="form-row">
         <label>Photo:</label>
@@ -325,7 +279,7 @@ function imageUpdate() {
     var image = $("select#layout").val();
     var path = "";
     $("img.imageNews").attr({
-        src: '/static/admin/images/' + path + image + '.gif',
+        src: '/static/admin/images/schema/' + path + image + '.gif',
         alt: "#"
     });
 }

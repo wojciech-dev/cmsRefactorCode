@@ -21,3 +21,15 @@ function searchTask() {
 if (inputSearch) {
     inputSearch.addEventListener('input', searchTask);
 }
+
+//sortable
+
+$("#list").sortable({
+    opacity: 0.6,
+    cursor: 'move',
+    update: function () {
+        const section = $(this).attr("data-section");
+        const order = $(this).sortable("serialize") + '&update=update' + `&section=${section}`;
+        $.post("/admin/sortlist", order);
+    }
+});

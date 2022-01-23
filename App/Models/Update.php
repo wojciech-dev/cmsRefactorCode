@@ -51,4 +51,12 @@ class Update extends \Core\Model {
         $stmt->execute(['token' => $token]); 
         return $stmt->fetch();
     }
+
+    public static function sortable($table, $count, $idval) {
+        $stmt = static::getDB()->prepare("UPDATE $table SET listorder = $count WHERE id = $idval");
+        $stmt->execute(); 
+        return $stmt->fetch();
+    }
+
+  
 }
