@@ -112,7 +112,7 @@ class MenuTree extends \Core\Model {
       foreach ($rows as $row) {
         if ($row['parent_id'] == $parent) {
           $result.= "
-            <li>
+            <li class='link'>
               <a 
                 class='item ".(self::isActiveMenu($row['slug']))."' 
                 href='/{$row['slug']}'

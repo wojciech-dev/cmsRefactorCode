@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="/static/front/css/main.css" />
+    <link rel="stylesheet" href="/static/front/css/layout.css" />
 </head>
 <body>
     <header>
         <a href="/start" id="logo">logo</a>
-        <ul class="nav">
-            {{ menu | raw }}
-        </ul>
+        <div class="menu">
+            <ul>
+                {{ menu | raw }}
+            </ul>
+        </div>
     </header>
 
     <main>

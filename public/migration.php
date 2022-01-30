@@ -8,6 +8,7 @@ try {
      $sql ="CREATE TABLE IF NOT EXISTS $table(
      `id` INT( 11 ) AUTO_INCREMENT PRIMARY KEY,
      `parent_id` int( 11 ) NOT NULL DEFAULT 0, 
+     `listorder` int( 11 ) NOT NULL DEFAULT 0, 
      `name` varchar( 100 ) NOT NULL,
      `title` varchar( 100 ) NOT NULL,
      `description` text DEFAULT NULL,
@@ -16,8 +17,6 @@ try {
      `more` tinyint( 1 ) NOT NULL DEFAULT 0,
      `more_link` varchar( 50 )  DEFAULT NULL,
      `more_label` varchar( 50 )  DEFAULT 'read more',
-     `align_center` tinyint( 1 ) NOT NULL DEFAULT 0,
-     `bg_pattern` tinyint( 1 ) NOT NULL DEFAULT 0,
      `layout` tinyint( 1 ) NOT NULL DEFAULT 1,
      `inheritance` tinyint( 1 ) NOT NULL DEFAULT 0,
      `photo1` varchar( 50 )  DEFAULT NULL,
@@ -74,6 +73,7 @@ try {
      $sql ="CREATE TABLE IF NOT EXISTS $table(
      `id` INT( 11 ) AUTO_INCREMENT PRIMARY KEY,
      `parent_id` int( 11 ) NOT NULL DEFAULT 0, 
+     `listorder` int( 11 ) NOT NULL DEFAULT 0, 
      `name` varchar( 100 ) NOT NULL,
      `title` varchar( 100 ) NOT NULL,
      `description` text DEFAULT NULL,
@@ -95,11 +95,11 @@ try {
      $sql ="CREATE TABLE IF NOT EXISTS $table(
      `id` INT( 11 ) AUTO_INCREMENT PRIMARY KEY,
      `parent_id` int( 11 ) NOT NULL DEFAULT 0, 
+     `listorder` int( 11 ) NOT NULL DEFAULT 0, 
      `name` varchar( 100 ) NOT NULL,
      `description` text DEFAULT NULL,
      `status` tinyint( 1 ) NOT NULL DEFAULT 0,
      `photo1` varchar( 50 )  DEFAULT NULL,
-     `bg_photo` tinyint( 1 ) NOT NULL DEFAULT 0,
      `more_link` varchar( 50 )  DEFAULT NULL,
      `label_link` varchar( 50 )  DEFAULT 'learn more',
      `color_bg` varchar( 10 )  DEFAULT '#000000',

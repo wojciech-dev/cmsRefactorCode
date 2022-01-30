@@ -55,7 +55,7 @@ class Front extends \Core\Controller {
         'order_by'=> 'listorder DESC'
       ]);
       $banners = $getBanner->getRows(['where'=>['parent_id' => $id['id'] ?? null, 'status' => 1]]);
-      $box = $getBox->getRows(['where'=>['parent_id' => $id['id'] ?? null, 'status' => 1]]);
+      $box = $getBox->getRows(['where'=>['parent_id' => $id['id'] ?? null, 'status' => 1],'order_by'=> 'listorder ASC']);
     }
 
     if (!preg_match("/admin/i", $request->title)) {
