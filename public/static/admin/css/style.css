@@ -1,46 +1,131 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
     font-size: 14px;
     font-family: 'Open Sans', sans-serif;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
 }
+
 body {
-	line-height: 1;
+    line-height: 1;
 }
 
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+    quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     box-sizing: border-box;
 }
 
@@ -64,7 +149,7 @@ table {
     font-size: 12px;
     height: 34px;
     line-height: 34px;
-    padding:  0 10px;
+    padding: 0 10px;
 }
 
 .btn:hover {
@@ -126,8 +211,8 @@ table {
 
 .topbar-left::before {
     content: "";
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-top: 10px solid #0083c1;
@@ -163,7 +248,7 @@ table {
     display: flex;
     align-items: center;
     padding: 0 20px;
-    border-left: 1px rgba(255,255,255,0.2) solid;
+    border-left: 1px rgba(255, 255, 255, 0.2) solid;
     height: 70px;
 }
 
@@ -185,7 +270,7 @@ table {
     width: 40px;
 }
 
-.topbar-right .user a{
+.topbar-right .user span {
     color: #fff;
     margin-left: 10px;
     text-decoration: none;
@@ -213,6 +298,7 @@ table {
     text-transform: uppercase;
     text-decoration: none;
 }
+
 .topbar-right .nav a:hover {
     opacity: .6;
 }
@@ -270,12 +356,12 @@ table {
 }
 
 .content .side-menu li a:hover {
-    background: rgba(255,255,255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .content .side-menu li a.active {
     font-weight: bold;
-    background: rgba(255,255,255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     padding-left: 5px;
 }
 
@@ -366,7 +452,7 @@ table {
 
 .content-table th,
 .content-table td {
-    padding:  10px;
+    padding: 10px;
     border: 1px solid #f4f4f4;
     font-size: 13px;
     color: #5b5b5b;
@@ -380,7 +466,7 @@ table {
     background-color: #f9f9f9;
 }
 
-.content-table tr:hover{
+.content-table tr:hover {
     background: #ededed;
 }
 
@@ -405,6 +491,23 @@ table {
     width: 100%;
 }
 
+.content-table table .no_posts {
+    color: #c00;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.content-table .table.body {
+    display: block;
+    overflow-x: auto;
+}
+
+.content-table .table.body th,
+.content-table .table.body td {
+    white-space: nowrap;
+}
+
 /*form*/
 
 .wrapper {
@@ -417,7 +520,7 @@ table {
 .form-row {
     display: flex;
     margin-bottom: 20px;
-    flex-wrap:nowrap;
+    flex-wrap: nowrap;
     align-items: center;
 }
 
@@ -452,7 +555,7 @@ table {
     cursor: pointer;
 }
 
-.form-row .inputText{
+.form-row .inputText {
     width: 50%;
 }
 
@@ -511,7 +614,7 @@ table {
     z-index: 1;
 }
 
-.form-row .btn-close:hover{
+.form-row .btn-close:hover {
     background: #000;
 }
 

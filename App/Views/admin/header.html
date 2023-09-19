@@ -3,21 +3,29 @@
       <a href="/admin/menu">wkcms</a>
   </div>
   <div class="topbar-right">
-    <div class="item nav">
-      <a href="/admin/menu">Menu</a>
-    </div>
-    <div class="item nav">
-      <a href="/start" target="_blank">Preview</a>
-    </div>
+    {% if username == 'admin' %}
+      <div class="item nav">
+        <a href="/admin/menu">Menu</a>
+      </div>
+      <div class="item nav">
+        <a href="/start" target="_blank">Preview</a>
+      </div>
+    {% else %}
+      <div class="item nav">
+        <a href="/admin/users/account">Account</a>
+      </div>
+    {% endif %}
     <div class="item search">
       <input class="input-search" type="search" placeholder="Search" id="search">
     </div>
     <div class="item user">
       <img src="/static/admin/images/admin.gif" alt="">
-      <a href="#">Wojciech Kondraciuk</a>
+      <span>{{ username }}</span>
     </div>
     <div class="item logout">
       <a class="nav-link" href="/logout">Logout</a>
     </div>
   </div>
 </header>
+
+

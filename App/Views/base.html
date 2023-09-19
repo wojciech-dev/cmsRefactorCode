@@ -1,32 +1,49 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="/static/front/css/main.css" />
-    <link rel="stylesheet" href="/static/front/css/layout.css" />
-</head>
-<body>
-    <header>
-        <a href="/start" id="logo">logo</a>
-        <div class="menu">
-            <ul>
-                {{ menu | raw }}
-            </ul>
-        </div>
-    </header>
+  <html lang="en">
+     <head>
+        <!-- basic -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- mobile metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link href="/static/front/css/style.css" rel="stylesheet">
+        <link href="/static/front/css/responsive.css" rel="stylesheet">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/front/images/fevicon.png" type="image/gif" />
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+     </head>
+     <body>
 
-    <main>
-        {% block body %}{% endblock %}
-    </main>
+       <header class="header">
+          <a href="" class="logo">DOMOWE WINA</a>
+          <input class="menu-btn" type="checkbox" id="menu-btn" />
+          <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+          {{ menu | raw }}
+        </ul>
+      </header>
 
 
-    <footer>
-        © 2021 Copyright:
-        <a class="text-reset fw-bold" href="http://wojciech-kondraciuk.pl/">Wojciech Kondraciuk</a>
-    </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/static/front/js/main.js"></script>
-</body>
-</html>
+
+
+
+
+      
+
+      {% block body %}{% endblock %}
+  
+     
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="/static/front/js/scripts.js"></script>
+     </body>
+  </html>
+  
+  

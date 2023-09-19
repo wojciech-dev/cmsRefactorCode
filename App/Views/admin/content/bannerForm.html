@@ -34,15 +34,6 @@
         >
     </div>
     <div class="form-row">
-        <label>Content:</label>
-        <textarea 
-            class="inputTextArea" 
-            name="description" 
-            cols="30" 
-            rows="10"
-        >{{ item.description }}</textarea>
-    </div>
-    <div class="form-row">
         <label>Public</label>
         <input 
             class="inputCheckbox" 
@@ -61,7 +52,10 @@
     </div>
     <div class="form-row">
         <label>Design:</label>
-        <img class="imageNews" src="/static/admin/images/banner/{{ item.layout }}.gif" />
+        <img class="imageNews" src="/static/admin/images/banner/{% if item.layout %}{{ item.layout }}{% else %}1{% endif %}.gif" />
+
+        
+
     </div>
     <div class="form-row">
         <label>Photo:</label>

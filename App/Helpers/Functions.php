@@ -24,7 +24,7 @@ class Functions {
 
     public static function current_url() {
       $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-      return $validURL = str_replace("&", "&amp", $url);
+      return str_replace("&", "&amp", $url);
     }
 
     public static function lastUrl($url) {
@@ -42,5 +42,4 @@ class Functions {
       echo "</pre>";
       //exit;
     }
-}              
-?>
+}

@@ -1,33 +1,30 @@
 {% if path == 'login' %}
   {% if session is empty %}
-  <div class="form_wrapper">
-    <h2>Login user</h2>
+  <div class="flex items-center justify-center my-20">
+    <div class="bg-white p-8 rounded shadow-md w-96">
+      <h2 class="text-2xl font-semibold mb-4">Login</h2>
       <form method="post">
-        <input 
-            type="text" 
-            class="inputText" 
-            name="username" 
-            placeholder="login"
-        >
-        <input 
-            type="password" 
-            class="inputText" 
-            name="password" 
-            placeholder="password"
-        >
-        <input 
-            type="submit"
-            name="submit"
-            class="btn" 
-            value="Log In"
-            >
+          <div class="mb-4">
+              <label for="username" class="block text-gray-600 mb-1">Username</label>
+              <input type="text" id="username" name="username" class="w-full border-gray-300 border rounded p-2 focus:outline-none focus:border-blue-400">
+          </div>
+          <div class="mb-4">
+              <label for="password" class="block text-gray-600 mb-1">Password</label>
+              <input type="password" id="password" name="password" class="w-full border-gray-300 border rounded p-2 focus:outline-none focus:border-blue-400">
+          </div>
+          <input type="submit" name="submit" placeholder="Login" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-400 mb-5">
       </form>
-      <div class="form_footer">
-        <small>if you do not have an account yet, register </small>
-        <a href="/register">Register</a>
-      </div>
-    </div>
+  </div>
+  </div>
     {% else %}
-      <div class="alert-danger">You're logged in </div>
+      <div role="alert">
+        <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+          Danger
+        </div>
+        <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+          <p>You're logged in</p>
+        </div>
+      </div>
     {% endif %}
 {% endif %}
+

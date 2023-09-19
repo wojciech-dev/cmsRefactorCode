@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use \Core\{View, Router};
-use App\Helpers\{Functions};
+use Exception;
 use App\Models\{Select};
+use App\Helpers\{Functions};
 
 class DeletePhoto extends \Core\Controller {
 
@@ -38,8 +38,3 @@ public function remove($request) {
         return $removed_files;
     }
 }
-
-
-?>
-
-

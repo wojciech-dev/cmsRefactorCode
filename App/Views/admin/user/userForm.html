@@ -1,0 +1,100 @@
+{% extends "admin/base.html" %}
+
+{% block body %}
+<div class="table-header">
+    <h3>Account<small>- account details</small></h3>
+    <a 
+      href="/admin/menu/create"
+      class="btn"
+    >New menu</a>
+</div>
+
+<form method="post" id="body">
+    <input
+        type="hidden" 
+        name="parent"
+        value="{{ item.parent_id }}"
+    >
+    <div class="form-row wrap">
+        <label>Username:</label>
+        <input 
+            class="inputText" 
+            type="text" 
+            name="username" 
+            value="{{ item.username }}"
+        >
+    </div>
+    <div class="form-row wrap">
+        <label>Email:</label>
+        <input 
+            class="inputText" 
+            type="email" 
+            name="email" 
+            value="{{ item.email }}"
+        >
+    </div>
+    <div class="form-row wrap">
+        <label>Type:</label>
+        <span>{{ item.type }}</span>
+    </div>
+    <div class="form-row">
+        <label>verified</label>
+        <input 
+            class="inputCheckbox" 
+            name="verified" 
+            type="checkbox"
+            {% if item.verified == 1 %}checked{% endif %}
+        >
+    </div>
+
+    <div class="form-row wrap">
+        <label>created_at:</label>
+        <span>{{ item.created_at }}</span>
+    </div>
+    <div class="form-row">
+        <div class="buttons">
+            <button 
+                class="btn btn-success btn-lg" 
+                type="submit" 
+                name="submit"
+                value="submit"
+            >Zapisz</button> 
+            <a 
+                class="btn btn-danger btn-lg" 
+                href="javascript: history.go(-1)"
+            >Anuluj</a>
+        </div>
+    </div>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>
+<script>
+
+$.validator.addMethod("words", function(value, element) {
+	return this.optional(element) || /^[a-zżźćńółęąśŻŹĆĄŚĘŁÓŃA-Z0-9\s]+$/.test(value);
+}, "Letters, words, and spaces only please");
+
+$.validator.addMethod("emailExt", function(value, element) {
+	return value.match(/^[a-zA-Z0-9_\.%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/);
+}, "Your E-mail is wrong");
+
+$('#body').validate({
+    rules: {
+        username: {
+            required: true,
+            words: true,
+            maxlength: 20
+        },
+        email: {
+            required: true,
+            emailExt: true,
+            maxlength: 50
+        },
+    }
+});
+
+
+</script>
+{% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use PDO;
+use Exception;
 
 /**
  * Add model
@@ -40,5 +41,3 @@ class Add extends \Core\Model {
         }
     }
 }
-?>
-

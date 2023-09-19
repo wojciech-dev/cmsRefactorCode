@@ -93,6 +93,15 @@
         >
     </div>
     <div class="form-row">
+        <label>Add form:</label>
+        <input
+            class="inputCheckbox" 
+            name="add_form" 
+            type="checkbox"
+            {% if item.add_form == 1 %}checked{% endif %}
+        >
+    </div>
+    <div class="form-row">
         <label>Schema:</label>
         <select name="layout" id="layout" class="inputSelect" onChange="imageUpdate();">
             <option value="1" {% if item.layout == 1 %} selected {% endif %}>schema 1</option>

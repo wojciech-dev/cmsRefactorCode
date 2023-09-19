@@ -8,7 +8,7 @@
       class="btn"
     >New menu</a>
   </div>
-  <table class="table">
+  <table class="body table">
     <thead>
       <tr>
         <th>id</th>
@@ -24,6 +24,7 @@
         <th>align_center</th>
         <th>bg_pattern</th>
         <th>inheritance</th>
+        <th>add_form</th>
         <th>layout</th>
         <th>photo1</th>
         <th>photo2</th>
@@ -50,6 +51,7 @@
             <td>{{ item.align_center }}</td>
             <td>{{ item.bg_pattern }}</td>
             <td>{{ item.inheritance }}</td>
+            <td>{{ item.add_form }}</td>
             <td>{{ item.layout }}</td>
             <td class="txt-center">{% if item.photo1 %}<img width="60px" src="/uploads/{{ item.photo1 }}" alt="">{% else %}<img src="/static/admin/images/no_photo.gif" alt="">{% endif %}</td>
             <td class="txt-center">{% if item.photo2 %}<img width="60px" src="/uploads/{{ item.photo2 }}" alt="">{% else %}<img src="/static/admin/images/no_photo.gif" alt="">{% endif %}</td>
@@ -74,11 +76,11 @@
     </tbody>
     {% else %}
     <tr>
-      <td>No posts</td>
+      <td colspan="21" class="no_posts">No posts</td>
     </tr>
     {% endif %}
     <tr>
-      <td colspan="15">
+      <td colspan="21">
         <a 
           href="/admin/body/create/{{ request_id }}"
           class="btn"

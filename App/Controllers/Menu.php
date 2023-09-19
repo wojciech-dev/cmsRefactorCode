@@ -6,18 +6,20 @@ use \Core\{View};
 use App\Helpers\{Validation, Functions, Posts};
 use App\Models\{Select, Add, Delete, Update, MenuTree};
 
-class Menu extends \Core\Controller {
+class Menu extends \Core\Controller
+{
   /**
    * Menu controller
    * @return void
    */
-  public function index($request, $response, $service, $app): void {
+  public function index($request, $response, $service, $app): void
+  {
 
     $getMenu = new Select('menu');
     $menu_main = MenuTree::build_menu_main($getMenu->getRows());
     $menu_left = MenuTree::build_menu_left($getMenu->getRows());
     $show_title = $getMenu->getRows(['select' => 'id, title']);
-    
+
     switch ($request->action) {
       case "create":
         if (isset($_POST['submit'])) {
@@ -29,10 +31,11 @@ class Menu extends \Core\Controller {
           'menu_left' => $menu_left,
           'header' => 'Add item',
           'items' => $show_title,
+          'username' => $_SESSION['username']
         ]);
         break;
       case "edit":
-        $update = $getMenu->getRows(['where'=>['id'=> $request->id],'type'=>'fetch']);
+        $update = $getMenu->getRows(['where' => ['id' => $request->id], 'type' => 'fetch']);
         $show_title = $getMenu->getSelect($update['id']);
         if (isset($_POST['submit'])) {
           $row = new Update(Posts::menu_post($request->paramsPost()), 'menu');
@@ -44,6 +47,7 @@ class Menu extends \Core\Controller {
           'header' => 'Edit item',
           'item' => $update,
           'items' => $show_title,
+          'username' => $_SESSION['username']
         ]);
         break;
       case "delete":
@@ -55,15 +59,17 @@ class Menu extends \Core\Controller {
         Functions::redirect('/admin/menu');
         break;
       default:
-      View::renderTemplate('admin/menu/menu.html', [
-        'menu' => $menu_main,
-        'menu_left' => $menu_left
-      ]);
+        View::renderTemplate('admin/menu/menu.html', [
+          'menu' => $menu_main,
+          'menu_left' => $menu_left,
+          'username' => $_SESSION['username']
+        ]);
     }
   }
 
-  public function logout(): void {
-    unset($_SESSION['username']);  
+  public function logout(): void
+  {
+    unset($_SESSION['username']);
     unset($_SESSION['type']);
     session_destroy();
     Functions::redirect('/login');

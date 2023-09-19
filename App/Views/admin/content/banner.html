@@ -8,14 +8,13 @@
       class="btn"
     >New menu</a>
 </div>
-<table class="table">
+<table class="banner table">
   <thead>
     <tr>
       <th>id</th>
       <th>parent_id</th>
       <th>name</th>
       <th>title</th>
-      <th>description</th>
       <th>public</th>
       <th>more</th>
       <th>layout</th>
@@ -28,12 +27,11 @@
   {% if items %}
   <tbody>
     {% for item in items %}
-        <tr>
+    <tr id="arrayorder_{{ item.id }}">
           <td>{{ item.id }}</td>
           <td>{{ item.parent_id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.title }}</td>
-          <td>{{ item.description|length < 50 ? item.description : item.description|slice(0, 50) ~ '...' }}</td>
           <td>{{ item.status }}</td>
           <td>{{ item.more }}</td>
           <td>{{ item.layout }}</td>
@@ -60,7 +58,7 @@
   </tbody>
   {% else %}
   <tr>
-    <td colspan="11">No posts</td>
+    <td colspan="12" class="no_posts">No posts</td>
   </tr>
   {% endif %}
   <tr>
