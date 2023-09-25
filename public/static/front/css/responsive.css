@@ -1,6 +1,14 @@
-/* 48em = 768px */
+@media (max-width: 1200px) {
+    .posts {
+        padding: 20px;
+    }
 
-@media (min-width: 48em) {
+    .article__image .overlay {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
     .header li {
         float: left;
     }
@@ -17,5 +25,29 @@
 
     .header .menu-icon {
         display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .article {
+        flex-direction: column-reverse;
+    }
+
+    .article__image {
+        width: 100%;
+    }
+
+    .article-full__image,
+    .article-full.schema-5,
+    .article-full.schema-6 {
+        flex-direction: column;
+    }
+
+    .article-full__image-img {
+        width: 100%;
+    }
+
+    .article-full.schema-6 .article-full__image {
+        margin: 0;
     }
 }

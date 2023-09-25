@@ -7,7 +7,11 @@
 body {
      margin: 0;
      font-family: Helvetica, sans-serif;
-     background-color: #f4f4f4;
+     background-image: url('../images/bg.jpg');
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
 }
 
 a {
@@ -133,6 +137,7 @@ a {
      margin: 0 auto;
      overflow: hidden;
      position: relative;
+     margin-bottom: 20px;
 }
 
 .slider {
@@ -217,6 +222,7 @@ a {
      font-weight: 100;
 }
 
+/*button*/
 .red-button {
      display: inline-block;
      background-color: #ff0000;
@@ -234,7 +240,152 @@ a {
      background-color: #cc0000;
 }
 
+/**/
 .banner {
      height: 300px;
      overflow: hidden;
+     margin-bottom: 20px;
+}
+
+/*listing*/
+
+.posts {
+     max-width: 1200px;
+     margin: 0 auto;
+     background: #f4f4f4;
+     padding: 20px;
+}
+
+.article {
+     display: flex;
+     align-items: stretch;
+     padding: 20px;
+     margin-bottom: 50px;
+     background: #fff;
+}
+
+.article__type-name {
+     background: #cc0000;
+     border-radius: 20px;
+     padding: 5px 10px;
+     color: #ffffff;
+     font-size: 12px;
+}
+
+.article__image {
+     width: 540px;
+     height: 300px;
+     position: relative;
+}
+
+.article__image-img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     z-index: 2;
+     position: relative;
+}
+
+.article__image .overlay {
+     background: #cc0000;
+     width: 540px;
+     height: 258px;
+     position: absolute;
+     right: -20px;
+     bottom: -20px;
+     z-index: 1;
+}
+
+.article__content,
+.article__image {
+     flex: 1;
+     padding: 20px;
+}
+
+.article__title {
+     font-size: 1.875rem;
+     line-height: 2.25rem;
+     margin-bottom: 10px;
+     font-weight: bold;
+}
+
+.article__description {
+     color: rgba(156, 163, 175);
+     font-size: 18px;
+     line-height: 1.75rem;
+     margin-bottom: 20px;
+}
+
+.article__created-at {
+     color: rgba(107, 114, 128);
+     display: inline-block;
+     margin-left: 20px;
+}
+
+/*layouts*/
+
+.article-full__name {
+     font-size: 32px;
+     font-weight: bold;
+}
+
+.article-full__title {
+     font-size: 24px;
+     font-weight: bold;
+     color: #cc0000;
+     margin-bottom: 20px;
+}
+
+.article-full__image-img {
+     width: 400px;
+     height: 300px;
+     overflow: hidden;
+}
+
+.article-full__image-img img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     position: relative;
+}
+
+.article-full__description {
+     color: #333;
+     font-size: 16px;
+     line-height: 1.75rem;
+}
+
+.article-full__image {
+     display: flex;
+     gap: 10px;
+}
+
+.article-full.schema-1 .article-full__content .article-full__image-img,
+.article-full.schema-3 .article-full__content .article-full__image-img {
+     margin: 0 20px 20px 0;
+     float: left;
+}
+
+.article-full.schema-2 .article-full__content .article-full__image-img,
+.article-full.schema-4 .article-full__content .article-full__image-img {
+     margin: 0 0px 20px 20px;
+     float: right;
+}
+
+.article-full.schema-5 .article-full__image,
+.article-full.schema-6 .article-full__image {
+     flex-direction: column;
+}
+
+.article-full.schema-5,
+.article-full.schema-6 {
+     display: flex;
+}
+
+.article-full.schema-6 {
+     flex-direction: row-reverse;
+}
+
+.article-full.schema-6 .article-full__image {
+     margin-right: 20px;
 }

@@ -58,79 +58,73 @@
     </div>
 {% endif %}
 
-    <section class="flex flex-col justify-center antialiased pt-10 ">
-        <h2 class="text-4xl text-#1d1c1d mb-5 text-center font-black">Odkrywanie Świata Wina <span class="text-red-600">Podróż Dla Zmysłów</span></h2>
-         <p class="text-center text-#6d6d6d text-xl block mb-20">Życie jest pełne przelotnych chwil, a najlepszym sposobem, aby je docenić, jest uczynienie ich niezapomnianymi.<br/> Starannie wybrana butelka wina może nadać nastrój i przekształcić zwyczajny wieczór w niezwykłe przeżycie.</p>
-        <div class="max-w-6xl mx-auto p-4 sm:px-6 h-full">
-            {% if posts %}
-            {% for post in posts %}
-            <article class="schema-{{ post.layout }} max-w-sm mx-auto mb-20 md:max-w-none grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center">
-                {% if post.photo1 %}
-                    <a class="relative block group" href="#">
-                        <div class="absolute inset-0 bg-red-500 hidden md:block transform md:translate-y-2 md:translate-x-4 xl:translate-y-4 xl:translate-x-8 group-hover:translate-x-0 group-hover:translate-y-0 transition duration-700 ease-out pointer-events-none" aria-hidden="true"></div>
-                        <figure class="relative h-72 pb-[56.25%] md:pb-[75%] lg:pb-[56.25%] overflow-hidden transform md:-translate-y-2 xl:-translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition duration-700 ease-out">
-                            <img class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out" src="/uploads/{{ post.photo1 }}" width="540" height="303" alt="Blog post">
-                        </figure>
-                    </a>
-                {% endif %}
-                <div>
-                    <header>
-                        <div class="mb-3">
-                            <ul class="flex items-center text-xs font-medium -m-1">  
-                                {% if post.title == 'wino' %}
-                                <li class="m-1">
-                                    <span class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-red-600 hover:bg-purple-700 transition duration-150 ease-in-out">Wino</span>
-                                </li>
-                                {% endif %}
-                                {% if post.title == 'nalewka' %}
-                                <li class="m-1">
-                                    <a class="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-blue-500 hover:bg-blue-600 transition duration-150 ease-in-out" href="#0">Nalewka</a>
-                                </li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                        {% if post.name %}
-                            <h3 class="text-2xl lg:text-3xl font-bold leading-tight mb-2">
-                                <a class="hover:text-gray-100 transition duration-150 ease-in-out" href="#0">{{ post.name }}</a>
-                            </h3>
-                        {% endif %}
-                    </header>
-                    {% if post.more == 1 %}
-                        <p class="text-lg text-gray-400 flex-grow">{{ post.description|striptags|slice(0, 350) ~ '...' }}</p>
-                    {% else %}
-                        <p class="text-lg text-gray-400 flex-grow">{{ post.description|raw}}</p>
-                    {% endif %}
+{% if posts %}
+<section class="posts">
+    {% for post in posts %}
 
-                    <footer class="flex flex-col mt-4">
-                        <div class="mb-5">
-                            <span class="font-medium bold">Autor: Wojciech Kondraciuk</span>
-                            <small class="text-gray-700"> - </small>
-                            <small class="text-gray-500">Jan 19, 2020</small>
-                        </div>
-                        {% if post.more == 1 %}
-                            <a class="block w-max bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 transition duration-300" href="{% if post.more_link %}{{ post.more_link }}{% else %}/{{ path }}/{{ post.slug }}/{{ post.id }}{% endif %}" class="more">{{ post.more_label }}</a>
-                        {% endif %}
-                    </footer>
+    {% if post.more == 1 %}
+        <article class="article schema-{{ post.layout }}">
+            <div class="article__content">
+                <div class="article__type">Typ: 
+                    <span class="article__type-name">{% if post.title == 'wino' %}wino{% else %}nalewka{% endif %}</span>
                 </div>
-            </article>
-            {% endfor %}
-        {% endif %}
+                {% if post.name %}<h1 class="article__title">{{ post.name }}</h1>{% endif %}
+                <p class="article__description">{{ post.description|striptags|slice(0, 350) ~ '...' }}</p>
+                <a class="red-button" href="#" >Read more</a>
+                <small class="article__created-at">{{ post.created_at }}</small>
+            </div>
+            <div class="article__image">
+                <div class="overlay"></div>
+                <img class="article__image-img" src="/uploads/{% if post.photo1 %}{{ post.photo1 }}{% else %}no_photo.gif{% endif %}" alt="Image">
+            </div>
+        </article>
+    {% else %}
+    <article class="article-full schema-{{ post.layout }}">
+        <div class="article-full__content">
+            {% if post.photo1 %}
+                <div class="article-full__image-img">
+                    <img src="/uploads/{% if post.photo1 %}{{ post.photo1 }}{% else %}no_photo.gif{% endif %}" alt="Image">
+                </div>
+            {% endif %}
+                <div class="article-full__headers">
+                    {% if post.name %}<h1 class="article-full__name">{{ post.name }}</h1>{% endif %}
+                    {% if post.title %}<h2 class="article-full__title">{{ post.title }}</h2>{% endif %}
+                </div>
+            <p class="article-full__description">
+                {{ post.description|raw}}
+            </p>
         </div>
-    </section>
+            <div class="article-full__image">
+                {% if post.photo2 %}
+                <div class="article-full__image-img">
+                    <img src="/uploads/{% if post.photo2 %}{{ post.photo2 }}{% else %}no_photo.gif{% endif %}"  alt="Image">
+                </div>
+                {% endif %}
+                {% if post.photo3 %}
+                <div class="article-full__image-img">
+                    <img src="/uploads/{% if post.photo3 %}{{ post.photo3 }}{% else %}no_photo.gif{% endif %}"  alt="Image">
+                </div>
+                {% endif %}
+                {% if post.photo4 %}
+                <div class="article-full__image-img">
+                    <img src="/uploads/{% if post.photo4 %}{{ post.photo4 }}{% else %}no_photo.gif{% endif %}"  alt="Image">
+                </div>
+                {% endif %}
+            </div>
+    </article>
+
+    {% endif %}
+    {% endfor %}
+
+
+
+</section>
+{% endif %}
 
 
 
 
-<script>
-    const postList = document.querySelectorAll(".post");
 
-    postList.forEach(item => {
-        if (item.classList.contains('schema1') || item.classList.contains('schema2')) {
-            const headers = item.querySelector(".post_headers");
-            item.prepend(headers);
-        }
-    });
-
-</script>
 
 {% endblock %}
+
